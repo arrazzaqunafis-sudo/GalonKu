@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="110" fill="#244fd0"/>
+  <path d="M92 150h205v147H92zM297 198h75l54 61v38H297z" fill="#fff"/>
+  <path d="M323 216v37h67l-34-37z" fill="#acd1ff"/>
+  <circle cx="170" cy="321" r="37" fill="#102f85"/>
+  <circle cx="170" cy="321" r="16" fill="#fff"/>
+  <circle cx="365" cy="321" r="37" fill="#102f85"/>
+  <circle cx="365" cy="321" r="16" fill="#fff"/>
+  <text x="256" y="424" text-anchor="middle" font-family="Arial" font-size="40" font-weight="bold" fill="#fff">MITRA KURIR</text>
+</svg>

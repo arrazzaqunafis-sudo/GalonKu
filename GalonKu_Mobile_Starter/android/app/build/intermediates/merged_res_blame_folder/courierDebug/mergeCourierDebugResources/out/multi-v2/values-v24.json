@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "id.galonku.mobile.app-mergeCourierDebugResources-24:/values-v24/values-v24.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Hype JKT\\.gradle\\caches\\9.1.0\\transforms\\21a16de121dc5c315a48fd7ec96d8e7f\\workspace\\transformed\\appcompat-1.7.0\\res\\values-v24\\values-v24.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,212",
+                        "endColumns": "156,134",
+                        "endOffsets": "207,342"
+                    }
+                }
+            ]
+        }
+    ]
+}

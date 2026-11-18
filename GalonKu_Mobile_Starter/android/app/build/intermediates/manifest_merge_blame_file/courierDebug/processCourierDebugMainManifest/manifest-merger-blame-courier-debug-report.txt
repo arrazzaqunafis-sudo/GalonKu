@@ -1,0 +1,191 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="id.galonku.mobile.courier"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="26"
+9        android:targetSdkVersion="35" />
+10
+11    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+11-->C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:3:5-81
+11-->C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:3:22-78
+12    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+12-->C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:4:5-79
+12-->C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:4:22-76
+13    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+13-->C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\courier\AndroidManifest.xml:4:5-77
+13-->C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\courier\AndroidManifest.xml:4:22-74
+14    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+14-->C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\courier\AndroidManifest.xml:5:5-86
+14-->C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\courier\AndroidManifest.xml:5:22-83
+15    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+15-->C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\courier\AndroidManifest.xml:6:5-77
+15-->C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\courier\AndroidManifest.xml:6:22-74
+16    <uses-permission android:name="android.permission.INTERNET" />
+16-->C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:2:5-67
+16-->C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:2:22-64
+17
+18    <permission
+18-->[androidx.core:core:1.15.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\88329b671d6a5b28ed08fb29d19c52bb\workspace\transformed\core-1.15.0\AndroidManifest.xml:22:5-24:47
+19        android:name="id.galonku.mobile.courier.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+19-->[androidx.core:core:1.15.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\88329b671d6a5b28ed08fb29d19c52bb\workspace\transformed\core-1.15.0\AndroidManifest.xml:23:9-81
+20        android:protectionLevel="signature" />
+20-->[androidx.core:core:1.15.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\88329b671d6a5b28ed08fb29d19c52bb\workspace\transformed\core-1.15.0\AndroidManifest.xml:24:9-44
+21
+22    <uses-permission android:name="id.galonku.mobile.courier.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+22-->[androidx.core:core:1.15.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\88329b671d6a5b28ed08fb29d19c52bb\workspace\transformed\core-1.15.0\AndroidManifest.xml:26:5-97
+22-->[androidx.core:core:1.15.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\88329b671d6a5b28ed08fb29d19c52bb\workspace\transformed\core-1.15.0\AndroidManifest.xml:26:22-94
+23
+24    <application
+24-->C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:6:5-17:19
+25        android:allowBackup="false"
+25-->C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:7:9-36
+26        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+26-->[androidx.core:core:1.15.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\88329b671d6a5b28ed08fb29d19c52bb\workspace\transformed\core-1.15.0\AndroidManifest.xml:28:18-86
+27        android:debuggable="true"
+28        android:extractNativeLibs="false"
+29        android:icon="@drawable/ic_galonku"
+29-->C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:8:9-44
+30        android:label="@string/app_name"
+30-->C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:9:9-41
+31        android:theme="@style/AppTheme"
+31-->C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:10:9-40
+32        android:usesCleartextTraffic="true" >
+32-->C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\debug\AndroidManifest.xml:2:18-53
+33        <service
+33-->C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\courier\AndroidManifest.xml:9:9-12:56
+34            android:name="id.galonku.mobile.CourierLocationService"
+34-->C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\courier\AndroidManifest.xml:10:13-51
+35            android:exported="false"
+35-->C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\courier\AndroidManifest.xml:11:13-37
+36            android:foregroundServiceType="location" />
+36-->C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\courier\AndroidManifest.xml:12:13-53
+37
+38        <activity
+38-->C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:11:9-16:20
+39            android:name="id.galonku.mobile.MainActivity"
+39-->C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:11:19-47
+40            android:exported="true" >
+40-->C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:11:48-71
+41            <intent-filter>
+41-->C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:12:13-15:29
+42                <action android:name="android.intent.action.MAIN" />
+42-->C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:13:17-69
+42-->C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:13:25-66
+43
+44                <category android:name="android.intent.category.LAUNCHER" />
+44-->C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:14:17-77
+44-->C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:14:27-74
+45            </intent-filter>
+46        </activity>
+47        <activity
+47-->[com.google.android.gms:play-services-auth:21.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\83779f0db4644e8a5580f9895e426b72\workspace\transformed\play-services-auth-21.3.0\AndroidManifest.xml:23:9-27:75
+48            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+48-->[com.google.android.gms:play-services-auth:21.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\83779f0db4644e8a5580f9895e426b72\workspace\transformed\play-services-auth-21.3.0\AndroidManifest.xml:24:13-93
+49            android:excludeFromRecents="true"
+49-->[com.google.android.gms:play-services-auth:21.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\83779f0db4644e8a5580f9895e426b72\workspace\transformed\play-services-auth-21.3.0\AndroidManifest.xml:25:13-46
+50            android:exported="false"
+50-->[com.google.android.gms:play-services-auth:21.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\83779f0db4644e8a5580f9895e426b72\workspace\transformed\play-services-auth-21.3.0\AndroidManifest.xml:26:13-37
+51            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+51-->[com.google.android.gms:play-services-auth:21.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\83779f0db4644e8a5580f9895e426b72\workspace\transformed\play-services-auth-21.3.0\AndroidManifest.xml:27:13-72
+52        <!--
+53            Service handling Google Sign-In user revocation. For apps that do not integrate with
+54            Google Sign-In, this service will never be started.
+55        -->
+56        <service
+56-->[com.google.android.gms:play-services-auth:21.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\83779f0db4644e8a5580f9895e426b72\workspace\transformed\play-services-auth-21.3.0\AndroidManifest.xml:33:9-37:51
+57            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+57-->[com.google.android.gms:play-services-auth:21.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\83779f0db4644e8a5580f9895e426b72\workspace\transformed\play-services-auth-21.3.0\AndroidManifest.xml:34:13-89
+58            android:exported="true"
+58-->[com.google.android.gms:play-services-auth:21.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\83779f0db4644e8a5580f9895e426b72\workspace\transformed\play-services-auth-21.3.0\AndroidManifest.xml:35:13-36
+59            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+59-->[com.google.android.gms:play-services-auth:21.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\83779f0db4644e8a5580f9895e426b72\workspace\transformed\play-services-auth-21.3.0\AndroidManifest.xml:36:13-107
+60            android:visibleToInstantApps="true" />
+60-->[com.google.android.gms:play-services-auth:21.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\83779f0db4644e8a5580f9895e426b72\workspace\transformed\play-services-auth-21.3.0\AndroidManifest.xml:37:13-48
+61
+62        <activity
+62-->[com.google.android.gms:play-services-base:18.5.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\56590405309de5b14554bbdfa3213caf\workspace\transformed\play-services-base-18.5.0\AndroidManifest.xml:5:9-173
+63            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+63-->[com.google.android.gms:play-services-base:18.5.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\56590405309de5b14554bbdfa3213caf\workspace\transformed\play-services-base-18.5.0\AndroidManifest.xml:5:19-85
+64            android:exported="false"
+64-->[com.google.android.gms:play-services-base:18.5.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\56590405309de5b14554bbdfa3213caf\workspace\transformed\play-services-base-18.5.0\AndroidManifest.xml:5:146-170
+65            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+65-->[com.google.android.gms:play-services-base:18.5.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\56590405309de5b14554bbdfa3213caf\workspace\transformed\play-services-base-18.5.0\AndroidManifest.xml:5:86-145
+66
+67        <meta-data
+67-->[com.google.android.gms:play-services-basement:18.4.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\f5052dc2e4bb57b333f4066c204c8ece\workspace\transformed\play-services-basement-18.4.0\AndroidManifest.xml:6:9-122
+68            android:name="com.google.android.gms.version"
+68-->[com.google.android.gms:play-services-basement:18.4.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\f5052dc2e4bb57b333f4066c204c8ece\workspace\transformed\play-services-basement-18.4.0\AndroidManifest.xml:6:20-65
+69            android:value="@integer/google_play_services_version" />
+69-->[com.google.android.gms:play-services-basement:18.4.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\f5052dc2e4bb57b333f4066c204c8ece\workspace\transformed\play-services-basement-18.4.0\AndroidManifest.xml:6:66-119
+70
+71        <provider
+71-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\e664b3dd09030b1a46ed29290a3b7104\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
+72            android:name="androidx.startup.InitializationProvider"
+72-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\e664b3dd09030b1a46ed29290a3b7104\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:25:13-67
+73            android:authorities="id.galonku.mobile.courier.androidx-startup"
+73-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\e664b3dd09030b1a46ed29290a3b7104\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:26:13-68
+74            android:exported="false" >
+74-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\e664b3dd09030b1a46ed29290a3b7104\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:27:13-37
+75            <meta-data
+75-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\e664b3dd09030b1a46ed29290a3b7104\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
+76                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+76-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\e664b3dd09030b1a46ed29290a3b7104\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:30:17-75
+77                android:value="androidx.startup" />
+77-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\e664b3dd09030b1a46ed29290a3b7104\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:31:17-49
+78            <meta-data
+78-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\31aa6e5d89d23055d82ab81f200962df\workspace\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:29:13-31:52
+79                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+79-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\31aa6e5d89d23055d82ab81f200962df\workspace\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:30:17-78
+80                android:value="androidx.startup" />
+80-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\31aa6e5d89d23055d82ab81f200962df\workspace\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:31:17-49
+81            <meta-data
+81-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:29:13-31:52
+82                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+82-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:30:17-85
+83                android:value="androidx.startup" />
+83-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:31:17-49
+84        </provider>
+85
+86        <receiver
+86-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:34:9-52:20
+87            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+87-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:35:13-76
+88            android:directBootAware="false"
+88-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:36:13-44
+89            android:enabled="true"
+89-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:37:13-35
+90            android:exported="true"
+90-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:38:13-36
+91            android:permission="android.permission.DUMP" >
+91-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:39:13-57
+92            <intent-filter>
+92-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:40:13-42:29
+93                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+93-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:17-91
+93-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:25-88
+94            </intent-filter>
+95            <intent-filter>
+95-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:43:13-45:29
+96                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+96-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:17-85
+96-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:25-82
+97            </intent-filter>
+98            <intent-filter>
+98-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:46:13-48:29
+99                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+99-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:17-88
+99-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:25-85
+100            </intent-filter>
+101            <intent-filter>
+101-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:49:13-51:29
+102                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+102-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:17-95
+102-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:25-92
+103            </intent-filter>
+104        </receiver>
+105    </application>
+106
+107</manifest>

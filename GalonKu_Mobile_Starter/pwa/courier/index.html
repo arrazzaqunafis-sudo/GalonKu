@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#244fd0">
+  <link rel="manifest" href="manifest.webmanifest">
+  <title>GalonKu Mitra Kurir</title>
+  <style>
+    :root{--blue:#2853d4;--blue2:#183ba7;--ink:#17243a;--muted:#758196;--line:#e7ebf2;--green:#13ae78;--red:#ed5a4f}
+    *{box-sizing:border-box}body{margin:0;background:#f1f4f9;color:var(--ink);font-family:Inter,"Segoe UI",Arial,sans-serif}
+    button,input{font:inherit}button{cursor:pointer}.app{width:min(100%,430px);min-height:100vh;margin:auto;background:#f7f8fb;padding:0 15px 86px;box-shadow:0 0 42px #192c5418}
+    .top{margin:0 -15px;padding:20px 17px 18px;color:#fff;background:linear-gradient(145deg,#244fd0,#3467eb);border-radius:0 0 23px 23px}
+    .topbar{display:flex;align-items:center;justify-content:space-between}.brand{font-size:17px;font-weight:850;letter-spacing:.2px}.top-actions{display:flex;align-items:center;gap:8px}.avatar{display:grid;width:35px;height:35px;place-items:center;border:2px solid #ffffff80;border-radius:50%;background:#c9dcf4;color:#2049bc;font-size:13px;font-weight:800}
+    .online-toggle{display:flex;align-items:center;gap:7px;padding:7px 10px;border:1px solid #ffffff65;border-radius:30px;background:#ffffff20;color:#fff;font-size:10px;font-weight:700}
+    .switch{position:relative;width:28px;height:16px;border-radius:20px;background:#96a4bf}.switch:after{content:"";position:absolute;left:2px;top:2px;width:12px;height:12px;border-radius:50%;background:#fff;transition:.2s}.online .switch{background:#21c88a}.online .switch:after{left:14px}
+    .welcome{margin:19px 0 4px;color:#ffffffb5;font-size:11px}.driver-name{margin:0;font-size:20px}.online-state{display:flex;align-items:center;gap:6px;margin-top:8px;color:#dbe5ff;font-size:10px}.green-dot{width:7px;height:7px;border-radius:50%;background:#54e2a8;box-shadow:0 0 0 4px #ffffff1b}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:19px}.stat{padding:10px 9px;border:1px solid #ffffff24;border-radius:12px;background:#ffffff12}.stat span{display:block;color:#ffffffb5;font-size:9px}.stat strong{display:block;margin-top:5px;font-size:16px}
+    .section-title{display:flex;align-items:end;justify-content:space-between;margin:19px 1px 10px}.section-title h2{margin:0;font-size:15px}.section-title span{color:var(--muted);font-size:10px}
+    .card{padding:13px;border:1px solid #edf0f5;border-radius:15px;background:#fff;box-shadow:0 5px 18px #21345408}
+    .next-card{border:0;background:linear-gradient(135deg,#fff,#f8fbff)}.trip-head{display:flex;justify-content:space-between;align-items:center}.trip-head strong{font-size:12px}.badge{padding:5px 8px;border-radius:15px;background:#e8efff;color:#2853d4;font-size:9px;font-weight:800}.route{margin:12px 0 10px;padding-left:13px;border-left:2px solid #d6e0f6}.route-point{position:relative;padding:0 0 12px 5px}.route-point:last-child{padding-bottom:0}.route-point:before{content:"";position:absolute;left:-20px;top:2px;width:8px;height:8px;border:2px solid #fff;border-radius:50%;background:#3366dc;box-shadow:0 0 0 1px #3366dc}.route-point.drop:before{background:#16ab78;box-shadow:0 0 0 1px #16ab78}.route-point small{display:block;margin-bottom:3px;color:var(--muted);font-size:9px}.route-point strong{display:block;font-size:11px;font-weight:650}
+    .trip-meta{display:flex;gap:14px;padding-top:10px;border-top:1px solid var(--line);color:var(--muted);font-size:9px}.trip-meta b{color:var(--ink);font-size:10px}
+    .button-row{display:flex;gap:8px;margin-top:12px}.button-row button{flex:1;height:38px;border:0;border-radius:10px;font-size:10px;font-weight:800}.accept{background:var(--blue);color:#fff}.reject{border:1px solid #f3d9d6!important;background:#fff;color:var(--red)}
+    .map-card{height:170px;position:relative;overflow:hidden;padding:0;background-color:#e8f0e9;background-image:linear-gradient(24deg,transparent 46%,#fff 47%,#fff 50%,transparent 51%),linear-gradient(112deg,transparent 46%,#f8d987 47%,#f8d987 49%,transparent 50%),linear-gradient(158deg,transparent 46%,#fff 47%,#fff 50%,transparent 51%);background-size:95px 80px,130px 100px,80px 110px}
+    .road-label{position:absolute;color:#758496;font-size:7px;text-transform:uppercase;letter-spacing:.7px;transform:rotate(-25deg)}.pin{position:absolute;display:grid;width:28px;height:28px;place-items:center;border:3px solid #fff;border-radius:50% 50% 50% 8px;background:var(--blue);color:#fff;box-shadow:0 4px 9px #29498735;transform:rotate(-45deg)}.pin span{font-size:11px;transform:rotate(45deg)}.pin.me{left:43%;top:46%;background:#12a876}.pin.destination{left:72%;top:22%}
+    .map-status{position:absolute;left:10px;bottom:10px;padding:7px 9px;border-radius:8px;background:#fff;color:var(--ink);font-size:9px;box-shadow:0 3px 12px #20334a18}
+    .job-list{display:grid;gap:9px}.job-card{padding:12px}.job-top{display:flex;justify-content:space-between;gap:8px}.job-id{font-size:11px;font-weight:800}.distance{color:var(--blue);font-size:10px;font-weight:800}.job-card .route{margin:10px 0}.job-footer{display:flex;justify-content:space-between;align-items:center;padding-top:9px;border-top:1px solid var(--line)}.job-footer strong{color:var(--blue);font-size:12px}.job-footer small{color:var(--muted);font-size:9px}
+    .empty{padding:24px 12px;text-align:center;color:var(--muted);font-size:11px}.empty b{display:block;margin-bottom:5px;color:var(--ink);font-size:12px}
+    .nav{position:fixed;z-index:10;left:50%;bottom:0;width:min(100%,430px);height:70px;transform:translateX(-50%);display:grid;grid-template-columns:repeat(4,1fr);align-items:center;border-top:1px solid var(--line);background:#fff;padding-bottom:env(safe-area-inset-bottom)}.nav button{display:flex;flex-direction:column;align-items:center;gap:4px;border:0;background:#fff;color:#8995a8;font-size:9px}.nav button.active{color:var(--blue)}.nav i{font-size:19px;font-style:normal}
+    .screen{display:none}.screen.active{display:block}
+    [hidden]{display:none!important}.login-wrap{display:grid;min-height:100vh;place-items:center;padding:20px}.login-card{width:min(100%,360px);padding:24px;border-radius:20px;background:#fff;box-shadow:0 12px 40px #1a35601b}.login-card h1{margin:0;color:var(--blue);font-size:23px}.login-card p{color:var(--muted);font-size:12px}.login-card label{display:block;margin:14px 0;font-size:11px;font-weight:700}.login-card input{width:100%;height:43px;margin-top:6px;border:1px solid var(--line);border-radius:10px;padding:0 11px}.login-card button{width:100%;height:44px;border:0;border-radius:10px;background:var(--blue);color:#fff;font-weight:800}.login-card .google-native,.login-card .google-fallback{margin-top:12px;border:1px solid var(--line);background:#fff;color:var(--ink)}.google-signin{display:flex;justify-content:center;margin-top:12px}.login-card .login-divider{margin:15px 0 0;text-align:center}.error{color:#c33;font-size:11px}
+    .modal{position:fixed;z-index:30;inset:0;display:none;align-items:end;justify-content:center;background:#101b3075}.modal.open{display:flex}.modal-box{width:min(100%,430px);padding:20px;border-radius:22px 22px 0 0;background:#fff}.modal-box h2{margin:0 0 7px;font-size:17px}.modal-box p{color:var(--muted);font-size:11px}.modal-box label{display:block;margin:12px 0;font-size:11px;font-weight:700}.modal-box input{width:100%;margin-top:7px}.modal-box button{width:100%;height:43px;border:0;border-radius:10px;background:var(--blue);color:#fff;font-weight:800}
+    .notice{position:fixed;z-index:40;left:50%;top:15px;transform:translate(-50%,-20px);opacity:0;pointer-events:none;padding:10px 14px;border-radius:12px;background:#17243a;color:white;font-size:11px;transition:.2s}.notice.show{transform:translate(-50%,0);opacity:1}
+    @media(min-width:431px){.app{margin:16px auto;min-height:calc(100vh - 32px);border-radius:25px}.nav{bottom:16px;border-radius:0 0 25px 25px}}
+  </style>
+</head>
+<body>
+  <section class="login-wrap" id="login-screen">
+    <div class="login-card">
+      <h1>GalonKu Mitra</h1>
+      <p>Masuk untuk menerima dan mengelola pesanan pelanggan.</p>
+      <form id="login-form">
+        <label>Email atau nomor HP<input id="identity" autocomplete="username" required></label>
+        <label>Password<input id="password" type="password" autocomplete="current-password" required></label>
+        <button type="submit">Masuk sebagai Kurir</button>
+      </form>
+      <p class="login-divider">atau daftar / masuk dengan Google</p>
+      <label>Nomor HP untuk akun baru<input id="google-phone" type="tel" autocomplete="tel" placeholder="08xxxxxxxxxx"></label>
+      <div class="google-signin" id="google-signin-button"></div>
+      <button class="google-fallback" id="google-fallback" type="button" hidden>Daftar / Masuk dengan Google</button>
+      <button class="google-native" id="google-native-signin" type="button" hidden>Daftar / Masuk dengan Google</button>
+      <p class="error" id="login-error" role="status"></p>
+    </div>
+  </section>
+
+  <main class="app" id="app-screen" hidden>
+    <section class="screen active" id="home-screen">
+      <header class="top">
+        <div class="topbar">
+          <div class="brand">GalonKu <span style="font-weight:400">Mitra</span></div>
+          <div class="top-actions">
+            <button class="online-toggle" id="online-toggle" aria-pressed="false"><span id="online-label">Offline</span><i class="switch"></i></button>
+            <div class="avatar" id="avatar">K</div>
+          </div>
+        </div>
+        <p class="welcome">Halo, selamat bekerja</p>
+        <h1 class="driver-name" id="driver-name">Mitra Kurir</h1>
+        <div class="online-state"><i class="green-dot"></i><span id="online-status">Anda sedang offline</span></div>
+        <div class="stats">
+          <div class="stat"><span>Pesanan selesai</span><strong id="trip-count">0</strong></div>
+          <div class="stat"><span>Jarak hari ini</span><strong id="distance-total">0 km</strong></div>
+          <div class="stat"><span>Pendapatan tunai</span><strong id="cash-total">Rp0</strong></div>
+        </div>
+      </header>
+
+      <div class="section-title"><h2>Pesanan aktif</h2><span id="active-count">0 pesanan</span></div>
+      <div id="assigned-list" class="job-list"></div>
+      <div class="section-title"><h2>Peta sekitar</h2><span>Radius 5 km</span></div>
+      <div class="card map-card">
+        <span class="road-label" style="left:14%;top:25%">Jl. Merdeka</span>
+        <span class="road-label" style="left:57%;top:68%">Jl. Sudirman</span>
+        <span class="pin me"><span>●</span></span><span class="pin destination"><span>⌂</span></span>
+        <span class="map-status" id="map-status">Aktifkan status online untuk mulai</span>
+      </div>
+      <div class="section-title"><h2>Pesanan masuk</h2><span id="available-count">0 tersedia</span></div>
+      <div id="available-list" class="job-list"></div>
+    </section>
+
+    <section class="screen" id="income-screen">
+      <div class="section-title"><h2>Pendapatan</h2><span>Hari ini</span></div>
+      <div class="card"><small>Total pendapatan tunai</small><h2 id="income-total">Rp0</h2><p style="color:var(--muted);font-size:11px">COD lunas tercatat otomatis setelah pengantaran dikonfirmasi.</p></div>
+    </section>
+    <section class="screen" id="history-screen">
+      <div class="section-title"><h2>Riwayat pengantaran</h2><span>Pesanan selesai</span></div>
+      <div id="history-list" class="job-list"></div>
+    </section>
+    <section class="screen" id="orders-screen">
+      <div class="section-title"><h2>Pesanan saya</h2><span id="orders-count"></span></div>
+      <div id="orders-list" class="job-list"></div>
+    </section>
+  </main>
+
+  <nav class="nav" id="bottom-nav" hidden>
+    <button class="active" data-screen="home-screen"><i>⌂</i>Beranda</button>
+    <button data-screen="income-screen"><i>＄</i>Pendapatan</button>
+    <button data-screen="history-screen"><i>◷</i>Riwayat</button>
+    <button data-screen="orders-screen"><i>▤</i>Pesanan</button>
+  </nav>
+
+  <div class="modal" id="complete-modal">
+    <form class="modal-box" id="complete-form">
+      <h2>Konfirmasi pengantaran</h2>
+      <p>Ambil atau pilih foto bukti saat galon diterima pelanggan. Untuk COD, pesanan akan otomatis ditandai lunas.</p>
+      <input type="hidden" id="complete-order-id">
+      <label>Foto bukti pengantaran<input type="file" id="proof-photo" accept="image/jpeg,image/png,image/webp" capture="environment" required></label>
+      <button type="submit">Konfirmasi selesai</button>
+      <button type="button" id="cancel-complete" style="margin-top:8px;background:#edf1f7;color:#344">Batal</button>
+    </form>
+  </div>
+  <div class="notice" id="notice"></div>
+  <script src="./app.js"></script>
+  <script>if('serviceWorker' in navigator) navigator.serviceWorker.register('./service-worker.js');</script>
+</body>
+</html>

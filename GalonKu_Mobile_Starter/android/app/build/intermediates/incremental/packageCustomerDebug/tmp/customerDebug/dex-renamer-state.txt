@@ -1,0 +1,10 @@
+#Wed Nov 18 22:20:11 WIB 2026
+base.0=C\:\\laragon\\www\\percobaan\\GalonKu_Mobile_Starter\\android\\app\\build\\intermediates\\dex\\customerDebug\\mergeExtDexCustomerDebug\\classes.dex
+base.1=C\:\\laragon\\www\\percobaan\\GalonKu_Mobile_Starter\\android\\app\\build\\intermediates\\dex\\customerDebug\\mergeProjectDexCustomerDebug\\0\\classes.dex
+base.2=C\:\\laragon\\www\\percobaan\\GalonKu_Mobile_Starter\\android\\app\\build\\intermediates\\dex\\customerDebug\\mergeProjectDexCustomerDebug\\5\\classes.dex
+path.0=classes.dex
+path.1=0/classes.dex
+path.2=5/classes.dex
+renamed.0=classes.dex
+renamed.1=classes2.dex
+renamed.2=classes3.dex

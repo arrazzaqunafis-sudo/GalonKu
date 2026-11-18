@@ -1,0 +1,330 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:1:1-18:12
+MERGED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:1:1-18:12
+INJECTED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\debug\AndroidManifest.xml:1:1-3:12
+INJECTED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\debug\AndroidManifest.xml:1:1-3:12
+INJECTED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\debug\AndroidManifest.xml:1:1-3:12
+MERGED from [com.google.android.gms:play-services-location:21.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\03594fb0eac63c213431a18693dce3db\workspace\transformed\play-services-location-21.3.0\AndroidManifest.xml:2:1-8:12
+MERGED from [androidx.appcompat:appcompat-resources:1.7.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\c75ad11b17a43e9d17a105c55e8b036f\workspace\transformed\appcompat-resources-1.7.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.appcompat:appcompat:1.7.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\21a16de121dc5c315a48fd7ec96d8e7f\workspace\transformed\appcompat-1.7.0\AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-auth:21.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\83779f0db4644e8a5580f9895e426b72\workspace\transformed\play-services-auth-21.3.0\AndroidManifest.xml:17:1-40:12
+MERGED from [com.google.android.gms:play-services-auth-api-phone:18.0.2] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\fc072e71e751cd4055e5fb35ffc770a3\workspace\transformed\play-services-auth-api-phone-18.0.2\AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-auth-base:18.0.10] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\c2346444aeb335de924b9c22b68d74c5\workspace\transformed\play-services-auth-base-18.0.10\AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-fido:20.0.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\9ec57fa2bad9cfef18fe035f9b8cb2e5\workspace\transformed\play-services-fido-20.0.1\AndroidManifest.xml:2:1-10:12
+MERGED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\56590405309de5b14554bbdfa3213caf\workspace\transformed\play-services-base-18.5.0\AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-tasks:18.2.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\8649fc81a16b111adf32c1f8c9c5293d\workspace\transformed\play-services-tasks-18.2.0\AndroidManifest.xml:2:1-5:12
+MERGED from [com.google.android.gms:play-services-basement:18.4.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\f5052dc2e4bb57b333f4066c204c8ece\workspace\transformed\play-services-basement-18.4.0\AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.fragment:fragment:1.5.7] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\c51cbb1f29d577953f8b0d29fa446e79\workspace\transformed\fragment-1.5.7\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.loader:loader:1.1.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\fd2aba7912733a18cd1003df2ddf8746\workspace\transformed\loader-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.activity:activity:1.7.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\88e1353e720a9778743ab42147d3b96b\workspace\transformed\activity-1.7.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\09c649ae68ac2b6ec0921fccbcadcf2f\workspace\transformed\drawerlayout-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\dfc6a593951a90b95a658e9620062e66\workspace\transformed\emoji2-views-helper-1.3.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\e664b3dd09030b1a46ed29290a3b7104\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\55cc3b642d77a3e4cae366eb173ebdfb\workspace\transformed\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\f978d7137c0b4f5f603a810d53a5ba91\workspace\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\9857eb21a737d39b2d8e3bdcf51d6db7\workspace\transformed\vectordrawable-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\dd866e925cbe7060a09aaf3a8aef1b7b\workspace\transformed\customview-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.15.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\88329b671d6a5b28ed08fb29d19c52bb\workspace\transformed\core-1.15.0\AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\74c222c2b835098764309a9b86abeeba\workspace\transformed\savedstate-1.2.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.2] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\c3189fb2e4b1f5043c081321286eeed9\workspace\transformed\lifecycle-viewmodel-2.6.2\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\31aa6e5d89d23055d82ab81f200962df\workspace\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.2] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\4d52d466b912781b1ff0b7e6303867c4\workspace\transformed\lifecycle-livedata-core-2.6.2\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.6.2] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\0fcd19beaca6434869d387480d520087\workspace\transformed\lifecycle-runtime-2.6.2\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\5eee50540fb20cbe43681b4c1d3c421a\workspace\transformed\lifecycle-viewmodel-savedstate-2.6.2\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core-ktx:1.15.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\7fc1790463c7ab0fd0d715c5544f447f\workspace\transformed\core-ktx-1.15.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\a1afa93fdcbb503f093ea5b38f95d59f\workspace\transformed\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:17:1-55:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\1bfd0cee07fa994f3e556ed70e22339c\workspace\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\dcff0354d816af879ad5a184fbf92c55\workspace\transformed\startup-runtime-1.1.1\AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.tracing:tracing:1.2.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\8bfc5cb30f441bdeeafd744dfcf9b760\workspace\transformed\tracing-1.2.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\d65b7644d74dd72fc53b48355eee5498\workspace\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\30f323e87d89ab8cf7877a73cbc3a0e1\workspace\transformed\core-runtime-2.2.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.annotation:annotation-experimental:1.4.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\dc835eaf5d7cd622c1406e4b5e07baca\workspace\transformed\annotation-experimental-1.4.1\AndroidManifest.xml:2:1-7:12
+	package
+		INJECTED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\debug\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\debug\AndroidManifest.xml
+	android:versionCode
+		INJECTED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\debug\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:1:11-69
+uses-permission#android.permission.INTERNET
+ADDED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:2:5-67
+	android:name
+		ADDED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:2:22-64
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:3:5-81
+	android:name
+		ADDED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:3:22-78
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:4:5-79
+	android:name
+		ADDED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:4:22-76
+application
+ADDED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:6:5-17:19
+MERGED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:6:5-17:19
+MERGED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:6:5-17:19
+INJECTED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\debug\AndroidManifest.xml:2:5-56
+MERGED from [com.google.android.gms:play-services-location:21.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\03594fb0eac63c213431a18693dce3db\workspace\transformed\play-services-location-21.3.0\AndroidManifest.xml:6:5-20
+MERGED from [com.google.android.gms:play-services-location:21.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\03594fb0eac63c213431a18693dce3db\workspace\transformed\play-services-location-21.3.0\AndroidManifest.xml:6:5-20
+MERGED from [com.google.android.gms:play-services-auth:21.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\83779f0db4644e8a5580f9895e426b72\workspace\transformed\play-services-auth-21.3.0\AndroidManifest.xml:22:5-38:19
+MERGED from [com.google.android.gms:play-services-auth:21.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\83779f0db4644e8a5580f9895e426b72\workspace\transformed\play-services-auth-21.3.0\AndroidManifest.xml:22:5-38:19
+MERGED from [com.google.android.gms:play-services-fido:20.0.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\9ec57fa2bad9cfef18fe035f9b8cb2e5\workspace\transformed\play-services-fido-20.0.1\AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.android.gms:play-services-fido:20.0.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\9ec57fa2bad9cfef18fe035f9b8cb2e5\workspace\transformed\play-services-fido-20.0.1\AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\56590405309de5b14554bbdfa3213caf\workspace\transformed\play-services-base-18.5.0\AndroidManifest.xml:4:5-6:19
+MERGED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\56590405309de5b14554bbdfa3213caf\workspace\transformed\play-services-base-18.5.0\AndroidManifest.xml:4:5-6:19
+MERGED from [com.google.android.gms:play-services-tasks:18.2.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\8649fc81a16b111adf32c1f8c9c5293d\workspace\transformed\play-services-tasks-18.2.0\AndroidManifest.xml:4:5-20
+MERGED from [com.google.android.gms:play-services-tasks:18.2.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\8649fc81a16b111adf32c1f8c9c5293d\workspace\transformed\play-services-tasks-18.2.0\AndroidManifest.xml:4:5-20
+MERGED from [com.google.android.gms:play-services-basement:18.4.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\f5052dc2e4bb57b333f4066c204c8ece\workspace\transformed\play-services-basement-18.4.0\AndroidManifest.xml:5:5-7:19
+MERGED from [com.google.android.gms:play-services-basement:18.4.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\f5052dc2e4bb57b333f4066c204c8ece\workspace\transformed\play-services-basement-18.4.0\AndroidManifest.xml:5:5-7:19
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\e664b3dd09030b1a46ed29290a3b7104\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\e664b3dd09030b1a46ed29290a3b7104\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.core:core:1.15.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\88329b671d6a5b28ed08fb29d19c52bb\workspace\transformed\core-1.15.0\AndroidManifest.xml:28:5-89
+MERGED from [androidx.core:core:1.15.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\88329b671d6a5b28ed08fb29d19c52bb\workspace\transformed\core-1.15.0\AndroidManifest.xml:28:5-89
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\31aa6e5d89d23055d82ab81f200962df\workspace\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\31aa6e5d89d23055d82ab81f200962df\workspace\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\dcff0354d816af879ad5a184fbf92c55\workspace\transformed\startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\dcff0354d816af879ad5a184fbf92c55\workspace\transformed\startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\d65b7644d74dd72fc53b48355eee5498\workspace\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\d65b7644d74dd72fc53b48355eee5498\workspace\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+	android:extractNativeLibs
+		INJECTED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\debug\AndroidManifest.xml
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.15.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\88329b671d6a5b28ed08fb29d19c52bb\workspace\transformed\core-1.15.0\AndroidManifest.xml:28:18-86
+	android:label
+		ADDED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:9:9-41
+		ADDED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:9:9-41
+	android:icon
+		ADDED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:8:9-44
+		ADDED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:8:9-44
+	android:allowBackup
+		ADDED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:7:9-36
+		ADDED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:7:9-36
+	android:theme
+		ADDED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:10:9-40
+		ADDED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:10:9-40
+	android:usesCleartextTraffic
+		ADDED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\debug\AndroidManifest.xml:2:18-53
+activity#id.galonku.mobile.MainActivity
+ADDED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:11:9-16:20
+	android:exported
+		ADDED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:11:48-71
+	android:name
+		ADDED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:11:19-47
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:12:13-15:29
+action#android.intent.action.MAIN
+ADDED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:13:17-69
+	android:name
+		ADDED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:13:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:14:17-77
+	android:name
+		ADDED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\main\AndroidManifest.xml:14:27-74
+uses-sdk
+INJECTED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\debug\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\debug\AndroidManifest.xml
+INJECTED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\debug\AndroidManifest.xml
+MERGED from [com.google.android.gms:play-services-location:21.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\03594fb0eac63c213431a18693dce3db\workspace\transformed\play-services-location-21.3.0\AndroidManifest.xml:4:5-44
+MERGED from [com.google.android.gms:play-services-location:21.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\03594fb0eac63c213431a18693dce3db\workspace\transformed\play-services-location-21.3.0\AndroidManifest.xml:4:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.7.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\c75ad11b17a43e9d17a105c55e8b036f\workspace\transformed\appcompat-resources-1.7.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.7.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\c75ad11b17a43e9d17a105c55e8b036f\workspace\transformed\appcompat-resources-1.7.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.appcompat:appcompat:1.7.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\21a16de121dc5c315a48fd7ec96d8e7f\workspace\transformed\appcompat-1.7.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.appcompat:appcompat:1.7.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\21a16de121dc5c315a48fd7ec96d8e7f\workspace\transformed\appcompat-1.7.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth:21.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\83779f0db4644e8a5580f9895e426b72\workspace\transformed\play-services-auth-21.3.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-auth:21.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\83779f0db4644e8a5580f9895e426b72\workspace\transformed\play-services-auth-21.3.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-auth-api-phone:18.0.2] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\fc072e71e751cd4055e5fb35ffc770a3\workspace\transformed\play-services-auth-api-phone-18.0.2\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-api-phone:18.0.2] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\fc072e71e751cd4055e5fb35ffc770a3\workspace\transformed\play-services-auth-api-phone-18.0.2\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-base:18.0.10] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\c2346444aeb335de924b9c22b68d74c5\workspace\transformed\play-services-auth-base-18.0.10\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-base:18.0.10] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\c2346444aeb335de924b9c22b68d74c5\workspace\transformed\play-services-auth-base-18.0.10\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-fido:20.0.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\9ec57fa2bad9cfef18fe035f9b8cb2e5\workspace\transformed\play-services-fido-20.0.1\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-fido:20.0.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\9ec57fa2bad9cfef18fe035f9b8cb2e5\workspace\transformed\play-services-fido-20.0.1\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\56590405309de5b14554bbdfa3213caf\workspace\transformed\play-services-base-18.5.0\AndroidManifest.xml:3:5-44
+MERGED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\56590405309de5b14554bbdfa3213caf\workspace\transformed\play-services-base-18.5.0\AndroidManifest.xml:3:5-44
+MERGED from [com.google.android.gms:play-services-tasks:18.2.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\8649fc81a16b111adf32c1f8c9c5293d\workspace\transformed\play-services-tasks-18.2.0\AndroidManifest.xml:3:5-44
+MERGED from [com.google.android.gms:play-services-tasks:18.2.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\8649fc81a16b111adf32c1f8c9c5293d\workspace\transformed\play-services-tasks-18.2.0\AndroidManifest.xml:3:5-44
+MERGED from [com.google.android.gms:play-services-basement:18.4.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\f5052dc2e4bb57b333f4066c204c8ece\workspace\transformed\play-services-basement-18.4.0\AndroidManifest.xml:3:5-44
+MERGED from [com.google.android.gms:play-services-basement:18.4.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\f5052dc2e4bb57b333f4066c204c8ece\workspace\transformed\play-services-basement-18.4.0\AndroidManifest.xml:3:5-44
+MERGED from [androidx.fragment:fragment:1.5.7] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\c51cbb1f29d577953f8b0d29fa446e79\workspace\transformed\fragment-1.5.7\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.5.7] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\c51cbb1f29d577953f8b0d29fa446e79\workspace\transformed\fragment-1.5.7\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.loader:loader:1.1.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\fd2aba7912733a18cd1003df2ddf8746\workspace\transformed\loader-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.loader:loader:1.1.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\fd2aba7912733a18cd1003df2ddf8746\workspace\transformed\loader-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.7.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\88e1353e720a9778743ab42147d3b96b\workspace\transformed\activity-1.7.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.7.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\88e1353e720a9778743ab42147d3b96b\workspace\transformed\activity-1.7.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\09c649ae68ac2b6ec0921fccbcadcf2f\workspace\transformed\drawerlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\09c649ae68ac2b6ec0921fccbcadcf2f\workspace\transformed\drawerlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\dfc6a593951a90b95a658e9620062e66\workspace\transformed\emoji2-views-helper-1.3.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\dfc6a593951a90b95a658e9620062e66\workspace\transformed\emoji2-views-helper-1.3.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\e664b3dd09030b1a46ed29290a3b7104\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\e664b3dd09030b1a46ed29290a3b7104\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\55cc3b642d77a3e4cae366eb173ebdfb\workspace\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\55cc3b642d77a3e4cae366eb173ebdfb\workspace\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\f978d7137c0b4f5f603a810d53a5ba91\workspace\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\f978d7137c0b4f5f603a810d53a5ba91\workspace\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\9857eb21a737d39b2d8e3bdcf51d6db7\workspace\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\9857eb21a737d39b2d8e3bdcf51d6db7\workspace\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\dd866e925cbe7060a09aaf3a8aef1b7b\workspace\transformed\customview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\dd866e925cbe7060a09aaf3a8aef1b7b\workspace\transformed\customview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.15.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\88329b671d6a5b28ed08fb29d19c52bb\workspace\transformed\core-1.15.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.15.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\88329b671d6a5b28ed08fb29d19c52bb\workspace\transformed\core-1.15.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\74c222c2b835098764309a9b86abeeba\workspace\transformed\savedstate-1.2.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\74c222c2b835098764309a9b86abeeba\workspace\transformed\savedstate-1.2.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.2] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\c3189fb2e4b1f5043c081321286eeed9\workspace\transformed\lifecycle-viewmodel-2.6.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.2] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\c3189fb2e4b1f5043c081321286eeed9\workspace\transformed\lifecycle-viewmodel-2.6.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\31aa6e5d89d23055d82ab81f200962df\workspace\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\31aa6e5d89d23055d82ab81f200962df\workspace\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.2] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\4d52d466b912781b1ff0b7e6303867c4\workspace\transformed\lifecycle-livedata-core-2.6.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.2] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\4d52d466b912781b1ff0b7e6303867c4\workspace\transformed\lifecycle-livedata-core-2.6.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.6.2] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\0fcd19beaca6434869d387480d520087\workspace\transformed\lifecycle-runtime-2.6.2\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.6.2] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\0fcd19beaca6434869d387480d520087\workspace\transformed\lifecycle-runtime-2.6.2\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\5eee50540fb20cbe43681b4c1d3c421a\workspace\transformed\lifecycle-viewmodel-savedstate-2.6.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\5eee50540fb20cbe43681b4c1d3c421a\workspace\transformed\lifecycle-viewmodel-savedstate-2.6.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core-ktx:1.15.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\7fc1790463c7ab0fd0d715c5544f447f\workspace\transformed\core-ktx-1.15.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-ktx:1.15.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\7fc1790463c7ab0fd0d715c5544f447f\workspace\transformed\core-ktx-1.15.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\a1afa93fdcbb503f093ea5b38f95d59f\workspace\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\a1afa93fdcbb503f093ea5b38f95d59f\workspace\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:21:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:21:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\1bfd0cee07fa994f3e556ed70e22339c\workspace\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\1bfd0cee07fa994f3e556ed70e22339c\workspace\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\dcff0354d816af879ad5a184fbf92c55\workspace\transformed\startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\dcff0354d816af879ad5a184fbf92c55\workspace\transformed\startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.tracing:tracing:1.2.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\8bfc5cb30f441bdeeafd744dfcf9b760\workspace\transformed\tracing-1.2.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.tracing:tracing:1.2.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\8bfc5cb30f441bdeeafd744dfcf9b760\workspace\transformed\tracing-1.2.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\d65b7644d74dd72fc53b48355eee5498\workspace\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\d65b7644d74dd72fc53b48355eee5498\workspace\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\30f323e87d89ab8cf7877a73cbc3a0e1\workspace\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\30f323e87d89ab8cf7877a73cbc3a0e1\workspace\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\dc835eaf5d7cd622c1406e4b5e07baca\workspace\transformed\annotation-experimental-1.4.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\dc835eaf5d7cd622c1406e4b5e07baca\workspace\transformed\annotation-experimental-1.4.1\AndroidManifest.xml:5:5-44
+	android:targetSdkVersion
+		INJECTED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\debug\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\laragon\www\percobaan\GalonKu_Mobile_Starter\android\app\src\debug\AndroidManifest.xml
+activity#com.google.android.gms.auth.api.signin.internal.SignInHubActivity
+ADDED from [com.google.android.gms:play-services-auth:21.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\83779f0db4644e8a5580f9895e426b72\workspace\transformed\play-services-auth-21.3.0\AndroidManifest.xml:23:9-27:75
+	android:excludeFromRecents
+		ADDED from [com.google.android.gms:play-services-auth:21.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\83779f0db4644e8a5580f9895e426b72\workspace\transformed\play-services-auth-21.3.0\AndroidManifest.xml:25:13-46
+	android:exported
+		ADDED from [com.google.android.gms:play-services-auth:21.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\83779f0db4644e8a5580f9895e426b72\workspace\transformed\play-services-auth-21.3.0\AndroidManifest.xml:26:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-auth:21.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\83779f0db4644e8a5580f9895e426b72\workspace\transformed\play-services-auth-21.3.0\AndroidManifest.xml:27:13-72
+	android:name
+		ADDED from [com.google.android.gms:play-services-auth:21.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\83779f0db4644e8a5580f9895e426b72\workspace\transformed\play-services-auth-21.3.0\AndroidManifest.xml:24:13-93
+service#com.google.android.gms.auth.api.signin.RevocationBoundService
+ADDED from [com.google.android.gms:play-services-auth:21.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\83779f0db4644e8a5580f9895e426b72\workspace\transformed\play-services-auth-21.3.0\AndroidManifest.xml:33:9-37:51
+	android:exported
+		ADDED from [com.google.android.gms:play-services-auth:21.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\83779f0db4644e8a5580f9895e426b72\workspace\transformed\play-services-auth-21.3.0\AndroidManifest.xml:35:13-36
+	android:visibleToInstantApps
+		ADDED from [com.google.android.gms:play-services-auth:21.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\83779f0db4644e8a5580f9895e426b72\workspace\transformed\play-services-auth-21.3.0\AndroidManifest.xml:37:13-48
+	android:permission
+		ADDED from [com.google.android.gms:play-services-auth:21.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\83779f0db4644e8a5580f9895e426b72\workspace\transformed\play-services-auth-21.3.0\AndroidManifest.xml:36:13-107
+	android:name
+		ADDED from [com.google.android.gms:play-services-auth:21.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\83779f0db4644e8a5580f9895e426b72\workspace\transformed\play-services-auth-21.3.0\AndroidManifest.xml:34:13-89
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\56590405309de5b14554bbdfa3213caf\workspace\transformed\play-services-base-18.5.0\AndroidManifest.xml:5:9-173
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\56590405309de5b14554bbdfa3213caf\workspace\transformed\play-services-base-18.5.0\AndroidManifest.xml:5:146-170
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\56590405309de5b14554bbdfa3213caf\workspace\transformed\play-services-base-18.5.0\AndroidManifest.xml:5:86-145
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\56590405309de5b14554bbdfa3213caf\workspace\transformed\play-services-base-18.5.0\AndroidManifest.xml:5:19-85
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:18.4.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\f5052dc2e4bb57b333f4066c204c8ece\workspace\transformed\play-services-basement-18.4.0\AndroidManifest.xml:6:9-122
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:18.4.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\f5052dc2e4bb57b333f4066c204c8ece\workspace\transformed\play-services-basement-18.4.0\AndroidManifest.xml:6:66-119
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:18.4.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\f5052dc2e4bb57b333f4066c204c8ece\workspace\transformed\play-services-basement-18.4.0\AndroidManifest.xml:6:20-65
+provider#androidx.startup.InitializationProvider
+ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\e664b3dd09030b1a46ed29290a3b7104\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\31aa6e5d89d23055d82ab81f200962df\workspace\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\31aa6e5d89d23055d82ab81f200962df\workspace\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\dcff0354d816af879ad5a184fbf92c55\workspace\transformed\startup-runtime-1.1.1\AndroidManifest.xml:26:9-30:34
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\dcff0354d816af879ad5a184fbf92c55\workspace\transformed\startup-runtime-1.1.1\AndroidManifest.xml:26:9-30:34
+	tools:node
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\e664b3dd09030b1a46ed29290a3b7104\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:28:13-31
+	android:authorities
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\e664b3dd09030b1a46ed29290a3b7104\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:26:13-68
+	android:exported
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\e664b3dd09030b1a46ed29290a3b7104\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:27:13-37
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\e664b3dd09030b1a46ed29290a3b7104\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:25:13-67
+meta-data#androidx.emoji2.text.EmojiCompatInitializer
+ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\e664b3dd09030b1a46ed29290a3b7104\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\e664b3dd09030b1a46ed29290a3b7104\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\e664b3dd09030b1a46ed29290a3b7104\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:30:17-75
+permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.15.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\88329b671d6a5b28ed08fb29d19c52bb\workspace\transformed\core-1.15.0\AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.15.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\88329b671d6a5b28ed08fb29d19c52bb\workspace\transformed\core-1.15.0\AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.15.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\88329b671d6a5b28ed08fb29d19c52bb\workspace\transformed\core-1.15.0\AndroidManifest.xml:23:9-81
+permission#id.galonku.mobile.customer.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.15.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\88329b671d6a5b28ed08fb29d19c52bb\workspace\transformed\core-1.15.0\AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.15.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\88329b671d6a5b28ed08fb29d19c52bb\workspace\transformed\core-1.15.0\AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.15.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\88329b671d6a5b28ed08fb29d19c52bb\workspace\transformed\core-1.15.0\AndroidManifest.xml:23:9-81
+uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.15.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\88329b671d6a5b28ed08fb29d19c52bb\workspace\transformed\core-1.15.0\AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.15.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\88329b671d6a5b28ed08fb29d19c52bb\workspace\transformed\core-1.15.0\AndroidManifest.xml:26:22-94
+uses-permission#id.galonku.mobile.customer.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.15.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\88329b671d6a5b28ed08fb29d19c52bb\workspace\transformed\core-1.15.0\AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.15.0] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\88329b671d6a5b28ed08fb29d19c52bb\workspace\transformed\core-1.15.0\AndroidManifest.xml:26:22-94
+meta-data#androidx.lifecycle.ProcessLifecycleInitializer
+ADDED from [androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\31aa6e5d89d23055d82ab81f200962df\workspace\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\31aa6e5d89d23055d82ab81f200962df\workspace\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\31aa6e5d89d23055d82ab81f200962df\workspace\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:30:17-78
+meta-data#androidx.profileinstaller.ProfileInstallerInitializer
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:30:17-85
+receiver#androidx.profileinstaller.ProfileInstallReceiver
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:34:9-52:20
+	android:enabled
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:37:13-35
+	android:exported
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:38:13-36
+	android:permission
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:39:13-57
+	android:directBootAware
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:36:13-44
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:35:13-76
+intent-filter#action:name:androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:40:13-42:29
+action#androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:17-91
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:25-88
+intent-filter#action:name:androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:43:13-45:29
+action#androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:17-85
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:25-82
+intent-filter#action:name:androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:46:13-48:29
+action#androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:17-88
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:25-85
+intent-filter#action:name:androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:49:13-51:29
+action#androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:17-95
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Hype JKT\.gradle\caches\9.1.0\transforms\90544730232d314793e442316bb1eb73\workspace\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:25-92
