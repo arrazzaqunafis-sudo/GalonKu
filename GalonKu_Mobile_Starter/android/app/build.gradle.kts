@@ -33,7 +33,7 @@ android {
             buildConfigField(
                 "String",
                 "DEFAULT_APP_URL",
-                "\"http://192.168.1.9/percobaan/GalonKu_Mobile_Starter/pwa/customer/\""
+                "\"http://192.168.175.34:8080/GalonKu/GalonKu_Mobile_Starter/pwa/customer/\""
             )
         }
         create("courier") {
@@ -44,7 +44,7 @@ android {
             buildConfigField(
                 "String",
                 "DEFAULT_APP_URL",
-                "\"http://192.168.1.9/percobaan/GalonKu_Mobile_Starter/pwa/courier/\""
+                "\"http://192.168.175.34:8080/GalonKu/GalonKu_Mobile_Starter/pwa/courier/\""
             )
         }
     }
