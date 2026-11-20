@@ -28,7 +28,19 @@
     .empty{padding:24px 12px;text-align:center;color:var(--muted);font-size:11px}.empty b{display:block;margin-bottom:5px;color:var(--ink);font-size:12px}
     .nav{position:fixed;z-index:10;left:50%;bottom:0;width:min(100%,430px);height:70px;transform:translateX(-50%);display:grid;grid-template-columns:repeat(4,1fr);align-items:center;border-top:1px solid var(--line);background:#fff;padding-bottom:env(safe-area-inset-bottom)}.nav button{display:flex;flex-direction:column;align-items:center;gap:4px;border:0;background:#fff;color:#8995a8;font-size:9px}.nav button.active{color:var(--blue)}.nav i{font-size:19px;font-style:normal}
     .screen{display:none}.screen.active{display:block}
-    [hidden]{display:none!important}.login-wrap{display:grid;min-height:100vh;place-items:center;padding:20px}.login-card{width:min(100%,360px);padding:24px;border-radius:20px;background:#fff;box-shadow:0 12px 40px #1a35601b}.login-card h1{margin:0;color:var(--blue);font-size:23px}.login-card p{color:var(--muted);font-size:12px}.login-card label{display:block;margin:14px 0;font-size:11px;font-weight:700}.login-card input{width:100%;height:43px;margin-top:6px;border:1px solid var(--line);border-radius:10px;padding:0 11px}.login-card button{width:100%;height:44px;border:0;border-radius:10px;background:var(--blue);color:#fff;font-weight:800}.login-card .google-native,.login-card .google-fallback{margin-top:12px;border:1px solid var(--line);background:#fff;color:var(--ink)}.google-signin{display:flex;justify-content:center;margin-top:12px}.login-card .login-divider{margin:15px 0 0;text-align:center}.error{color:#c33;font-size:11px}
+    [hidden]{display:none!important}.login-wrap{display:grid;min-height:100vh;place-items:center;padding:20px}.login-card{width:min(100%,360px);padding:24px;border-radius:20px;background:#fff;box-shadow:0 12px 40px #1a35601b}.login-card h1{margin:0;color:var(--blue);font-size:23px}.login-card p{color:var(--muted);font-size:12px}.login-card label{display:block;margin:14px 0;font-size:11px;font-weight:700}.login-card input{width:100%;height:43px;margin-top:6px;border:1px solid var(--line);border-radius:10px;padding:0 11px}.login-card button{width:100%;height:44px;border:0;border-radius:10px;background:var(--blue);color:#fff;font-weight:800}.login-card .google-native,.login-card .google-fallback{margin-top:12px;border:1px solid var(--line);background:#fff;color:var(--ink)}.google-signin{display:flex;justify-content:center;margin-top:12px}.login-card .login-divider{margin:14px 0 6px;text-align:center;color:var(--muted);font-size:10px}.error{color:#c33;font-size:11px;min-height:14px}
+    .btn-google{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:44px;margin-top:6px;border:1px solid #dadce0;border-radius:10px;background:#fff;color:#3c4043;font-size:12px;font-weight:700;box-shadow:0 1px 3px rgba(60,64,67,.08);transition:all .2s;cursor:pointer}
+    .btn-google:hover{background:#f8fafd;border-color:#c2c8d0}
+    .btn-google svg{width:18px;height:18px;flex-shrink:0}
+    .modal-google{position:fixed;z-index:200;inset:0;background:rgba(20,30,45,.5);display:flex;align-items:center;justify-content:center;padding:16px}
+    .modal-google-card{width:min(100%,360px);background:#fff;border-radius:16px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,.2)}
+    .modal-google-card h3{margin:0 0 6px;color:#202124;font-size:16px;display:flex;align-items:center;gap:8px}
+    .modal-google-card p{margin:0 0 14px;color:#5f6368;font-size:11px}
+    .modal-google-card input{width:100%;height:40px;border:1px solid #dadce0;border-radius:8px;padding:0 10px;margin-bottom:10px;font-size:12px}
+    .modal-google-actions{display:flex;gap:8px;margin-top:10px}
+    .modal-google-actions button{flex:1;height:38px;border-radius:8px;font-size:11px;font-weight:700}
+    .modal-google-cancel{border:1px solid #dadce0;background:#fff;color:#5f6368}
+    .modal-google-submit{border:0;background:#2853d4;color:#fff}
     .modal{position:fixed;z-index:30;inset:0;display:none;align-items:end;justify-content:center;background:#101b3075}.modal.open{display:flex}.modal-box{width:min(100%,430px);padding:20px;border-radius:22px 22px 0 0;background:#fff}.modal-box h2{margin:0 0 7px;font-size:17px}.modal-box p{color:var(--muted);font-size:11px}.modal-box label{display:block;margin:12px 0;font-size:11px;font-weight:700}.modal-box input{width:100%;margin-top:7px}.modal-box button{width:100%;height:43px;border:0;border-radius:10px;background:var(--blue);color:#fff;font-weight:800}
     .notice{position:fixed;z-index:40;left:50%;top:15px;transform:translate(-50%,-20px);opacity:0;pointer-events:none;padding:10px 14px;border-radius:12px;background:#17243a;color:white;font-size:11px;transition:.2s}.notice.show{transform:translate(-50%,0);opacity:1}
     @media(min-width:431px){.app{margin:16px auto;min-height:calc(100vh - 32px);border-radius:25px}.nav{bottom:16px;border-radius:0 0 25px 25px}}
@@ -55,12 +67,36 @@
         <label>Password<input id="courier-register-password" type="password" minlength="6" autocomplete="new-password" required></label>
         <button type="submit">Daftar sebagai Kurir</button>
       </form>
-      <p class="login-divider">atau daftar / masuk dengan Google</p>
-      <div class="google-signin" id="google-signin-button"></div>
-      <button class="google-fallback" id="google-fallback" type="button" hidden>Daftar / Masuk dengan Google</button>
-      <button class="google-native" id="google-native-signin" type="button" hidden>Daftar / Masuk dengan Google</button>
-      <label>Password akun Google (opsional)<input id="google-password" type="password" minlength="6" autocomplete="new-password"></label>
+      <p class="login-divider">atau</p>
+      <button class="btn-google" id="google-btn" type="button">
+        <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+        <span id="google-btn-label">Masuk dengan Google</span>
+      </button>
+      <div class="google-signin" id="google-signin-button" style="display:none"></div>
+      <button class="google-fallback" id="google-fallback" type="button" hidden></button>
+      <button class="google-native" id="google-native-signin" type="button" hidden></button>
+      <input type="hidden" id="google-password" value="">
       <p class="error" id="login-error" role="status"></p>
+    </div>
+  </section>
+
+  <div class="modal-google" id="modal-google" hidden>
+    <div class="modal-google-card">
+      <h3>
+        <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+        Lanjutkan dengan Google
+      </h3>
+      <p id="modal-google-subtitle">Masuk atau daftarkan akun mitra kurir</p>
+      <label style="display:block;margin:6px 0 3px;font-size:11px;font-weight:700;color:#5f6368">Email Google</label>
+      <input type="email" id="modal-google-email" placeholder="contoh@gmail.com" required>
+      <label style="display:block;margin:6px 0 3px;font-size:11px;font-weight:700;color:#5f6368">Nama Lengkap</label>
+      <input type="text" id="modal-google-name" placeholder="Nama Anda (opsional)">
+      <div class="modal-google-actions">
+        <button type="button" class="modal-google-cancel" id="modal-google-cancel">Batal</button>
+        <button type="button" class="modal-google-submit" id="modal-google-submit">Lanjutkan</button>
+      </div>
+    </div>
+  </div>
     </div>
   </section>
 

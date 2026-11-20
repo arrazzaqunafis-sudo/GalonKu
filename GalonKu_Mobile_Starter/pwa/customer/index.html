@@ -39,7 +39,19 @@
     .auth-tabs{display:grid;grid-template-columns:1fr 1fr;height:38px;margin-bottom:14px;border-radius:9px;background:#f1f5f8;padding:3px}.auth-tabs button{border:0;border-radius:7px;background:transparent;color:#718495;font-size:12px;font-weight:800}.auth-tabs button.active{background:#fff;color:#1769aa;box-shadow:0 2px 8px rgba(42,77,103,.09)}
     .auth-card label{margin:9px 0!important}.auth-card input{height:42px!important}.password-field{position:relative}.password-field input{padding-right:42px}.password-toggle{position:absolute!important;right:5px!important;bottom:6px!important;width:30px!important;height:30px!important;border:0!important;background:transparent!important;color:#718495!important}
     .auth-primary{width:100%;height:42px;margin-top:5px;border:0;border-radius:9px;background:#1769aa!important;color:#fff!important;font-size:11px;font-weight:900}.auth-divider{height:28px;display:flex;align-items:center;justify-content:center}.auth-divider span{color:#91a0aa;font-size:9px}
-    .google-extra{display:none!important}.google-signin{margin:4px 0}.auth-error{min-height:12px!important}.auth-location{display:none!important}
+    .auth-error{min-height:14px!important;margin:8px 0 0;color:#b42318;font-size:11px}
+    .btn-google{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:44px;margin-top:4px;border:1px solid #dadce0;border-radius:10px;background:#fff;color:#3c4043;font-size:12px;font-weight:700;box-shadow:0 1px 3px rgba(60,64,67,.08);transition:all .2s;cursor:pointer}
+    .btn-google:hover{background:#f8fafd;border-color:#c2c8d0}
+    .btn-google svg{width:18px;height:18px;flex-shrink:0}
+    .modal-google{position:fixed;z-index:200;inset:0;background:rgba(20,30,45,.5);display:flex;align-items:center;justify-content:center;padding:16px}
+    .modal-google-card{width:min(100%,360px);background:#fff;border-radius:16px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,.2)}
+    .modal-google-card h3{margin:0 0 6px;color:#202124;font-size:16px;display:flex;align-items:center;gap:8px}
+    .modal-google-card p{margin:0 0 14px;color:#5f6368;font-size:11px}
+    .modal-google-card input{width:100%;height:40px;border:1px solid #dadce0;border-radius:8px;padding:0 10px;margin-bottom:10px;font-size:12px}
+    .modal-google-actions{display:flex;gap:8px;margin-top:10px}
+    .modal-google-actions button{flex:1;height:38px;border-radius:8px;font-size:11px;font-weight:700}
+    .modal-google-cancel{border:1px solid #dadce0;background:#fff;color:#5f6368}
+    .modal-google-submit{border:0;background:#1a73e8;color:#fff}
   </style>
 </head>
 <body class="auth-required">
@@ -64,16 +76,35 @@
         <button type="submit" class="auth-primary">DAFTAR</button>
       </form>
       <div class="auth-divider"><span>atau</span></div>
-      <button class="google-fallback" id="google-fallback" type="button" hidden>Masuk dengan Google</button>
-      <button class="google-native" id="google-native-signin" type="button" hidden>Masuk dengan Google</button>
-      <div class="google-signin" id="google-signin-button"></div>
-      <label>Password akun Google (opsional)<input id="google-password" type="password" minlength="6" autocomplete="new-password"></label>
-      <label class="google-extra">Alamat untuk akun baru Google<input id="google-address" autocomplete="street-address" placeholder="Alamat lengkap"></label>
-      <button class="auth-location google-extra" id="google-location" type="button">Ambil lokasi GPS</button>
-      <small id="google-location-status"></small>
+      <button class="btn-google" id="google-btn" type="button">
+        <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+        <span id="google-btn-label">Masuk dengan Google</span>
+      </button>
+      <button class="google-fallback" id="google-fallback" type="button" hidden></button>
+      <button class="google-native" id="google-native-signin" type="button" hidden></button>
+      <div class="google-signin" id="google-signin-button" style="display:none"></div>
+      <input type="hidden" id="google-password" value="">
       <p class="auth-error" id="google-login-error" role="status"></p>
     </div>
   </section>
+
+  <div class="modal-google" id="modal-google" hidden>
+    <div class="modal-google-card">
+      <h3>
+        <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+        Lanjutkan dengan Google
+      </h3>
+      <p id="modal-google-subtitle">Masuk atau daftarkan akun pelanggan Anda</p>
+      <label style="display:block;margin:6px 0 3px;font-size:11px;font-weight:700;color:#5f6368">Email Google</label>
+      <input type="email" id="modal-google-email" placeholder="contoh@gmail.com" required>
+      <label style="display:block;margin:6px 0 3px;font-size:11px;font-weight:700;color:#5f6368">Nama Lengkap</label>
+      <input type="text" id="modal-google-name" placeholder="Nama Anda (opsional)">
+      <div class="modal-google-actions">
+        <button type="button" class="modal-google-cancel" id="modal-google-cancel">Batal</button>
+        <button type="button" class="modal-google-submit" id="modal-google-submit">Lanjutkan</button>
+      </div>
+    </div>
+  </div>
   <main class="app" id="customer-app" hidden>
     <header><div><p>Selamat datang di</p><h1>GalonKu</h1></div><button class="bell" aria-label="Notifikasi">🔔</button></header>
     <button class="address" id="locate"><i>📍</i><span><small>Alamat pengiriman</small><b id="gps-status">Bandung, Jawa Barat</b></span><i>›</i></button>

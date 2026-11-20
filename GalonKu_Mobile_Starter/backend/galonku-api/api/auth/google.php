@@ -47,6 +47,21 @@ try {
 
 $email = strtolower((string)$googleUser['email']);
 $pdo = db();
+
+// Ensure api_tokens table exists
+$pdo->exec("
+    CREATE TABLE IF NOT EXISTS api_tokens (
+        token_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        user_id INT NOT NULL,
+        token_hash CHAR(64) NOT NULL UNIQUE,
+        expires_at DATETIME NOT NULL,
+        last_used_at DATETIME NULL,
+        created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        INDEX idx_api_tokens_user (user_id),
+        INDEX idx_api_tokens_expiry (expires_at)
+    ) ENGINE=InnoDB
+");
+
 $findUser = $pdo->prepare(
     'SELECT user_id, nama, email, no_hp, role FROM users WHERE email = ? LIMIT 1'
 );
@@ -55,41 +70,48 @@ $user = $findUser->fetch();
 $registered = false;
 
 if ($user && $user['role'] !== $role) {
+    $roleName = $user['role'] === 'masyarakat' ? 'pelanggan' : ($user['role'] === 'tukang_galon' ? 'kurir / tukang galon' : 'admin');
     jsonResponse(403, [
         'success' => false,
-        'message' => 'Email ini sudah terdaftar untuk peran aplikasi lain.',
+        'message' => "Email Google ini sudah terdaftar sebagai $roleName.",
     ]);
 }
-if (!$user && $role === 'masyarakat'
-    && ($address === '' || $latitude === false || $longitude === false
-        || $latitude < -90 || $latitude > 90 || $longitude < -180 || $longitude > 180)) {
-    jsonResponse(422, [
-        'success' => false,
-        'message' => 'Untuk pendaftaran pelanggan, isi alamat lengkap dan ambil lokasi GPS.',
-        'requires_address' => true,
-    ]);
+
+// Fallback coordinates and address for pelanggan if not provided
+if ($role === 'masyarakat') {
+    if ($address === '') {
+        $address = 'Bandung, Jawa Barat';
+    }
+    if ($latitude === false || $latitude === null) {
+        $latitude = -6.9175;
+    }
+    if ($longitude === false || $longitude === null) {
+        $longitude = 107.6191;
+    }
 }
 
 try {
     $pdo->beginTransaction();
     if (!$user) {
         $temporaryPassword = $password !== '' ? $password : bin2hex(random_bytes(32));
+        $userName = trim((string)($googleUser['name'] ?? '')) ?: explode('@', $email)[0];
+        $userPhone = $phone !== '' ? $phone : '-';
         $insertUser = $pdo->prepare(
             'INSERT INTO users (nama, email, no_hp, password, role)
              VALUES (:nama, :email, :no_hp, :password, :role)'
         );
         $insertUser->execute([
-            ':nama' => trim((string)($googleUser['name'] ?? '')) ?: $email,
+            ':nama' => $userName,
             ':email' => $email,
-            ':no_hp' => $phone,
+            ':no_hp' => $userPhone,
             ':password' => password_hash($temporaryPassword, PASSWORD_DEFAULT),
             ':role' => $role,
         ]);
         $user = [
             'user_id' => (int)$pdo->lastInsertId(),
-            'nama' => trim((string)($googleUser['name'] ?? '')) ?: $email,
+            'nama' => $userName,
             'email' => $email,
-            'no_hp' => $phone,
+            'no_hp' => $userPhone,
             'role' => $role,
         ];
         $registered = true;
@@ -107,7 +129,8 @@ try {
         $savedAddress = $findAddress->fetch();
         $addressId = $savedAddress['alamat_id'] ?? null;
         $addressText = $savedAddress['alamat_lengkap'] ?? '';
-        if (!$addressId && $address !== '' && $latitude !== false && $longitude !== false) {
+
+        if (!$addressId) {
             if ($phone !== '' && $phone !== $user['no_hp']) {
                 $pdo->prepare('UPDATE users SET no_hp = ? WHERE user_id = ?')
                     ->execute([$phone, $user['user_id']]);
