@@ -6,7 +6,9 @@ Aplikasi backend dan dashboard demo GalonKu menggunakan PHP Native dan MySQL.
 
 1. Letakkan folder project di Laragon `www`.
 2. Jalankan `mysql -u root < db.sql` lalu `mysql -u root < seed.sql`.
-3. Buka `http://localhost/percobaan`; alamat utama akan mengarahkan ke PWA pelanggan yang sama dengan aplikasi pelanggan. Untuk aplikasi kurir, buka `http://localhost/percobaan/GalonKu_Mobile_Starter/pwa/courier/`.
+3. Buka `http://localhost/percobaan`; alamat utama akan langsung membuka dashboard admin.
+   Untuk PWA pelanggan, buka `http://localhost/GalonKu/GalonKu_Mobile_Starter/pwa/customer/`.
+   Untuk aplikasi kurir, buka `http://localhost/percobaan/GalonKu_Mobile_Starter/pwa/courier/`.
 4. Pastikan folder `uploads/` dapat ditulis oleh PHP.
 
 ## Endpoint API

@@ -30,7 +30,8 @@ async function completeGoogleLogin(idToken) {
       body: JSON.stringify({
         id_token: idToken,
         role: 'masyarakat',
-        no_hp: document.getElementById('google-phone').value.trim(),
+        no_hp: '',
+        password: document.getElementById('google-password').value,
         alamat_lengkap: document.getElementById('google-address').value.trim(),
         label_alamat: 'Rumah',
         latitude: registrationLocation?.latitude,
@@ -127,6 +128,76 @@ async function setupGoogleSignIn() {
 }
 
 setupGoogleSignIn();
+
+document.querySelectorAll('[data-auth-tab]').forEach((button) => {
+  button.addEventListener('click', () => {
+    document.querySelectorAll('[data-auth-tab]').forEach((tab) => tab.classList.remove('active'));
+    button.classList.add('active');
+    const isRegister = button.dataset.authTab === 'register';
+    document.getElementById('customer-login-form').hidden = isRegister;
+    document.getElementById('customer-register-form').hidden = !isRegister;
+  });
+});
+
+document.querySelectorAll('.password-toggle').forEach((button) => {
+  button.addEventListener('click', () => {
+    const input = document.getElementById(button.dataset.target);
+    input.type = input.type === 'password' ? 'text' : 'password';
+  });
+});
+
+document.getElementById('customer-login-form').addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const errorElement = document.getElementById('google-login-error');
+  errorElement.textContent = '';
+  try {
+    const response = await fetch(`${AUTH_API_BASE}auth/login.php`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        identity: document.getElementById('customer-login-identity').value.trim(),
+        password: document.getElementById('customer-login-password').value
+      })
+    });
+    const result = await response.json();
+    if (!response.ok || !result.success) throw new Error(result.message || 'Login tidak berhasil.');
+    if (result.user.role !== 'masyarakat') throw new Error('Akun ini bukan akun pelanggan.');
+    localStorage.setItem(customerTokenKey, result.token);
+    localStorage.setItem(customerUserKey, JSON.stringify(result));
+    showCustomerApp(result);
+  } catch (error) {
+    errorElement.textContent = error.message;
+  }
+});
+
+document.getElementById('customer-register-form').addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const errorElement = document.getElementById('google-login-error');
+  errorElement.textContent = '';
+  try {
+    const response = await fetch(`${AUTH_API_BASE}auth/register.php`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        nama: document.getElementById('register-name').value.trim(),
+        email: document.getElementById('register-email').value.trim(),
+        no_hp: document.getElementById('register-phone').value.trim(),
+        password: document.getElementById('register-password').value,
+        alamat_lengkap: document.getElementById('register-address').value.trim(),
+        role: 'masyarakat',
+        latitude: registrationLocation?.latitude,
+        longitude: registrationLocation?.longitude
+      })
+    });
+    const result = await response.json();
+    if (!response.ok || !result.success) throw new Error(result.message || 'Pendaftaran tidak berhasil.');
+    localStorage.setItem(customerTokenKey, 'registered-' + Date.now());
+    localStorage.setItem(customerUserKey, JSON.stringify(result));
+    showCustomerApp(result);
+  } catch (error) {
+    errorElement.textContent = error.message;
+  }
+});
 
 const savedCustomer = localStorage.getItem(customerUserKey);
 if (savedCustomer && localStorage.getItem(customerTokenKey)) {

@@ -71,7 +71,8 @@ async function completeGoogleLogin(idToken) {
       body: JSON.stringify({
         id_token: idToken,
         role: appRole,
-        no_hp: document.getElementById('google-phone').value.trim()
+        no_hp: '',
+        password: document.getElementById('google-password').value
       })
     });
     if (result.user.role !== appRole) {
@@ -143,6 +144,48 @@ async function setupGoogleSignIn() {
 }
 
 setupGoogleSignIn();
+
+document.querySelectorAll('[data-courier-auth]').forEach((button) => {
+  button.addEventListener('click', () => {
+    document.querySelectorAll('[data-courier-auth]').forEach((tab) => {
+      tab.classList.remove('active');
+      tab.style.background = 'transparent';
+      tab.style.color = '#758196';
+    });
+    button.classList.add('active');
+    button.style.background = '#fff';
+    button.style.color = '#2853d4';
+    const isRegister = button.dataset.courierAuth === 'register';
+    document.getElementById('login-form').hidden = isRegister;
+    document.getElementById('courier-register-form').hidden = !isRegister;
+  });
+});
+
+document.getElementById('courier-register-form').addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const error = document.getElementById('login-error');
+  error.textContent = '';
+  try {
+    const result = await api('auth/register.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        nama: document.getElementById('courier-register-name').value.trim(),
+        email: document.getElementById('courier-register-email').value.trim(),
+        no_hp: document.getElementById('courier-register-phone').value.trim(),
+        password: document.getElementById('courier-register-password').value,
+        role: appRole
+      })
+    });
+    if (!result.success) throw new Error(result.message || 'Pendaftaran tidak berhasil.');
+    showNotice('Akun kurir berhasil didaftarkan. Silakan masuk.');
+    document.querySelector('[data-courier-auth="login"]').click();
+    document.getElementById('identity').value =
+      document.getElementById('courier-register-email').value.trim();
+  } catch (requestError) {
+    error.textContent = requestError.message;
+  }
+});
 
 const savedUser = localStorage.getItem(userKey);
 if (savedUser && localStorage.getItem(tokenKey)) {

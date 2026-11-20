@@ -42,10 +42,29 @@ $insert->execute([
 
 unset($user['password'], $user['status_aktif']);
 
+$alamatId = null;
+$alamatLengkap = null;
+if ($user['role'] === 'masyarakat') {
+    $address = $pdo->prepare(
+        "SELECT alamat_id, alamat_lengkap
+         FROM alamat
+         WHERE user_id = ? AND is_utama = TRUE
+         LIMIT 1"
+    );
+    $address->execute([$user['user_id']]);
+    $addressRow = $address->fetch();
+    if ($addressRow) {
+        $alamatId = (int)$addressRow['alamat_id'];
+        $alamatLengkap = $addressRow['alamat_lengkap'];
+    }
+}
+
 jsonResponse(200, [
     'success' => true,
     'message' => 'Login berhasil.',
     'token' => $plainToken,
     'expires_at' => $expiresAt,
-    'user' => $user
+    'user' => $user,
+    'alamat_id' => $alamatId,
+    'alamat_lengkap' => $alamatLengkap
 ]);

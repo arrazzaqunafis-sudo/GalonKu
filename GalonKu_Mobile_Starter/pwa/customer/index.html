@@ -34,20 +34,43 @@
     .auth-card small{display:block;margin:7px 0;color:#718495;font-size:10px}.google-signin{display:flex;justify-content:center;margin-top:14px}
     .auth-card .auth-error{min-height:16px;margin-bottom:0;color:#b42318}
     .google-native{margin-top:12px}[hidden]{display:none!important}
+    .auth-screen{background:#f4f6fb!important}.auth-card{width:min(100%,380px);padding:22px;border:0;border-radius:18px;box-shadow:0 18px 50px rgba(32,73,109,.12)}
+    .auth-brand{display:flex;align-items:center;justify-content:center;gap:8px;height:54px;margin-bottom:12px;color:#1769aa;font-size:21px}.brand-drop{display:grid;width:38px;height:38px;place-items:center;border-radius:50%;background:#edf7fc;font-size:22px}
+    .auth-tabs{display:grid;grid-template-columns:1fr 1fr;height:38px;margin-bottom:14px;border-radius:9px;background:#f1f5f8;padding:3px}.auth-tabs button{border:0;border-radius:7px;background:transparent;color:#718495;font-size:12px;font-weight:800}.auth-tabs button.active{background:#fff;color:#1769aa;box-shadow:0 2px 8px rgba(42,77,103,.09)}
+    .auth-card label{margin:9px 0!important}.auth-card input{height:42px!important}.password-field{position:relative}.password-field input{padding-right:42px}.password-toggle{position:absolute!important;right:5px!important;bottom:6px!important;width:30px!important;height:30px!important;border:0!important;background:transparent!important;color:#718495!important}
+    .auth-primary{width:100%;height:42px;margin-top:5px;border:0;border-radius:9px;background:#1769aa!important;color:#fff!important;font-size:11px;font-weight:900}.auth-divider{height:28px;display:flex;align-items:center;justify-content:center}.auth-divider span{color:#91a0aa;font-size:9px}
+    .google-extra{display:none!important}.google-signin{margin:4px 0}.auth-error{min-height:12px!important}.auth-location{display:none!important}
   </style>
 </head>
 <body class="auth-required">
   <section class="auth-screen" id="auth-screen">
     <div class="auth-card">
-      <h1>GalonKu Pelanggan</h1>
-      <p>Daftar atau masuk dengan akun Google Anda.</p>
-      <label>Nomor HP untuk akun baru<input id="google-phone" type="tel" autocomplete="tel" placeholder="08xxxxxxxxxx"></label>
-      <label>Alamat lengkap untuk akun baru<input id="google-address" autocomplete="street-address" placeholder="Nama jalan, nomor rumah, kelurahan"></label>
-      <button class="auth-location" id="google-location" type="button">Ambil lokasi GPS</button>
-      <small id="google-location-status">Lokasi diperlukan untuk alamat awal pelanggan.</small>
+      <div class="auth-brand"><span class="brand-drop">💧</span><strong>GalonKu</strong></div>
+      <div class="auth-tabs">
+        <button type="button" class="active" data-auth-tab="login">Masuk</button>
+        <button type="button" data-auth-tab="register">Daftar</button>
+      </div>
+      <form id="customer-login-form">
+        <label>Email atau nomor HP<input id="customer-login-identity" autocomplete="username" required placeholder="Email atau nomor HP"></label>
+        <label>Password<div class="password-field"><input id="customer-login-password" type="password" autocomplete="current-password" required placeholder="Password"><button type="button" class="password-toggle" data-target="customer-login-password" aria-label="Tampilkan password">◉</button></div></label>
+        <button type="submit" class="auth-primary">MASUK</button>
+      </form>
+      <form id="customer-register-form" hidden>
+        <label>Nama Lengkap<input id="register-name" autocomplete="name" required placeholder="Nama Lengkap"></label>
+        <label>Email<input id="register-email" type="email" autocomplete="email" required placeholder="Email"></label>
+        <label>No. HP<input id="register-phone" type="tel" autocomplete="tel" required placeholder="No. HP"></label>
+        <label>Password<div class="password-field"><input id="register-password" type="password" minlength="6" autocomplete="new-password" required placeholder="Password"><button type="button" class="password-toggle" data-target="register-password" aria-label="Tampilkan password">◉</button></div></label>
+        <label>Alamat Lengkap<input id="register-address" autocomplete="street-address" required placeholder="Alamat lengkap"></label>
+        <button type="submit" class="auth-primary">DAFTAR</button>
+      </form>
+      <div class="auth-divider"><span>atau</span></div>
+      <button class="google-fallback" id="google-fallback" type="button" hidden>Masuk dengan Google</button>
+      <button class="google-native" id="google-native-signin" type="button" hidden>Masuk dengan Google</button>
       <div class="google-signin" id="google-signin-button"></div>
-      <button class="google-fallback" id="google-fallback" type="button" hidden>Daftar / Masuk dengan Google</button>
-      <button class="google-native" id="google-native-signin" type="button" hidden>Daftar / Masuk dengan Google</button>
+      <label>Password akun Google (opsional)<input id="google-password" type="password" minlength="6" autocomplete="new-password"></label>
+      <label class="google-extra">Alamat untuk akun baru Google<input id="google-address" autocomplete="street-address" placeholder="Alamat lengkap"></label>
+      <button class="auth-location google-extra" id="google-location" type="button">Ambil lokasi GPS</button>
+      <small id="google-location-status"></small>
       <p class="auth-error" id="google-login-error" role="status"></p>
     </div>
   </section>

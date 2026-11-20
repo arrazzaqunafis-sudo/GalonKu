@@ -20,6 +20,7 @@ $data = requestJson();
 $idToken = trim((string)($data['id_token'] ?? ''));
 $role = (string)($data['role'] ?? '');
 $phone = trim((string)($data['no_hp'] ?? ''));
+$password = (string)($data['password'] ?? '');
 $address = trim((string)($data['alamat_lengkap'] ?? ''));
 $label = trim((string)($data['label_alamat'] ?? 'Rumah'));
 $latitude = filter_var($data['latitude'] ?? null, FILTER_VALIDATE_FLOAT);
@@ -30,6 +31,9 @@ if ($idToken === '' || !in_array($role, ['masyarakat', 'tukang_galon'], true)) {
 }
 if ($phone !== '' && !preg_match('/^\+?[0-9][0-9 ()-]{6,18}[0-9]$/', $phone)) {
     jsonResponse(422, ['success' => false, 'message' => 'Nomor HP tidak valid.']);
+}
+if ($password !== '' && strlen($password) < 6) {
+    jsonResponse(422, ['success' => false, 'message' => 'Password minimal 6 karakter.']);
 }
 
 $clientId = googleOAuthClientId();
@@ -56,13 +60,6 @@ if ($user && $user['role'] !== $role) {
         'message' => 'Email ini sudah terdaftar untuk peran aplikasi lain.',
     ]);
 }
-if (!$user && $phone === '') {
-    jsonResponse(422, [
-        'success' => false,
-        'message' => 'Untuk pendaftaran pertama, masukkan nomor HP terlebih dahulu.',
-        'requires_phone' => true,
-    ]);
-}
 if (!$user && $role === 'masyarakat'
     && ($address === '' || $latitude === false || $longitude === false
         || $latitude < -90 || $latitude > 90 || $longitude < -180 || $longitude > 180)) {
@@ -76,7 +73,7 @@ if (!$user && $role === 'masyarakat'
 try {
     $pdo->beginTransaction();
     if (!$user) {
-        $temporaryPassword = bin2hex(random_bytes(32));
+        $temporaryPassword = $password !== '' ? $password : bin2hex(random_bytes(32));
         $insertUser = $pdo->prepare(
             'INSERT INTO users (nama, email, no_hp, password, role)
              VALUES (:nama, :email, :no_hp, :password, :role)'
@@ -96,6 +93,9 @@ try {
             'role' => $role,
         ];
         $registered = true;
+    } elseif ($password !== '') {
+        $pdo->prepare('UPDATE users SET password = ? WHERE user_id = ?')
+            ->execute([password_hash($password, PASSWORD_DEFAULT), $user['user_id']]);
     }
 
     if ($role === 'masyarakat') {

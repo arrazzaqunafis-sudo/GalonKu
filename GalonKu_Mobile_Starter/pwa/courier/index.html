@@ -38,17 +38,28 @@
   <section class="login-wrap" id="login-screen">
     <div class="login-card">
       <h1>GalonKu Mitra</h1>
-      <p>Masuk untuk menerima dan mengelola pesanan pelanggan.</p>
+      <p id="courier-auth-description">Masuk untuk menerima dan mengelola pesanan pelanggan.</p>
+      <div class="auth-tabs" style="display:grid;grid-template-columns:1fr 1fr;margin:14px 0;border-radius:10px;background:#f1f4f8;padding:3px">
+        <button type="button" class="active" data-courier-auth="login" style="height:36px;border:0;border-radius:8px;background:#fff;color:#2853d4;font-weight:800">Masuk</button>
+        <button type="button" data-courier-auth="register" style="height:36px;border:0;border-radius:8px;background:transparent;color:#758196;font-weight:800">Daftar</button>
+      </div>
       <form id="login-form">
         <label>Email atau nomor HP<input id="identity" autocomplete="username" required></label>
         <label>Password<input id="password" type="password" autocomplete="current-password" required></label>
         <button type="submit">Masuk sebagai Kurir</button>
       </form>
+      <form id="courier-register-form" hidden>
+        <label>Nama Lengkap<input id="courier-register-name" autocomplete="name" required></label>
+        <label>Email<input id="courier-register-email" type="email" autocomplete="email" required></label>
+        <label>No. HP<input id="courier-register-phone" type="tel" autocomplete="tel" required></label>
+        <label>Password<input id="courier-register-password" type="password" minlength="6" autocomplete="new-password" required></label>
+        <button type="submit">Daftar sebagai Kurir</button>
+      </form>
       <p class="login-divider">atau daftar / masuk dengan Google</p>
-      <label>Nomor HP untuk akun baru<input id="google-phone" type="tel" autocomplete="tel" placeholder="08xxxxxxxxxx"></label>
       <div class="google-signin" id="google-signin-button"></div>
       <button class="google-fallback" id="google-fallback" type="button" hidden>Daftar / Masuk dengan Google</button>
       <button class="google-native" id="google-native-signin" type="button" hidden>Daftar / Masuk dengan Google</button>
+      <label>Password akun Google (opsional)<input id="google-password" type="password" minlength="6" autocomplete="new-password"></label>
       <p class="error" id="login-error" role="status"></p>
     </div>
   </section>
