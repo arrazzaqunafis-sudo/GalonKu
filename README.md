@@ -1,25 +1,36 @@
 # GalonKu
 
-Aplikasi backend dan dashboard demo GalonKu menggunakan PHP Native dan MySQL.
+Aplikasi pemesanan, manajemen depot galon, dan kurir terpadu berbasis PHP Native & MySQL.
 
-## Instalasi
+---
 
-1. Letakkan folder project di Laragon `www`.
-2. Jalankan `mysql -u root < db.sql` lalu `mysql -u root < seed.sql`.
-3. Buka `http://localhost/percobaan`; alamat utama akan langsung membuka dashboard admin.
-   Untuk PWA pelanggan, buka `http://localhost/GalonKu/GalonKu_Mobile_Starter/pwa/customer/`.
-   Untuk aplikasi kurir, buka `http://localhost/percobaan/GalonKu_Mobile_Starter/pwa/courier/`.
-4. Pastikan folder `uploads/` dapat ditulis oleh PHP.
+## ⚡ Cara Jalankan di Komputer / Laptop Baru (Cukup 1 Menit)
 
-## Endpoint API
+1. Buka **Laragon**, lalu klik tombol **Start All** (Apache & MySQL aktif).
+2. Di dalam folder project ini, cukup **klik ganda (double-click)** file:
+   👉 **`BUKA_GALONKU.bat`**
+3. Aplikasi akan langsung terkonfigurasi otomatis:
+   - Database `db_galonku` dan tabel dibuat secara otomatis jika belum ada di laptop baru.
+   - Alias folder dibuat otomatis sehingga semua link dapat diakses.
+   - Halaman Admin & Kurir akan langsung terbuka di browser!
 
-- `api/auth.php?action=register|login`
-- `api/cari_kurir.php?lat=<latitude>&lng=<longitude>`
-- `api/checkout.php`
-- `api/upload_galon_bekas.php`
-- `api/assign_kurir.php`
-- `api/konfirmasi_selesai.php`
-- `api/buat_komplain.php`
-- `api/dashboard_admin.php`
+---
 
-Checkout mengirim data formulir `pembeli_id`, `alamat_id`, `metode_bayar`, `kode_promo`, dan JSON `items`.
+## 🌐 Akses URL Aplikasi
+
+Setelah Laragon aktif, Anda dapat membuka:
+
+| Halaman | URL Akses |
+|---|---|
+| **Portal Home Laragon** | `http://localhost/` *(ada tombol cepat GalonKu)* |
+| **Panel Admin Depot** | `http://localhost/GalonKu/admin.php` |
+| **PWA Kurir** | `http://localhost/GalonKu/GalonKu_Mobile_Starter/pwa/courier/` *(atau via `/percobaan/...`)* |
+| **PWA Pelanggan** | `http://localhost/GalonKu/GalonKu_Mobile_Starter/pwa/customer/` |
+
+---
+
+## 🔑 Akun Demo
+
+- **Admin**: `admin@galonku.test`
+- **Kurir**: `kurir@galonku.test`
+- **Pelanggan**: `pelanggan@galonku.test`
