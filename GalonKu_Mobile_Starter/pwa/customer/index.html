@@ -7,31 +7,72 @@
   <link rel="manifest" href="./manifest.webmanifest">
   <title>GalonKu Pelanggan</title>
   <style>
-    :root{--blue:#1769aa;--ink:#18384e;--muted:#718495;--line:#e7eef3}
-    *{box-sizing:border-box}body{margin:0;background:#edf3f7;font-family:Inter,"Segoe UI",Arial,sans-serif;color:var(--ink)}
-    button,input,select{font:inherit}button{cursor:pointer}.app{width:min(100%,430px);min-height:100vh;margin:auto;padding:0 16px 92px;background:#f8fafc}
-    .dashboard-header{display:flex;justify-content:space-between;align-items:center;padding:18px 0 12px}.welcome-wrap{display:flex;align-items:center;gap:10px}.avatar{display:grid;width:42px;height:42px;place-items:center;border:2px solid #fff;border-radius:50%;background:linear-gradient(145deg,#bce3f7,#76b9df);font-size:20px}.dashboard-header p{margin:0;font-size:11px;color:#7d8f9c}.dashboard-header h1{margin:2px 0 0;font-size:18px;color:#18384e}.dashboard-header .bell{width:42px;height:42px;border-radius:50%;border:0;background:#fff;box-shadow:0 4px 14px rgba(24,56,78,.08)}
-    .search-wrap{display:flex;align-items:center;gap:8px;margin:6px 0 12px;padding:0 11px;height:46px;border:1px solid #edf1f4;border-radius:13px;background:#fff;box-shadow:0 5px 18px rgba(24,56,78,.05)}.search-wrap span{font-size:16px}.search-wrap input{width:100%;border:0;outline:0;background:none;font-size:11px}.search-wrap button{width:34px;height:34px;border:0;border-radius:9px;background:#edf6fc;color:#1769aa;font-size:16px}
-    .category-row{display:flex;gap:8px;overflow-x:auto;padding:1px 0 12px}.category-row::-webkit-scrollbar,.row::-webkit-scrollbar{display:none}.category-chip{flex:0 0 auto;height:38px;padding:0 12px;border:1px solid #edf1f4;border-radius:12px;background:#fff;color:#617484;font-size:10px;font-weight:800}.category-chip.active{border-color:#1769aa;background:#1769aa;color:#fff;box-shadow:0 7px 16px rgba(23,105,170,.18)}
-    .hero{position:relative;overflow:hidden;height:168px;margin:0;border-radius:18px;background:linear-gradient(125deg,#e6f4fb,#87bddf)}.hero-copy{position:relative;z-index:2;padding:20px}.hero-copy span{display:block;color:#4d7e9f}.hero-copy h2{color:#174e75;font-size:24px;line-height:1.12}.hero-copy button{height:38px;padding:0 14px;border-radius:10px;box-shadow:0 7px 16px rgba(23,105,170,.16)}.gallon{position:absolute;bottom:-12px;width:66px;height:132px;border:6px solid #76b9df;border-radius:34px 34px 12px 12px;background:linear-gradient(150deg,#fff,#bbe2f7);transform:rotate(6deg)}.gallon:before{content:"";position:absolute;left:21px;top:-25px;width:18px;height:24px;border:5px solid #76b9df;border-bottom:0;border-radius:8px 8px 0 0;background:#eefaff}.gallon:after{content:"GALON";position:absolute;left:9px;bottom:28px;color:#1769aa;font-size:8px;font-weight:900}
-    .active-order{display:flex;align-items:center;gap:10px;margin:12px 0 2px;padding:11px;border-radius:15px;background:#fff;border:1px solid #edf1f4}.active-order-icon{display:grid;width:44px;height:44px;place-items:center;border-radius:12px;background:#eaf5fc;font-size:20px}.active-order-copy{flex:1}.active-order-copy small{display:block;color:#8b9aa6;font-size:9px}.active-order-copy strong{display:block;margin-top:3px;font-size:12px}.active-order button{border:0;border-radius:9px;padding:8px 10px;background:#edf6fc;color:#1769aa;font-size:9px;font-weight:900}
-    .section{padding-top:16px}.heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px}.heading h2{font-size:15px}.heading small{font-size:9px}.heading button,.text-button{border:0;background:transparent;font-size:10px;font-weight:800}.row{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px}.promo{position:relative;min-width:220px;border-radius:15px;background:#d9ebf5}.promo h3{margin:6px 0 3px}.promo em{display:block;margin-top:5px;color:#718495;font-size:9px;font-style:normal}.product{overflow:hidden;min-width:145px;border:0;border-radius:16px;box-shadow:0 7px 20px rgba(24,56,78,.08)}.product-art{display:grid;place-items:center;height:112px;background:linear-gradient(145deg,#edf7fc,#cbe7f5)}.product-art i{display:block;width:54px;height:82px;border-width:6px;border-radius:22px 22px 14px 14px;background:linear-gradient(145deg,#fff,#aadaf3);box-shadow:0 10px 16px rgba(77,144,188,.12)}.product-info{position:relative;padding:10px}.product-info h3{font-size:11px}.product-info strong{font-size:12px}.add{right:10px;bottom:9px;width:30px;height:30px;border-radius:10px}
-    .nav{position:fixed;z-index:20;left:50%;bottom:0;width:min(100%,430px);transform:translateX(-50%);display:grid;grid-template-columns:repeat(5,1fr);align-items:center;background:#fff}.nav button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;height:78px;border:0;background:#fff;color:#91a0aa;font-size:8px}.nav button svg{width:20px;height:20px}.nav button.main{width:52px;height:52px!important;justify-self:center;border-radius:50%;color:#fff!important;transform:translateY(-11px)}.nav button.main svg{width:21px;height:21px}
-    .modal-google-submit{border:0;background:#1a73e8;color:#fff}
+    /* Desain premium pelanggan */
+    :root{--brand:#1769aa;--brand-dark:#0d4f89;--soft:#eef7fb;--surface:#fff;--text:#18384e;--muted:#718495;--line:#edf1f4}
+    html,body{width:100%;min-height:100%;overflow-x:hidden;background:#eef4f7}
+    body{font-family:Inter,"Segoe UI",Arial,sans-serif;color:var(--text)}
+    #auth-screen{display:grid!important;place-items:start center!important;min-height:100vh!important;padding:40px 18px!important;background:radial-gradient(circle at 100% 0%,#dbefff 0,transparent 38%),linear-gradient(145deg,#f4f9fc,#eaf4f8)!important}
+    #auth-screen .auth-card{width:min(100%,390px)!important;border:0!important;border-radius:24px!important;padding:26px 22px!important;box-shadow:0 22px 60px rgba(30,73,100,.14)!important}
+    #auth-screen .auth-brand-icon{width:50px!important;height:50px!important;border-radius:16px!important;background:linear-gradient(145deg,#247fc2,#15558e)!important;box-shadow:0 10px 22px rgba(23,105,170,.20)!important}
+    #auth-screen .auth-brand h1{font-size:20px!important}.auth-brand p{color:#80909d!important}
+    #auth-screen .auth-tabs{height:46px!important;align-items:center!important;border-radius:13px!important;background:#f1f6f8!important}.auth-tabs button{height:40px!important;border-radius:10px!important;transition:.2s!important}.auth-tabs button.active{box-shadow:0 4px 12px rgba(24,56,78,.08)!important}
+    #auth-screen .auth-form label{margin:12px 0 0!important;font-size:12px!important}.auth-form input,.auth-form textarea{height:46px!important;border-radius:12px!important;border-color:#dde8ef!important;background:#fbfdfe!important;transition:.2s!important}.auth-form textarea{height:78px!important}.auth-form input:focus,.auth-form textarea:focus{border-color:#1769aa!important;outline:3px solid rgba(23,105,170,.09)!important}
+    #auth-screen .auth-submit{height:48px!important;margin-top:16px!important;border-radius:12px!important;background:linear-gradient(135deg,#1b77b8,#1769aa)!important;box-shadow:0 10px 22px rgba(23,105,170,.20)!important}
+    #customer-app.app{width:min(100%,430px)!important;min-height:100vh!important;margin:0 auto!important;padding:0 16px 100px!important;background:#f8fafc!important;box-shadow:0 0 45px rgba(30,73,100,.10)!important}
+    .dashboard-header{height:auto!important;padding:16px 0 12px!important}.dashboard-header .avatar{width:46px!important;height:46px!important;border:3px solid #fff!important;background:linear-gradient(145deg,#d8eef9,#91c6e3)!important;color:#1769aa!important;box-shadow:0 5px 14px rgba(23,105,170,.12)!important}.dashboard-header p{font-size:10px!important}.dashboard-header h1{font-size:18px!important}.dashboard-header .bell{width:42px!important;height:42px!important;display:grid!important;place-items:center!important;border:1px solid #edf1f4!important;box-shadow:none!important}
+    .search-wrap{height:50px!important;margin:2px 0 12px!important;border:0!important;border-radius:15px!important;background:#fff!important;box-shadow:0 7px 22px rgba(24,56,78,.07)!important}.search-wrap span{display:none!important}.search-wrap input{display:block!important;height:48px!important;font-size:12px!important}.search-wrap input::placeholder{color:#91a0aa!important}.search-wrap button{width:36px!important;height:36px!important;border-radius:11px!important;background:#edf6fc!important}
+    .category-row{height:46px!important;gap:8px!important;padding:0 0 10px!important}.category-chip{height:36px!important;padding:0 14px!important;border:1px solid #edf1f4!important;border-radius:12px!important;box-shadow:0 3px 10px rgba(24,56,78,.04)!important}.category-chip.active{border-color:#1769aa!important;background:#1769aa!important}
+    .hero{height:178px!important;border-radius:18px!important;background:linear-gradient(135deg,#daf1fb 0%,#82bbe0 100%)!important;box-shadow:0 12px 25px rgba(42,118,164,.13)!important}.hero-copy{padding:21px!important}.hero-copy span{font-size:10px!important}.hero-copy h2{width:70%!important;margin:8px 0 13px!important;font-size:23px!important;line-height:1.08!important}.hero-copy button{height:42px!important;border:0!important;border-radius:11px!important;padding:0 16px!important;background:#1769aa!important;color:#fff!important;font-size:12px!important;box-shadow:0 9px 18px rgba(23,105,170,.20)!important}.gallon{right:24px!important;width:72px!important;height:138px!important}
+    .section{padding-top:12px!important}.heading{margin-bottom:9px!important}.heading h2{margin:0!important;font-size:16px!important}.heading button{color:#1769aa!important}.section:nth-of-type(3){display:none!important}
+    .active-order{min-height:76px!important;margin:8px 0 0!important;padding:11px!important;border:1px solid #edf1f4!important;border-radius:15px!important;box-shadow:0 5px 16px rgba(24,56,78,.05)!important}.active-order-icon{width:44px!important;height:44px!important;border-radius:12px!important}.active-order button{height:36px!important;padding:0 11px!important;border-radius:9px!important}
+    .row{gap:10px!important;padding:0 0 8px!important}.product{flex:0 0 156px!important;min-width:156px!important;height:218px!important;border:1px solid #edf1f4!important;border-radius:16px!important;background:#fff!important;box-shadow:0 7px 18px rgba(24,56,78,.08)!important}.product-art{height:112px!important;border-radius:15px 15px 0 0!important}.product-info{height:106px!important;padding:11px!important}.product-info h3{min-height:34px!important;margin:0 34px 5px 0!important;font-size:12px!important;line-height:1.25!important}.product-info strong{font-size:13px!important}.product-info .add{position:absolute!important;right:10px!important;bottom:10px!important;display:grid!important;width:34px!important;height:34px!important;place-items:center!important;border:0!important;border-radius:10px!important;background:#1769aa!important;color:#fff!important;font-size:18px!important}
+    .promo{height:112px!important;min-width:220px!important;border-radius:16px!important;background:linear-gradient(135deg,#dfeff7,#bfe0f1)!important}.promo h3{font-size:16px!important}.promo em{right:12px!important;bottom:12px!important}
+    .nav{height:74px!important;border-top:1px solid #edf1f4!important;border-radius:0!important;background:rgba(255,255,255,.97)!important;box-shadow:0 -8px 24px rgba(24,56,78,.08)!important;backdrop-filter:blur(12px)!important}.nav button{height:74px!important;gap:4px!important;font-size:8px!important}.nav button.active{color:#1769aa!important}.nav button.main{width:54px!important;height:54px!important;border-radius:50%!important;background:linear-gradient(145deg,#247fc2,#1769aa)!important;color:#fff!important;box-shadow:0 9px 20px rgba(23,105,170,.28)!important}.nav button.main b{font-size:25px!important;font-weight:400!important}
 
-    /* Dashboard pelanggan modern */
-    .app{max-width:430px;padding:0 16px 92px;background:#f8fafc}
-    .dashboard-header{padding:18px 0 12px}.welcome-wrap{display:flex;align-items:center;gap:10px}.avatar{display:grid;width:42px;height:42px;place-items:center;border:2px solid #fff;border-radius:50%;background:linear-gradient(145deg,#bce3f7,#76b9df);font-size:20px}.dashboard-header p{margin:0;font-size:11px;color:#7d8f9c}.dashboard-header h1{margin:2px 0 0;font-size:18px;color:#18384e}.dashboard-header .bell{border:0;background:#fff;box-shadow:0 4px 14px rgba(24,56,78,.08)}
-    .search-wrap{display:flex;align-items:center;gap:8px;margin:6px 0 12px;padding:0 11px;height:46px;border:1px solid #edf1f4;border-radius:13px;background:#fff}.search-wrap span{font-size:16px}.search-wrap input{width:100%;border:0;outline:0;background:none;font-size:11px}.search-wrap button{width:34px;height:34px;border:0;border-radius:9px;background:#edf6fc;color:#1769aa;font-size:16px}
-    .category-row{display:flex;gap:8px;overflow-x:auto;padding:1px 0 12px}.category-chip{flex:0 0 auto;height:38px;padding:0 12px;border:1px solid #edf1f4;border-radius:12px;background:#fff;color:#617484;font-size:10px;font-weight:800}.category-chip.active{border-color:#1769aa;background:#1769aa;color:#fff}
-    .hero{position:relative;overflow:hidden;height:168px;margin:0;border-radius:18px;background:linear-gradient(125deg,#e6f4fb,#87bddf)}.hero-copy{position:relative;z-index:2;padding:20px}.hero-copy span{color:#4d7e9f}.hero-copy h2{color:#174e75;font-size:24px;line-height:1.12}.hero-copy button{height:38px;padding:0 14px;border-radius:10px}.gallon{position:absolute;bottom:-12px;width:66px;height:132px;border:6px solid #76b9df;border-radius:34px 34px 12px 12px;background:linear-gradient(150deg,#fff,#bbe2f7);transform:rotate(6deg)}.gallon:before{content:"";position:absolute;left:21px;top:-25px;width:18px;height:24px;border:5px solid #76b9df;border-bottom:0;border-radius:8px 8px 0 0;background:#eefaff}.gallon:after{content:"GALON";position:absolute;left:9px;bottom:28px;color:#1769aa;font-size:8px;font-weight:900}
-    .active-order{display:flex;align-items:center;gap:10px;margin:12px 0 2px;padding:11px;border-radius:15px;background:#fff;border:1px solid #edf1f4}.active-order-icon{display:grid;width:44px;height:44px;place-items:center;border-radius:12px;background:#eaf5fc;font-size:20px}.active-order-copy{flex:1}.active-order-copy small{display:block;color:#8b9aa6;font-size:9px}.active-order-copy strong{display:block;margin-top:3px;font-size:12px}.active-order button{border:0;border-radius:9px;padding:8px 10px;background:#edf6fc;color:#1769aa;font-size:9px;font-weight:900}
-    .section{padding-top:16px}.heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px}.heading h2{font-size:15px}.heading small{font-size:9px}.heading button,.text-button{border:0;background:transparent;font-size:10px;font-weight:800}.row{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px}.promo{position:relative;min-width:220px;border-radius:15px;background:#d9ebf5}.promo h3{margin:6px 0 3px}.promo em{display:block;margin-top:5px;color:#718495;font-size:9px;font-style:normal}.product{overflow:hidden;min-width:145px;border:0;border-radius:16px;box-shadow:0 7px 20px rgba(24,56,78,.08)}.product-art{display:grid;place-items:center;height:112px;background:linear-gradient(145deg,#edf7fc,#cbe7f5)}.product-art i{display:block;width:54px;height:82px;border-width:6px;border-radius:22px 22px 14px 14px;background:linear-gradient(145deg,#fff,#aadaf3)}.product-info{position:relative;padding:10px}.product-info h3{font-size:11px}.product-info strong{font-size:12px}.add{right:10px;bottom:9px;width:30px;height:30px;border-radius:10px}
-    .nav{position:fixed;z-index:20;left:50%;bottom:0;width:min(100%,430px);transform:translateX(-50%);display:grid;grid-template-columns:repeat(5,1fr);align-items:center;background:#fff}.nav button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;height:78px;border:0;background:#fff;color:#91a0aa;font-size:8px}.nav button svg{width:20px;height:20px}.nav button.main{width:52px;height:52px!important;justify-self:center;border-radius:50%;color:#fff!important;transform:translateY(-11px)}.nav button.main svg{width:21px;height:21px}
+    /* Bottom sheet final */
+    .sheet{display:block!important;position:fixed!important;z-index:60!important;left:50%!important;bottom:0!important;width:min(100%,430px)!important;max-height:86vh!important;overflow-y:auto!important;transform:translate(-50%,105%)!important;border-radius:24px 24px 0 0!important;background:#fff!important;padding:8px 18px calc(18px + env(safe-area-inset-bottom))!important;box-shadow:0 -18px 48px rgba(24,56,78,.22)!important;transition:transform .28s ease!important}.sheet.open{transform:translate(-50%,0)!important}.sheet-grabber{width:42px;height:4px;margin:2px auto 10px;border-radius:4px;background:#dce5ea}.sheet header{display:flex!important;align-items:center!important;justify-content:space-between!important;margin:0 0 12px!important}.sheet header small{display:block;margin-bottom:2px;color:#718495;font-size:10px}.sheet header h2{margin:0!important;font-size:19px!important}.sheet header button{display:grid;width:36px;height:36px;place-items:center;border:0!important;border-radius:50%!important;background:#edf3f6!important;color:#718495!important;font-size:22px!important;line-height:1!important}.sheet-product{display:flex;align-items:center;gap:12px;margin:0 0 12px;padding:10px;border:1px solid #edf1f4;border-radius:13px;background:#f8fafc}.sheet-product-art{display:grid;flex:0 0 58px;height:58px;place-items:center;border-radius:10px;background:#eaf5fc}.sheet-product-art i{display:block;width:32px;height:48px;border:5px solid #77acd0;border-radius:15px 15px 9px 9px;background:linear-gradient(145deg,#fff,#cfeafa)}.sheet-product small,.sheet-product strong,.sheet-product b{display:block}.sheet-product small{color:#718495;font-size:9px}.sheet-product strong{margin:3px 0;font-size:12px}.sheet-product b{color:#1769aa;font-size:12px}.sheet-label{display:block!important;margin:10px 0!important;color:#18384e!important;font-size:11px!important;font-weight:800!important}.sheet-label select,.sheet-label input[type="file"]{display:block;width:100%;height:43px;margin-top:7px!important;border:1px solid #dfe8ed!important;border-radius:10px!important;background:#fff!important;padding:0 10px!important;font-weight:400}.sheet .qty{display:grid!important;grid-template-columns:43px 1fr 43px!important;width:100%;height:43px;margin-top:7px!important;border:1px solid #dfe8ed!important;border-radius:10px!important;overflow:hidden!important}.sheet .qty button{height:41px;border:0!important;background:#f2f7fa!important;color:#1769aa!important;font-size:18px!important}.sheet .qty input{height:41px!important;margin:0!important;border:0!important;border-left:1px solid #dfe8ed!important;border-right:1px solid #dfe8ed!important;border-radius:0!important;text-align:center!important}.courier{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:12px;padding:10px 12px;border-radius:11px;background:#edf7f4;font-size:11px}.courier>div:first-child{display:flex;align-items:center;gap:8px}.courier-dot{width:8px;height:8px;border-radius:50%;background:#34b98a}.courier button{border:0;background:transparent!important;color:#1769aa!important;font-size:10px;font-weight:800}.courier #couriers{display:block;width:100%;margin-top:8px}.sheet .checkout{width:100%!important;height:48px!important;margin-top:12px!important;border:0!important;border-radius:12px!important;background:#1769aa!important;color:#fff!important;font-size:13px!important;font-weight:800!important;box-shadow:0 8px 18px rgba(23,105,170,.22)!important}.sheet #result{display:none!important}.backdrop{position:fixed!important;z-index:59!important;inset:0!important;background:rgba(15,47,69,.38)!important;opacity:0!important;pointer-events:none!important;transition:.25s!important}.backdrop.open{opacity:1!important;pointer-events:auto!important}
+
+    /* Layar autentikasi final - cegah tata letak lama merusak */
+    [hidden]{display:none!important}
+    #auth-screen{display:block!important;position:relative!important;inset:auto!important;width:100%!important;min-height:100vh!important;margin:0 auto!important;padding:32px 16px!important;background:linear-gradient(155deg,#edf7fc 0%,#f8fafc 100%)!important}
+    #auth-screen .auth-card{width:min(100%,430px)!important;margin:0 auto!important;border:1px solid #e7eef3!important;border-radius:22px!important;background:#fff!important;padding:22px 18px!important;box-shadow:0 18px 45px rgba(24,56,78,.11)!important}
+    #auth-screen .auth-brand{display:flex!important;align-items:center!important;gap:11px!important;width:100%!important;margin-bottom:18px!important}
+    #auth-screen .auth-brand-icon{display:grid!important;flex:0 0 48px!important;width:48px!important;height:48px!important;place-items:center!important;border-radius:15px!important;background:#1769aa!important;color:#fff!important;font-size:23px!important;font-weight:900!important}
+    #auth-screen .auth-brand h1{font-size:21px!important;line-height:1.2!important;margin:0!important}.auth-brand p{margin:5px 0 0!important;color:#718495!important;font-size:11px!important}
+    #auth-screen .auth-tabs{display:grid!important;grid-template-columns:1fr!important;width:100%!important;margin:16px 0!important;padding:3px!important;border-radius:11px!important;background:#eff4f7!important}
+    #auth-screen .auth-tabs button{width:100%!important;height:38px!important;border:0!important;border-radius:8px!important;background:transparent!important;color:#718495!important;font-weight:800!important}.auth-tabs button.active{background:#fff!important;color:#1769aa!important;box-shadow:0 3px 10px rgba(24,56,78,.08)!important}
+    #auth-screen .auth-form{display:block!important;width:100%!important;margin:0!important}.auth-form label{display:block!important;width:100%!important;margin:10px 0!important;color:#18384e!important;font-size:11px!important;font-weight:800!important}
+    #auth-screen .auth-form input,#auth-screen .auth-form textarea{display:block!important;width:100%!important;max-width:none!important;height:43px!important;margin:6px 0 0!important;border:1px solid #dfe8ed!important;border-radius:10px!important;background:#fff!important;padding:0 11px!important;box-sizing:border-box!important}.auth-form textarea{height:70px!important;padding-top:10px!important;resize:none!important}
+    #auth-screen .auth-submit{display:block!important;width:100%!important;height:46px!important;margin:10px 0 0!important;border:0!important;border-radius:11px!important;background:#1769aa!important;color:#fff!important;font-weight:800!important}
+    #auth-screen .auth-error{display:block!important;width:100%!important;min-height:16px!important;margin:10px 0 0!important;color:#c33!important;font-size:11px!important}
+
+    /* Autentikasi pelanggan identik kurir */
+    body{background:#f1f4f9!important}#auth-screen{display:grid!important;min-height:100vh!important;place-items:center!important;padding:20px!important;background:#f1f4f9!important}#auth-screen .auth-card{width:min(100%,360px)!important;border:0!important;border-radius:20px!important;padding:24px!important;background:#fff!important;box-shadow:0 12px 40px rgba(26,53,96,.10)!important}#auth-screen .auth-card h1{margin:0!important;color:#2853d4!important;font-size:23px!important}#auth-screen .auth-card>p:not(.auth-error):not(.auth-divider){margin:10px 0!important;color:#758196!important;font-size:12px!important;line-height:1.5!important}#auth-screen .auth-tabs{display:grid!important;grid-template-columns:1fr 1fr!important;margin:14px 0!important;border-radius:10px!important;background:#f1f4f8!important;padding:3px!important}#auth-screen .auth-tabs button{width:100%!important;height:36px!important;border:0!important;border-radius:8px!important;background:transparent!important;color:#758196!important;font-weight:800!important}#auth-screen .auth-tabs button.active{background:#fff!important;color:#2853d4!important}#auth-screen .auth-form label{display:block!important;margin:14px 0!important;color:#17243a!important;font-size:11px!important;font-weight:700!important}#auth-screen .auth-form input{width:100%!important;height:43px!important;margin-top:6px!important;border:1px solid #e7ebf2!important;border-radius:10px!important;background:#fff!important;padding:0 11px!important}#auth-screen .auth-submit{width:100%!important;height:44px!important;margin:0!important;border:0!important;border-radius:10px!important;background:#2853d4!important;color:#fff!important;font-size:13px!important;font-weight:800!important}.auth-divider{margin:14px 0 6px!important;text-align:center!important;color:#758196!important;font-size:10px!important}.btn-google{display:flex!important;align-items:center!important;justify-content:center!important;gap:10px!important;width:100%!important;height:44px!important;margin-top:6px!important;border:1px solid #dadce0!important;border-radius:10px!important;background:#fff!important;color:#2853d4!important;font-size:12px!important;font-weight:700!important;box-shadow:0 1px 3px rgba(60,64,67,.08)!important}.btn-google svg{width:18px!important;height:18px!important}.auth-error{min-height:14px!important;margin:8px 0 0!important;color:#c33!important;font-size:11px!important}.modal-google{position:fixed!important;z-index:200!important;inset:0!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:16px!important;background:rgba(20,30,45,.5)!important}.modal-google[hidden]{display:none!important}.modal-google-card{width:min(100%,360px)!important;border-radius:16px!important;background:#fff!important;padding:22px!important;box-shadow:0 10px 30px rgba(0,0,0,.20)!important}.modal-google-card h3{margin:0 0 6px!important;color:#202124!important;font-size:16px!important}.modal-google-card p{margin:0 0 14px!important;color:#5f6368!important;font-size:11px!important}.modal-google-card label{display:block!important;margin:6px 0 3px!important;color:#5f6368!important;font-size:11px!important;font-weight:700!important}.modal-google-card input{width:100%!important;height:40px!important;margin-bottom:10px!important;border:1px solid #dadce0!important;border-radius:8px!important;padding:0 10px!important;font-size:12px!important}.modal-google-actions{display:flex!important;gap:8px!important;margin-top:10px!important}.modal-google-actions button{flex:1!important;height:38px!important;border-radius:8px!important;font-size:11px!important;font-weight:700!important}.modal-google-cancel{border:1px solid #dadce0!important;background:#fff!important;color:#5f6368!important}.modal-google-submit{border:0!important;background:#2853d4!important;color:#fff!important}
   </style>
 </head>
 <body>
-  <div class="app">
+  <section id="auth-screen">
+    <div class="auth-card">
+      <h1>GalonKu Pelanggan</h1>
+      <p id="customer-auth-description">Masuk untuk memesan dan mengelola pesanan galon.</p>
+      <div class="auth-tabs">
+        <button type="button" class="active" data-auth-tab="login">Masuk</button>
+      </div>
+      <form class="auth-form" id="customer-login-form">
+        <label>Email atau nomor HP<input id="customer-login-identity" autocomplete="username" required></label>
+        <label>Password<input id="customer-login-password" type="password" autocomplete="current-password" minlength="6" required></label>
+        <button class="auth-submit" type="submit">Masuk sebagai Pelanggan</button>
+      </form>
+      <p class="auth-divider">atau</p>
+      <button class="btn-google" id="google-btn" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+        <span id="google-btn-label">Masuk dengan Google</span>
+      </button>
+      <div class="google-signin" id="google-signin-button" style="display:none"></div>
+      <p class="auth-error" id="google-login-error" role="status"></p>
+    </div>
+  </section>
+  <div class="app" id="customer-app" hidden>
     <header class="dashboard-header">
       <div class="welcome-wrap">
         <div class="avatar">A</div>
@@ -69,7 +110,7 @@
       <div class="hero-copy">
         <span>Promo Spesial</span>
         <h2>Dapatkan diskon hingga 50%</h2>
-        <button>Pesan Sekarang</button>
+        <button id="order-now">Pesan Sekarang</button>
       </div>
       <div class="gallon">
         <img src="./gallon.png" alt="Galon" width="100%" height="auto">
@@ -105,113 +146,76 @@
         <em>Gunakan kode: DISKON20</em>
       </div>
     </div>
-    <div class="section">
+    <div class="section" id="galon-products">
       <div class="heading">
-        <h2>Produk Unggulan</h2>
-        <button class="text-button" style="color:#1769aa">Lihat semua</button>
+        <h2>Isi Ulang Galon</h2>
+        <button class="text-button" style="color:#1769aa" id="view-all-galon">Lihat semua</button>
       </div>
       <div class="row">
-        <div class="product">
-          <div class="product-art">
-            <i style="background-image:url('./product1.jpg')"></i>
-          </div>
-          <div class="product-info">
-            <h3>Air Mineral</h3>
-            <strong>Rp 10.000</strong>
-          </div>
-        </div>
-        <div class="product">
-          <div class="product-art">
-            <i style="background-image:url('./product2.jpg')"></i>
-          </div>
-          <div class="product-info">
-            <h3>Snack Sehat</h3>
-            <strong>Rp 5.000</strong>
-          </div>
-        </div>
-        <div class="product">
-          <div class="product-art">
-            <i style="background-image:url('./product3.jpg')"></i>
-          </div>
-          <div class="product-info">
-            <h3>Kopi Premium</h3>
-            <strong>Rp 15.000</strong>
-          </div>
-        </div>
+        <div class="product" data-product="1"><div class="product-art"><i></i></div><div class="product-info"><h3>Isi Ulang 19 Liter</h3><strong>Rp15.000</strong><button class="add" data-product="1" aria-label="Pesan isi ulang">+</button></div></div>
+        <div class="product" data-product="2"><div class="product-art"><i></i></div><div class="product-info"><h3>Galon Baru 19 Liter</h3><strong>Rp80.000</strong><button class="add" data-product="2" aria-label="Pesan galon baru">+</button></div></div>
+        <div class="product" data-product="3"><div class="product-art"><i></i></div><div class="product-info"><h3>Tukar Galon Bekas</h3><strong>Rp25.000</strong><button class="add" data-product="3" aria-label="Pesan tukar galon bekas">+</button></div></div>
       </div>
     </div>
     <div class="nav" id="customer-nav">
-      <button class="active" id="nav-home">
+      <button class="active" id="nav-home" type="button">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"></path><path d="M5 10v10h14V10"></path></svg>
-        Beranda
+        <span>Beranda</span>
       </button>
-      <button id="nav-products">
+      <button id="nav-products" type="button">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
-        Produk
+        <span>Produk</span>
       </button>
-      <button class="main" id="nav-order" aria-label="Pesan sekarang">+</button>
-      <button id="nav-orders">
+      <button class="main" id="nav-order" type="button" aria-label="Pesan sekarang"><b>+</b></button>
+      <button id="nav-orders" type="button">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"></rect><path d="M16 8h4l3 3v5h-7z"></path><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
-        Pesanan
+        <span>Pesanan</span>
       </button>
-      <button id="nav-account">
+      <button id="nav-account" type="button">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c.8-5 3.4-7 8-7s7.2 2 8 7"></path></svg>
-        Akun
+        <span>Akun</span>
       </button>
     </div>
   </div>
-  <section class="modal" id="modal">
-    <div class="modal-content">
-      <header>
-        <h2>Detail Pesanan</h2>
-        <button class="close" id="close-modal">&times;</button>
-      </header>
-      <div class="modal-body">
-        <h3>Galon Air Mineral</h3>
-        <p>Jumlah: 2</p>
-        <p>Metode Pembayaran: COD</p>
-        <p>Status: Menunggu Kurir</p>
-      </div>
-      <footer>
-        <button class="btn btn-primary" id="btn-pesan-ulang">Pesan Ulang</button>
-        <button class="btn btn-secondary" id="btn-batal">Batal</button>
-      </footer>
-    </div>
-  </section>
-  <section class="modal" id="modal-detail">
-    <div class="modal-content">
-      <header>
-        <h2>Detail Produk</h2>
-        <button class="close" id="close-modal-detail">&times;</button>
-      </header>
-      <div class="modal-body">
-        <div class="product-detail">
-          <div class="product-art">
-            <i style="background-image:url('./product1.jpg')"></i>
-          </div>
-          <div class="product-info">
-            <h3>Air Mineral</h3>
-            <strong>Rp 10.000</strong>
-            <p>Deskripsi singkat tentang produk air mineral.</p>
-          </div>
-        </div>
-        <div class="actions">
-          <button class="btn btn-primary" id="btn-tambah-ke-keranjang">Tambah ke Keranjang</button>
-          <button class="btn btn-secondary" id="btn-beli-sekarang">Beli Sekarang</button>
-        </div>
-      </div>
-    </div>
-  </section>
   <div class="backdrop" id="backdrop"></div>
   <aside class="sheet" id="sheet" aria-hidden="true">
-    <header><h2 id="sheet-title">Pesan Galon</h2><button id="close-sheet" style="border:0;background:#fff;font-size:24px">×</button></header>
+    <div class="sheet-grabber" aria-hidden="true"></div>
+    <header>
+      <div><small>Konfirmasi pesanan</small><h2 id="sheet-title">Pesan Galon</h2></div>
+      <button id="close-sheet" type="button" aria-label="Tutup">×</button>
+    </header>
     <input type="hidden" id="produk" value="1">
-    <label>Jumlah<div class="qty"><button id="minus">−</button><input id="jumlah" type="number" min="1" value="1"><button id="plus">+</button></div></label>
-    <label>Metode pembayaran<select id="metode"><option value="tunai">COD / Tunai</option><option value="qris">QRIS</option><option value="transfer">Transfer</option></select></label>
-    <label id="photo-label" class="hidden">Foto Galon Bekas<input id="photo" type="file" accept="image/jpeg,image/png,image/webp"></label>
-    <div class="courier"><strong>Kurir terdekat</strong> <button id="search-courier" style="border:0;background:none;color:var(--blue);float:right">Cari kurir</button><div id="couriers"></div></div>
-    <button class="checkout" id="checkout">Pesan sekarang</button><pre id="result"></pre>
+    <div class="sheet-product">
+      <div class="sheet-product-art"><i></i></div>
+      <div><small>Produk dipilih</small><strong id="sheet-product-name">Isi Ulang 19 Liter</strong><b id="sheet-product-price">Rp15.000</b></div>
+    </div>
+    <label class="sheet-label">Jumlah
+      <div class="qty"><button id="minus" type="button">−</button><input id="jumlah" type="number" min="1" value="1" inputmode="numeric"><button id="plus" type="button">+</button></div>
+    </label>
+    <label class="sheet-label">Metode pembayaran
+      <select id="metode"><option value="tunai">COD / Tunai</option><option value="qris">QRIS</option><option value="transfer">Transfer</option></select>
+    </label>
+    <label class="sheet-label hidden" id="photo-label">Foto Galon Bekas
+      <input id="photo" type="file" accept="image/jpeg,image/png,image/webp">
+    </label>
+    <div class="courier"><div><span class="courier-dot"></span><strong>Kurir terdekat</strong></div><button id="search-courier" type="button">Cari kurir</button><div id="couriers"></div></div>
+    <button class="checkout" id="checkout" type="button">Pesan sekarang</button>
+    <pre id="result"></pre>
   </aside>
+  <div class="modal-google" id="modal-google" hidden>
+    <div class="modal-google-card">
+      <h3>Masuk dengan Google</h3>
+      <p id="modal-google-subtitle">Masuk atau daftarkan akun pelanggan</p>
+      <label>Email Google</label>
+      <input type="email" id="modal-google-email" placeholder="contoh@gmail.com" required>
+      <label>Nama Lengkap</label>
+      <input type="text" id="modal-google-name" placeholder="Nama Anda (opsional)">
+      <div class="modal-google-actions">
+        <button type="button" class="modal-google-cancel" id="modal-google-cancel">Batal</button>
+        <button type="button" class="modal-google-submit" id="modal-google-submit">Lanjutkan</button>
+      </div>
+    </div>
+  </div>
   <script src="./app.js"></script>
   <script>if('serviceWorker' in navigator) navigator.serviceWorker.register('./service-worker.js');</script>
 </body>

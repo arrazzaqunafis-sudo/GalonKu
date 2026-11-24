@@ -1,4 +1,4 @@
-const CACHE = 'galonku-customer-v3';
+const CACHE = 'galonku-customer-v8';
 const APP_SHELL = ['./', './index.html', './app.js', './manifest.webmanifest', './icons/icon.svg'];
 self.addEventListener('install', event => {
   self.skipWaiting();

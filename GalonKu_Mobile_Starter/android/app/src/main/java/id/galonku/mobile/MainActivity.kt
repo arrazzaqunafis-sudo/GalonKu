@@ -194,6 +194,14 @@ class MainActivity : AppCompatActivity() {
         val savedUrl = preferences.getString("app_url", null)?.trim()?.takeIf(String::isNotEmpty)
             ?: return BuildConfig.DEFAULT_APP_URL
         val oldLocalServer = "http://192.168.1.9:8080/percobaan/GalonKu_Mobile_Starter/pwa/"
+        val migratedUrl = savedUrl
+            .replace("http://192.168.1.9/percobaan/GalonKu_Mobile_Starter/pwa/customer/", "http://192.168.43.194/galonku-app/GalonKu_Mobile_Starter/pwa/customer/")
+            .replace("http://192.168.1.9/percobaan/GalonKu_Mobile_Starter/pwa/courier/", "http://192.168.43.194/galonku-app/GalonKu_Mobile_Starter/pwa/courier/")
+            .replace("192.168.175.34:8080/GalonKu", "192.168.43.194/galonku-app")
+        if (migratedUrl != savedUrl) {
+            preferences.edit().putString("app_url", migratedUrl).apply()
+            return migratedUrl
+        }
         if (savedUrl.startsWith(oldLocalServer)) {
             val updatedUrl = savedUrl.replaceFirst("http://192.168.1.9:8080", "http://192.168.1.9")
             preferences.edit().putString("app_url", updatedUrl).apply()

@@ -6,13 +6,12 @@ Aplikasi pemesanan, manajemen depot galon, dan kurir terpadu berbasis PHP Native
 
 ## ⚡ Cara Jalankan di Komputer / Laptop Baru (Cukup 1 Menit)
 
-1. Buka **Laragon**, lalu klik tombol **Start All** (Apache & MySQL aktif).
-2. Di dalam folder project ini, cukup **klik ganda (double-click)** file:
-   👉 **`BUKA_GALONKU.bat`**
-3. Aplikasi akan langsung terkonfigurasi otomatis:
-   - Database `db_galonku` dan tabel dibuat secara otomatis jika belum ada di laptop baru.
-   - Alias folder dibuat otomatis sehingga semua link dapat diakses.
-   - Halaman Admin & Kurir akan langsung terbuka di browser!
+1. Buka dan aktifkan Laragon, lalu klik **Start All** agar Apache dan MySQL menyala.
+2. Pastikan folder proyek berada di dalam folder Laragon, misalnya `Laragon\www\GalonKu`.
+3. Klik dua kali **`BUKA_GALONKU.bat`**.
+4. Script akan membuat alias otomatis bernama `galonku-app`, menyiapkan database `db_galonku`, lalu membuka halaman Admin, Kurir, dan Pelanggan.
+
+Jika Laragon sudah aktif, cukup klik `BUKA_GALONKU.bat`—tidak perlu mengaktifkan server lagi secara manual.
 
 ---
 
@@ -23,9 +22,9 @@ Setelah Laragon aktif, Anda dapat membuka:
 | Halaman | URL Akses |
 |---|---|
 | **Portal Home Laragon** | `http://localhost/` *(ada tombol cepat GalonKu)* |
-| **Panel Admin Depot** | `http://localhost/GalonKu/admin.php` |
-| **PWA Kurir** | `http://localhost/GalonKu/GalonKu_Mobile_Starter/pwa/courier/` *(atau via `/percobaan/...`)* |
-| **PWA Pelanggan** | `http://localhost/GalonKu/GalonKu_Mobile_Starter/pwa/customer/` |
+| **Panel Admin Depot** | `http://localhost/galonku-app/admin.php` |
+| **PWA Kurir** | `http://localhost/galonku-app/GalonKu_Mobile_Starter/pwa/courier/` |
+| **PWA Pelanggan** | `http://localhost/galonku-app/GalonKu_Mobile_Starter/pwa/customer/` |
 
 ---
 

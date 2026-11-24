@@ -15,9 +15,14 @@ function showCustomerApp(result) {
   document.getElementById('auth-screen').hidden = true;
   document.getElementById('customer-app').hidden = false;
   document.getElementById('customer-nav').hidden = false;
-  document.getElementById('gps-status').textContent =
-    currentCustomer.alamat_lengkap || 'Alamat pengiriman belum tersedia';
+  const gpsStatus = document.getElementById('gps-status');
+  if (gpsStatus) {
+    gpsStatus.textContent = currentCustomer.alamat_lengkap || 'Alamat pengiriman belum tersedia';
+  }
   document.body.classList.remove('auth-required');
+
+  const customerAvatar = document.querySelector('.dashboard-header .avatar');
+  if (customerAvatar) customerAvatar.textContent = (currentCustomer.nama || 'Pelanggan').trim().charAt(0).toUpperCase();
 }
 
 let registrationLocation = null;
@@ -39,7 +44,7 @@ async function completeGoogleLogin(idToken, extraData = {}) {
         role: 'masyarakat',
         no_hp: phone,
         password: password,
-        alamat_lengkap: address,
+        alamat_lengkap: 'Bandung, Jawa Barat',
         label_alamat: 'Rumah',
         latitude: registrationLocation?.latitude || -6.9175,
         longitude: registrationLocation?.longitude || 107.6191
@@ -186,17 +191,14 @@ async function setupGoogleSignIn() {
 
 setupGoogleSignIn();
 
-document.querySelectorAll('[data-auth-tab]').forEach((button) => {
+document.querySelectorAll('[data-auth-tab="login"]').forEach((button) => {
   button.addEventListener('click', () => {
     document.querySelectorAll('[data-auth-tab]').forEach((tab) => tab.classList.remove('active'));
     button.classList.add('active');
-    const isRegister = button.dataset.authTab === 'register';
-    document.getElementById('customer-login-form').hidden = isRegister;
-    document.getElementById('customer-register-form').hidden = !isRegister;
+    const loginForm = document.getElementById('customer-login-form');
+    if (loginForm) loginForm.hidden = false;
     const label = document.getElementById('google-btn-label');
-    if (label) label.textContent = isRegister ? 'Daftar dengan Google' : 'Masuk dengan Google';
-    const modalSubtitle = document.getElementById('modal-google-subtitle');
-    if (modalSubtitle) modalSubtitle.textContent = isRegister ? 'Daftarkan akun pelanggan dengan Akun Google' : 'Masuk ke GalonKu dengan Akun Google';
+    if (label) label.textContent = 'Masuk dengan Google';
   });
 });
 
@@ -207,7 +209,7 @@ document.querySelectorAll('.password-toggle').forEach((button) => {
   });
 });
 
-document.getElementById('customer-login-form').addEventListener('submit', async (event) => {
+document.getElementById('customer-login-form')?.addEventListener('submit', async (event) => {
   event.preventDefault();
   const errorElement = document.getElementById('google-login-error');
   errorElement.textContent = '';
@@ -231,7 +233,7 @@ document.getElementById('customer-login-form').addEventListener('submit', async 
   }
 });
 
-document.getElementById('customer-register-form').addEventListener('submit', async (event) => {
+document.getElementById('customer-register-form')?.addEventListener('submit', async (event) => {
   event.preventDefault();
   const errorElement = document.getElementById('google-login-error');
   errorElement.textContent = '';
@@ -244,7 +246,7 @@ document.getElementById('customer-register-form').addEventListener('submit', asy
         email: document.getElementById('register-email').value.trim(),
         no_hp: document.getElementById('register-phone').value.trim(),
         password: document.getElementById('register-password').value,
-        alamat_lengkap: document.getElementById('register-address').value.trim(),
+        alamat_lengkap: 'Bandung, Jawa Barat',
         role: 'masyarakat',
         latitude: registrationLocation?.latitude,
         longitude: registrationLocation?.longitude
@@ -270,29 +272,43 @@ if (savedCustomer && localStorage.getItem(customerTokenKey)) {
   }
 }
 
+let selectedProduct = 1;
+const productNames = {
+  1: ['Isi Ulang 19 Liter', 'Rp15.000'],
+  2: ['Galon Baru 19 Liter', 'Rp80.000'],
+  3: ['Tukar Galon Bekas', 'Rp25.000']
+};
+
 function openSheet(productId = 1) {
-  document.getElementById('produk').value = String(productId);
-  document.getElementById('photo-label').classList.toggle('hidden', Number(productId) !== 3);
+  selectedProduct = Number(productId);
+  document.getElementById('produk').value = String(selectedProduct);
+  const [name, price] = productNames[selectedProduct] || productNames[1];
+  document.getElementById('sheet-product-name').textContent = name;
+  document.getElementById('sheet-product-price').textContent = price;
+  document.getElementById('sheet-title').textContent = 'Pesan Galon';
+  document.getElementById('photo-label').classList.toggle('hidden', selectedProduct !== 3);
   document.getElementById('jumlah').value = '1';
   document.getElementById('result').textContent = '';
   sheet.classList.add('open');
   backdrop.classList.add('open');
+  document.body.classList.add('sheet-open');
   sheet.setAttribute('aria-hidden', 'false');
 }
 
 function closeSheet() {
   sheet.classList.remove('open');
   backdrop.classList.remove('open');
+  document.body.classList.remove('sheet-open');
   sheet.setAttribute('aria-hidden', 'true');
 }
 
 document.querySelectorAll('[data-product]').forEach((element) => {
   element.addEventListener('click', () => openSheet(element.dataset.product));
 });
-document.getElementById('order-now').addEventListener('click', () => openSheet(1));
-document.getElementById('nav-order').addEventListener('click', () => openSheet(1));
-document.getElementById('close-sheet').addEventListener('click', closeSheet);
-backdrop.addEventListener('click', closeSheet);
+document.getElementById('order-now')?.addEventListener('click', () => openSheet(1));
+document.getElementById('nav-order')?.addEventListener('click', () => openSheet(1));
+document.getElementById('close-sheet')?.addEventListener('click', closeSheet);
+backdrop?.addEventListener('click', closeSheet);
 
 document.getElementById('minus').addEventListener('click', () => {
   const input = document.getElementById('jumlah');
@@ -321,27 +337,36 @@ async function findCouriers() {
   });
 }
 
-document.getElementById('locate').addEventListener('click', findCouriers);
-document.getElementById('search-courier').addEventListener('click', findCouriers);
+document.getElementById('locate')?.addEventListener('click', findCouriers);
+document.getElementById('search-courier')?.addEventListener('click', findCouriers);
 
 async function loadCatalog() {
   try {
     const response = await fetch(`${API_BASE}catalog.php`);
     const result = await response.json();
     if (result.status !== 'success') return;
-    const names = {
-      isi_ulang: 'Isi ulang',
-      galon_baru: 'Galon baru',
-      galon_bekas: 'Galon bekas'
-    };
+    const names = { isi_ulang: 'Isi ulang', galon_baru: 'Galon baru', galon_bekas: 'Galon bekas' };
     document.querySelectorAll('.product').forEach((card, index) => {
       const product = result.data[index];
       if (!product) return;
       card.dataset.product = String(product.produk_id);
-      card.querySelector('small').textContent = names[product.kategori] || product.kategori;
-      card.querySelector('h3').textContent = product.nama_produk;
-      card.querySelector('strong').textContent = `Rp${Number(product.harga).toLocaleString('id-ID')}`;
-      card.querySelector('.add').dataset.product = String(product.produk_id);
+      const category = card.querySelector('small');
+      if (category) category.textContent = names[product.kategori] || product.kategori;
+      const title = card.querySelector('h3');
+      const price = card.querySelector('strong');
+      if (title) title.textContent = product.nama_produk;
+      if (price) price.textContent = `Rp${Number(product.harga).toLocaleString('id-ID')}`;
+      let add = card.querySelector('.add');
+      if (!add) {
+        add = document.createElement('button');
+        add.type = 'button';
+        add.className = 'add';
+        add.setAttribute('aria-label', `Pesan ${product.nama_produk}`);
+        card.querySelector('.product-info')?.appendChild(add);
+      }
+      add.dataset.product = String(product.produk_id);
+      add.textContent = '+';
+      add.addEventListener('click', () => openSheet(product.produk_id));
     });
   } catch (error) {
     console.warn('Katalog tidak dapat dimuat.', error);
@@ -423,17 +448,18 @@ document.getElementById('nav-account').addEventListener('click', () => {
   }
 });
 document.getElementById('nav-order').addEventListener('click', () => {
-  showScreen('order-screen');
-  document.getElementById('nav-order').classList.add('active');
+  document.querySelectorAll('.nav button').forEach((button) => button.classList.remove('active'));
+  document.getElementById('nav-order')?.classList.add('active');
+  openSheet(1);
 });
-document.getElementById('order-back').addEventListener('click', () => showScreen(null));
-document.getElementById('tracking-back').addEventListener('click', () => showScreen(null));
-document.getElementById('tracking').addEventListener('click', () => showScreen('tracking-screen'));
-document.getElementById('order-product').addEventListener('change', (event) => {
+document.getElementById('order-back')?.addEventListener('click', () => showScreen(null));
+document.getElementById('tracking-back')?.addEventListener('click', () => showScreen(null));
+document.getElementById('tracking')?.addEventListener('click', () => showScreen('tracking-screen'));
+document.getElementById('order-product')?.addEventListener('change', (event) => {
   document.getElementById('order-photo-label').classList.toggle('hidden', Number(event.target.value) !== 3);
 });
 
-document.getElementById('place-order').addEventListener('click', async () => {
+document.getElementById('place-order')?.addEventListener('click', async () => {
   const productId = Number(document.getElementById('order-product').value);
   const jumlah = Number(document.getElementById('order-quantity').value);
   let photoPath = null;
@@ -466,6 +492,31 @@ document.getElementById('place-order').addEventListener('click', async () => {
   } else {
     alert(result.message || 'Pesanan gagal dibuat.');
   }
+});
+
+if (!document.getElementById('tracking-screen')) {
+  const trackingScreen = document.createElement('section');
+  trackingScreen.id = 'tracking-screen';
+  trackingScreen.className = 'mobile-screen hidden';
+  trackingScreen.innerHTML = '<div class="active-order"><div class="active-order-copy"><small>Status pesanan</small><strong id="tracking-status">Memuat pesanan...</strong></div></div>';
+  document.querySelector('.app')?.appendChild(trackingScreen);
+}
+
+// Menyesuaikan dashboard setelah halaman dimuat.
+document.addEventListener('DOMContentLoaded', () => {
+  const searchInput = document.querySelector('.search-wrap input');
+  if (searchInput) searchInput.placeholder = 'Cari produk atau layanan';
+
+  document.querySelectorAll('.section').forEach((section) => {
+    const title = section.querySelector('.heading h2')?.textContent.trim();
+    if (title === 'Produk Unggulan') section.hidden = true;
+    if (title === 'Isi Ulang Galon') section.classList.add('galon-section');
+  });
+
+  const bell = document.querySelector('.dashboard-header .bell');
+  bell?.addEventListener('click', () => {
+    document.querySelector('#nav-orders')?.click();
+  });
 });
 
 loadCatalog();
