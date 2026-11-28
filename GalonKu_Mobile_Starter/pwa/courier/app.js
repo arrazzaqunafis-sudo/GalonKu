@@ -21,10 +21,17 @@ function showNotice(message) {
 async function api(path, options = {}) {
   const headers = new Headers(options.headers || {});
   const token = localStorage.getItem(tokenKey);
-  if (token) headers.set('Authorization', `Bearer ${token}`);
+  if (token) {
+    headers.set('Authorization', `Bearer ${token}`);
+    headers.set('X-Auth-Token', token);
+  }
   const response = await fetch(`${API_BASE}${path}`, { ...options, headers });
   const payload = await response.json();
-  if (!response.ok) throw new Error(payload.message || 'Permintaan gagal.');
+  if (!response.ok) {
+    const err = new Error(payload.message || 'Permintaan gagal.');
+    err.status = response.status;
+    throw err;
+  }
   return payload;
 }
 
@@ -88,6 +95,7 @@ async function completeGoogleLogin(idToken, extraData = {}) {
     showNotice(result.registered ? 'Akun kurir berhasil didaftarkan dengan Google.' : 'Login Google kurir berhasil.');
   } catch (requestError) {
     if (error) error.textContent = requestError.message;
+    showNotice(requestError.message);
   }
 }
 
@@ -160,13 +168,21 @@ async function setupGoogleSignIn() {
     });
   });
 
+  modalGoogleEmail?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') { e.preventDefault(); modalGoogleSubmit?.click(); }
+  });
+  modalGoogleName?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') { e.preventDefault(); modalGoogleSubmit?.click(); }
+  });
+
   if (googleBtn) {
     googleBtn.addEventListener('click', () => {
       if (window.GalonKuNativeAuth) {
         window.GalonKuNativeAuth.signIn();
         return;
       }
-      if (window.google?.accounts?.id) {
+      const isLocalhost = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+      if (!isLocalhost && window.google?.accounts?.id) {
         try {
           window.google.accounts.id.prompt((notification) => {
             if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
@@ -225,7 +241,7 @@ document.querySelectorAll('[data-courier-auth]').forEach((button) => {
     });
     button.classList.add('active');
     button.style.background = '#fff';
-    button.style.color = '#2853d4';
+    button.style.color = '#ea580c';
     const isRegister = button.dataset.courierAuth === 'register';
     document.getElementById('login-form').hidden = isRegister;
     document.getElementById('courier-register-form').hidden = !isRegister;
@@ -304,7 +320,12 @@ async function setOnline(isOnline) {
       await loadJobs();
     }
   } catch (error) {
-    showNotice(error.message);
+    if (error.status === 401) {
+      logout();
+      showNotice('Sesi berakhir, silakan masuk kembali.');
+    } else {
+      showNotice(error.message);
+    }
   } finally {
     button.disabled = false;
   }
@@ -342,14 +363,14 @@ function startLocationWatch() {
       console.warn('Gagal perbarui lokasi GPS:', error);
     }
   }, (error) => {
-  // Jika GPS ditolak atau belum aktif, tetap biarkan kurir ONLINE dengan koordinat default Bandung
-  document.getElementById('map-status').textContent = 'Online · Lokasi default Bandung aktif';
-  void api('courier/location.php', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ latitude: -6.9175, longitude: 107.6191, accuracy: 25 })
-  }).catch(() => { });
-}, { enableHighAccuracy: true, maximumAge: 10000, timeout: 15000 });
+    // Jika GPS ditolak atau belum aktif, tetap biarkan kurir ONLINE dengan koordinat default Bandung
+    document.getElementById('map-status').textContent = 'Online · Lokasi default Bandung aktif';
+    void api('courier/location.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ latitude: -6.9175, longitude: 107.6191, accuracy: 25 })
+    }).catch(() => { });
+  }, { enableHighAccuracy: true, maximumAge: 10000, timeout: 15000 });
 }
 
 function stopLocationWatch() {
@@ -380,145 +401,179 @@ async function loadJobs() {
     }
     renderJobs(result.available || [], result.assigned || [], result.history || [], result.summary || {});
   } catch (error) {
-      if (error.message.includes('Token') || error.message.includes('Akses')) {
-        logout();
-      } else {
-        console.warn('Info load jobs:', error.message);
-      }
+    if (error.status === 401 || error.message.includes('Token') || error.message.includes('Akses')) {
+      logout();
+      showNotice('Sesi berakhir, silakan masuk kembali.');
+    } else {
+      console.warn('Info load jobs:', error.message);
     }
   }
+}
 
-  function routeMarkup(job) {
-    return `<div class="route">
+function routeMarkup(job) {
+  return `<div class="route">
     <div class="route-point"><small>Alamat pelanggan</small><strong>${escapeHtml(job.nama_pelanggan || 'Pelanggan')} · ${escapeHtml(job.no_hp || '')}</strong></div>
     <div class="route-point drop"><small>Tujuan</small><strong>${escapeHtml(job.alamat_lengkap || 'Alamat tidak tersedia')}</strong></div>
   </div>`;
-  }
+}
 
-  function renderJobs(available, assigned, history, summary) {
-    available = available.filter((job) => !dismissedJobs.has(String(job.transaksi_id)));
-    document.getElementById('trip-count').textContent = summary.completed_today || '0';
-    document.getElementById('distance-total').textContent =
-      `${Number(summary.distance_today || 0).toFixed(1)} km`;
-    document.getElementById('cash-total').textContent = currency(summary.cash_today);
-    document.getElementById('income-total').textContent = currency(summary.cash_today);
-    document.getElementById('active-count').textContent = `${assigned.length} pesanan`;
-    document.getElementById('available-count').textContent = `${available.length} tersedia`;
-    document.getElementById('orders-count').textContent = `${assigned.length} aktif`;
+function renderJobs(available, assigned, history, summary) {
+  available = available.filter((job) => !dismissedJobs.has(String(job.transaksi_id)));
+  document.getElementById('trip-count').textContent = summary.completed_today || '0';
+  document.getElementById('distance-total').textContent =
+    `${Number(summary.distance_today || 0).toFixed(1)} km`;
+  document.getElementById('cash-total').textContent = currency(summary.cash_today);
+  document.getElementById('income-total').textContent = currency(summary.cash_today);
+  document.getElementById('active-count').textContent = `${assigned.length} pesanan`;
+  document.getElementById('available-count').textContent = `${available.length} tersedia`;
+  document.getElementById('orders-count').textContent = `${assigned.length} aktif`;
 
-    const assignedMarkup = assigned.length ? assigned.map((job) => `
+  const assignedMarkup = assigned.length ? assigned.map((job) => {
+    const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(job.alamat_lengkap || '')}`;
+    return `
     <article class="card next-card">
-      <div class="trip-head"><strong>Pesanan #${escapeHtml(job.transaksi_id)}</strong><span class="badge">Dalam perjalanan</span></div>
+      <div class="trip-head"><strong>Pesanan #${escapeHtml(job.transaksi_id)}</strong><span class="badge orange">Dalam Perjalanan</span></div>
       ${routeMarkup(job)}
-      <div class="trip-meta"><span>Jarak<br><b>${Number(job.jarak_km || 0).toFixed(1)} km</b></span><span>Pembayaran<br><b>${escapeHtml(job.metode_bayar)}</b></span><span>Total<br><b>${currency(job.total_harga)}</b></span></div>
-      <div class="button-row"><button class="accept complete-order" data-id="${escapeHtml(job.transaksi_id)}">Selesaikan pesanan</button></div>
-    </article>`).join('') : '<div class="card empty"><b>Belum ada pesanan aktif</b>Pesanan yang Anda terima akan muncul di sini.</div>';
-    document.getElementById('assigned-list').innerHTML = assignedMarkup;
+      <div class="mini-stepper">
+        <span class="active">● Diterima</span>
+        <span>→</span>
+        <span class="active">● Jalan</span>
+        <span>→</span>
+        <span>○ Sampai</span>
+      </div>
+      <div class="trip-meta"><span>Jarak<b>${Number(job.jarak_km || 0).toFixed(1)} km</b></span><span>Pembayaran<b>${escapeHtml(job.metode_bayar)}</b></span><span>Total<b>${currency(job.total_harga)}</b></span></div>
+      <div class="button-row">
+        <a class="maps-btn" href="${mapsUrl}" target="_blank" rel="noopener">Navigasi Maps</a>
+        <button class="accept complete-order" data-id="${escapeHtml(job.transaksi_id)}" data-total="${escapeHtml(job.total_harga)}">Tugas Selesai</button>
+      </div>
+    </article>`;
+  }).join('') : '<div class="card empty"><b>Belum ada pesanan aktif</b>Pesanan yang Anda terima akan muncul di sini.</div>';
+  document.getElementById('assigned-list').innerHTML = assignedMarkup;
 
-    const availableMarkup = available.length ? available.map((job) => `
+  const availableMarkup = available.length ? available.map((job) => `
     <article class="card job-card">
-      <div class="job-top"><span class="job-id">Pesanan #${escapeHtml(job.transaksi_id)}</span><span class="distance">${Number(job.jarak_km || 0).toFixed(1)} km</span></div>
+      <div class="job-top"><span class="job-id">Radar Pesanan #${escapeHtml(job.transaksi_id)}</span><span class="distance">${Number(job.jarak_km || 0).toFixed(1)} km</span></div>
       ${routeMarkup(job)}
-      <div class="job-footer"><div><small>${escapeHtml(job.ringkasan_item || 'Pesanan GalonKu')}</small><br><strong>${currency(job.total_harga)}</strong></div><small>${escapeHtml(job.metode_bayar || '')}</small></div>
-      <div class="button-row"><button class="reject reject-order" data-id="${escapeHtml(job.transaksi_id)}">Lewati</button><button class="accept accept-order" data-id="${escapeHtml(job.transaksi_id)}">Terima pesanan</button></div>
+      <div class="job-footer"><div><small>${escapeHtml(job.ringkasan_item || 'Pesanan GalonKu')}</small><br><strong>${currency(job.total_harga)}</strong></div><span class="badge">${escapeHtml(job.metode_bayar || 'COD')}</span></div>
+      <div class="button-row"><button class="reject reject-order" data-id="${escapeHtml(job.transaksi_id)}">Decline</button><button class="accept accept-order" data-id="${escapeHtml(job.transaksi_id)}">TERIMA TUGAS</button></div>
     </article>`).join('') : '<div class="card empty"><b>Belum ada pesanan baru</b>Pesanan dalam radius 5 km akan tampil di sini.</div>';
-    document.getElementById('available-list').innerHTML = availableMarkup;
-    document.getElementById('orders-list').innerHTML = assignedMarkup;
-    document.getElementById('history-list').innerHTML = history.length ? history.map((job) => `
+  document.getElementById('available-list').innerHTML = availableMarkup;
+  document.getElementById('orders-list').innerHTML = assignedMarkup;
+  document.getElementById('history-list').innerHTML = history.length ? history.map((job) => `
     <article class="card job-card">
-      <div class="job-top"><span class="job-id">Pesanan #${escapeHtml(job.transaksi_id)}</span><span class="badge">Selesai</span></div>
+      <div class="job-top"><span class="job-id">Pesanan #${escapeHtml(job.transaksi_id)}</span><span class="badge green">Selesai</span></div>
       <div class="route"><div class="route-point drop"><small>Alamat pengantaran</small><strong>${escapeHtml(job.alamat_lengkap)}</strong></div></div>
       <div class="job-footer"><small>${Number(job.jarak_km || 0).toFixed(1)} km · ${escapeHtml(job.metode_bayar)}</small><strong>${currency(job.total_harga)}</strong></div>
     </article>`).join('') : '<div class="card empty"><b>Belum ada riwayat</b>Pengantaran selesai akan tercatat di sini.</div>';
 
-    document.querySelectorAll('.accept-order').forEach((button) => {
-      button.addEventListener('click', () => acceptJob(button.dataset.id));
+  document.querySelectorAll('.accept-order').forEach((button) => {
+    button.addEventListener('click', () => acceptJob(button.dataset.id));
+  });
+  document.querySelectorAll('.reject-order').forEach((button) => {
+    button.addEventListener('click', () => {
+      dismissedJobs.add(String(button.dataset.id));
+      localStorage.setItem('galonku_courier_dismissed', JSON.stringify([...dismissedJobs]));
+      button.closest('.job-card').remove();
+      showNotice('Pesanan dilewati.');
     });
-    document.querySelectorAll('.reject-order').forEach((button) => {
-      button.addEventListener('click', () => {
-        dismissedJobs.add(String(button.dataset.id));
-        localStorage.setItem('galonku_courier_dismissed', JSON.stringify([...dismissedJobs]));
-        button.closest('.job-card').remove();
-        showNotice('Pesanan dilewati.');
-      });
-    });
-    document.querySelectorAll('.complete-order').forEach((button) => {
-      button.addEventListener('click', () => openCompleteModal(button.dataset.id));
-    });
-  }
+  });
+  document.querySelectorAll('.complete-order').forEach((button) => {
+    button.addEventListener('click', () => openCompleteModal(button.dataset.id, button.dataset.total));
+  });
+}
 
-  async function acceptJob(id) {
+async function acceptJob(id) {
+  try {
+    const result = await api('courier/jobs.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ transaksi_id: Number(id) })
+    });
+    showNotice(result.message || 'Pesanan diterima.');
+    await loadJobs();
+  } catch (error) {
+    showNotice(error.message);
+    loadJobs();
+  }
+}
+
+function openCompleteModal(id, total = 0) {
+  document.getElementById('complete-order-id').value = id;
+  document.getElementById('proof-photo').value = '';
+  const preview = document.getElementById('proof-preview');
+  if (preview) {
+    preview.src = '';
+    preview.hidden = true;
+  }
+  const label = document.getElementById('proof-photo-label');
+  if (label) label.textContent = 'Ambil / Pilih Foto Bukti Antar';
+  const codAmount = document.getElementById('complete-cod-amount');
+  if (codAmount) codAmount.textContent = currency(total);
+  document.getElementById('complete-modal').classList.add('open');
+}
+function closeCompleteModal() {
+  document.getElementById('complete-modal').classList.remove('open');
+}
+document.getElementById('cancel-complete').addEventListener('click', closeCompleteModal);
+document.getElementById('close-complete-x')?.addEventListener('click', closeCompleteModal);
+document.getElementById('proof-photo')?.addEventListener('change', (event) => {
+  const file = event.target.files?.[0];
+  const preview = document.getElementById('proof-preview');
+  const label = document.getElementById('proof-photo-label');
+  if (file && preview) {
+    preview.src = URL.createObjectURL(file);
+    preview.hidden = false;
+    if (label) label.textContent = file.name;
+  }
+});
+
+document.getElementById('complete-form').addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const form = new FormData();
+  form.set('transaksi_id', document.getElementById('complete-order-id').value);
+  form.set('foto_bukti', document.getElementById('proof-photo').files[0]);
+  try {
+    const result = await api('courier/complete.php', { method: 'POST', body: form });
+    closeCompleteModal();
+    showNotice(result.message || 'Pengantaran berhasil diselesaikan.');
+    await loadJobs();
+  } catch (error) {
+    showNotice(error.message);
+  }
+});
+
+async function logout() {
+  const token = localStorage.getItem(tokenKey);
+  if (token) {
     try {
-      const result = await api('courier/jobs.php', {
+      await api('courier/online.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ transaksi_id: Number(id) })
+        body: JSON.stringify({ online: false })
       });
-      showNotice(result.message || 'Pesanan diterima.');
-      await loadJobs();
-    } catch (error) {
-      showNotice(error.message);
-      loadJobs();
+    } catch (_) {
+      // Abaikan kegagalan panggilan online.php saat sesi kedaluwarsa
     }
   }
+  stopLocationWatch();
+  window.clearInterval(refreshTimer);
+  refreshTimer = null;
+  localStorage.removeItem(tokenKey);
+  localStorage.removeItem(userKey);
+  document.getElementById('app-screen').hidden = true;
+  document.getElementById('bottom-nav').hidden = true;
+  document.getElementById('login-screen').hidden = false;
+}
+document.getElementById('avatar').addEventListener('click', () => {
+  if (confirm('Keluar dari akun kurir?')) void logout();
+});
 
-  function openCompleteModal(id) {
-    document.getElementById('complete-order-id').value = id;
-    document.getElementById('proof-photo').value = '';
-    document.getElementById('complete-modal').classList.add('open');
-  }
-  function closeCompleteModal() {
-    document.getElementById('complete-modal').classList.remove('open');
-  }
-  document.getElementById('cancel-complete').addEventListener('click', closeCompleteModal);
-
-  document.getElementById('complete-form').addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const form = new FormData();
-    form.set('transaksi_id', document.getElementById('complete-order-id').value);
-    form.set('foto_bukti', document.getElementById('proof-photo').files[0]);
-    try {
-      const result = await api('courier/complete.php', { method: 'POST', body: form });
-      closeCompleteModal();
-      showNotice(result.message || 'Pengantaran berhasil diselesaikan.');
-      await loadJobs();
-    } catch (error) {
-      showNotice(error.message);
-    }
+document.querySelectorAll('.nav button[data-screen]').forEach((button) => {
+  button.addEventListener('click', () => {
+    document.querySelectorAll('.nav button').forEach((item) => item.classList.remove('active'));
+    document.querySelectorAll('.screen').forEach((screen) => screen.classList.remove('active'));
+    button.classList.add('active');
+    document.getElementById(button.dataset.screen).classList.add('active');
+    if (button.dataset.screen === 'orders-screen' || button.dataset.screen === 'history-screen') loadJobs();
   });
-
-  async function logout() {
-      const token = localStorage.getItem(tokenKey);
-      if (token) {
-        try {
-          await api('courier/online.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ online: false })
-          });
-        } catch (_) {
-          // Abaikan kegagalan panggilan online.php saat sesi kedaluwarsa
-        }
-      }
-      stopLocationWatch();
-      window.clearInterval(refreshTimer);
-      refreshTimer = null;
-      localStorage.removeItem(tokenKey);
-      localStorage.removeItem(userKey);
-      document.getElementById('app-screen').hidden = true;
-      document.getElementById('bottom-nav').hidden = true;
-      document.getElementById('login-screen').hidden = false;
-    }
-    document.getElementById('avatar').addEventListener('click', () => {
-      if (confirm('Keluar dari akun kurir?')) void logout();
-    });
-
-    document.querySelectorAll('.nav button[data-screen]').forEach((button) => {
-      button.addEventListener('click', () => {
-        document.querySelectorAll('.nav button').forEach((item) => item.classList.remove('active'));
-        document.querySelectorAll('.screen').forEach((screen) => screen.classList.remove('active'));
-        button.classList.add('active');
-        document.getElementById(button.dataset.screen).classList.add('active');
-        if (button.dataset.screen === 'orders-screen' || button.dataset.screen === 'history-screen') loadJobs();
-      });
-    });
+});

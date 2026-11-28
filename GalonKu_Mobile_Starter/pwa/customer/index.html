@@ -3,317 +3,473 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#1769aa">
+  <meta name="theme-color" content="#0077c0">
   <link rel="manifest" href="./manifest.webmanifest">
   <title>GalonKu Pelanggan</title>
   <style>
     :root {
-      --blue: #1769aa;
-      --blue-hover: #0d4f89;
-      --blue-soft: #eaf5fc;
-      --ink: #17243a;
-      --muted: #758196;
-      --line: #e7ebf2;
-      --surface: #ffffff;
-      --bg: #f8fafc;
+      --blue: #0077c0;
+      --blue-dark: #005b96;
+      --blue-light: #0091e6;
+      --blue-soft: #e8f4fc;
+      --amber: #f59e0b;
+      --amber-soft: #fef3c7;
       --green: #10b981;
+      --green-soft: #d1fae5;
+      --red: #ef4444;
+      --ink: #0f172a;
+      --ink-2: #334155;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --bg: #f1f5f9;
+      --surface: #ffffff;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
       width: 100%;
       min-height: 100%;
-      background: #f1f4f9;
+      background: #e6eff6;
       color: var(--ink);
-      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Arial, sans-serif;
       -webkit-font-smoothing: antialiased;
     }
     button, input, select { font: inherit; }
     button { cursor: pointer; }
     [hidden], .hidden { display: none !important; }
 
-    /* Layar autentikasi pelanggan identik kurir */
-    .login-wrap { display: grid; min-height: 100vh; place-items: center; padding: 20px; background: #f1f4f9; }
-    .login-card { width: min(100%, 360px); padding: 24px; border-radius: 20px; background: #fff; box-shadow: 0 12px 40px #1a35601b; }
-    .login-card h1 { margin: 0; color: var(--blue); font-size: 23px; }
-    .login-card p { color: var(--muted); font-size: 12px; margin: 8px 0 12px; }
-    .auth-tabs { display: grid; grid-template-columns: 1fr 1fr; margin: 14px 0; border-radius: 10px; background: #f1f4f8; padding: 3px; }
-    .auth-tabs button { height: 36px; border: 0; border-radius: 8px; background: transparent; color: #758196; font-weight: 800; cursor: pointer; }
-    .auth-tabs button.active { background: #fff; color: var(--blue); }
-    .login-card label { display: block; margin: 14px 0; font-size: 11px; font-weight: 700; color: var(--ink); }
-    .login-card input { width: 100%; height: 43px; margin-top: 6px; border: 1px solid var(--line); border-radius: 10px; padding: 0 11px; box-sizing: border-box; }
-    .login-card button[type="submit"] { width: 100%; height: 44px; border: 0; border-radius: 10px; background: var(--blue); color: #fff; font-weight: 800; cursor: pointer; }
-    .login-card .google-native, .login-card .google-fallback { margin-top: 12px; border: 1px solid var(--line); background: #fff; color: var(--ink); }
-    .google-signin { display: flex; justify-content: center; margin-top: 12px; }
-    .login-card .login-divider { margin: 14px 0 6px; text-align: center; color: var(--muted); font-size: 10px; }
-    .error { color: #c33; font-size: 11px; min-height: 14px; margin-top: 8px; }
-
-    /* Tombol Google resmi */
-    .btn-google { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; height: 44px; margin-top: 6px; border: 1px solid #dadce0; border-radius: 10px; background: #fff; color: #3c4043; font-size: 12px; font-weight: 700; box-shadow: 0 1px 3px rgba(60,64,67,.08); transition: all .2s; cursor: pointer; }
-    .btn-google:hover { background: #f8fafd; border-color: #c2c8d0; }
+    /* ===== LAYAR LOGIN & DAFTAR ===== */
+    .login-wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 16px;
+      background: linear-gradient(180deg, #e0f2fe 0%, #f1f5f9 55%, #ffffff 100%);
+    }
+    .login-card {
+      width: min(100%, 380px);
+      background: #fff;
+      border-radius: 24px;
+      padding: 28px 22px 24px;
+      box-shadow: 0 14px 40px rgba(0, 119, 192, 0.10);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+    }
+    .brand-mark {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 18px;
+    }
+    .brand-drop {
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      background: var(--blue-soft);
+      display: grid;
+      place-items: center;
+      margin-bottom: 10px;
+      color: var(--blue);
+    }
+    .brand-mark h1 {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--blue);
+      letter-spacing: -0.5px;
+    }
+    .login-card > p {
+      text-align: center;
+      color: var(--muted);
+      font-size: 12.5px;
+      margin-bottom: 16px;
+      line-height: 1.45;
+    }
+    .auth-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+      padding: 4px;
+      border-radius: 12px;
+      background: #f1f5f9;
+      margin-bottom: 16px;
+    }
+    .auth-tabs button {
+      height: 36px;
+      border: 0;
+      border-radius: 9px;
+      background: transparent;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      transition: all .18s;
+    }
+    .auth-tabs button.active {
+      background: #fff;
+      color: var(--blue);
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06);
+    }
+    .login-card label {
+      display: block;
+      margin-bottom: 12px;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--ink-2);
+    }
+    .login-card input {
+      width: 100%;
+      height: 44px;
+      margin-top: 5px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 0 13px;
+      background: #f8fafc;
+      font-size: 13.5px;
+      color: var(--ink);
+      transition: border-color .15s, background .15s;
+    }
+    .login-card input:focus {
+      outline: none;
+      border-color: var(--blue);
+      background: #fff;
+    }
+    .login-card button[type="submit"] {
+      width: 100%;
+      height: 46px;
+      margin-top: 4px;
+      border: 0;
+      border-radius: 12px;
+      background: var(--blue);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+      box-shadow: 0 6px 16px rgba(0, 119, 192, 0.24);
+      transition: background .15s, transform .1s;
+    }
+    .login-card button[type="submit"]:active { transform: scale(0.98); }
+    .login-divider {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 16px 0 12px;
+      color: #94a3b8;
+      font-size: 11.5px;
+    }
+    .login-divider::before, .login-divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+    }
+    .btn-google {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 700;
+      transition: background .15s;
+    }
+    .btn-google:hover { background: #f8fafc; }
     .btn-google svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .google-signin { display: flex; justify-content: center; margin-top: 10px; }
+    .error { color: var(--red); font-size: 12px; min-height: 16px; margin-top: 10px; text-align: center; font-weight: 600; }
 
-    /* Modal Akun Google */
-    .modal-google { position: fixed; z-index: 200; inset: 0; background: rgba(20,30,45,.5); display: flex; align-items: center; justify-content: center; padding: 16px; }
-    .modal-google[hidden] { display: none !important; }
-    .modal-google-card { width: min(100%, 360px); background: #fff; border-radius: 16px; padding: 22px; box-shadow: 0 10px 30px rgba(0,0,0,.2); }
-    .modal-google-card h3 { margin: 0 0 6px; color: #202124; font-size: 16px; display: flex; align-items: center; gap: 8px; }
-    .modal-google-card p { margin: 0 0 14px; color: #5f6368; font-size: 11px; }
-    .modal-google-card label { display: block; margin: 6px 0 3px; color: #5f6368; font-size: 11px; font-weight: 700; }
-    .modal-google-card input { width: 100%; height: 40px; border: 1px solid #dadce0; border-radius: 8px; padding: 0 10px; margin-bottom: 10px; font-size: 12px; box-sizing: border-box; }
-    .modal-google-actions { display: flex; gap: 8px; margin-top: 10px; }
-    .modal-google-actions button { flex: 1; height: 38px; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer; }
-    .modal-google-cancel { border: 1px solid #dadce0; background: #fff; color: #5f6368; }
+    /* Modal Google */
+    .modal-google { position: fixed; z-index: 200; inset: 0; background: rgba(15, 23, 42, 0.55); display: flex; align-items: center; justify-content: center; padding: 16px; }
+    .modal-google-card { width: min(100%, 360px); background: #fff; border-radius: 18px; padding: 22px; box-shadow: 0 16px 40px rgba(0, 0, 0, .2); }
+    .modal-google-card h3 { margin: 0 0 4px; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+    .modal-google-card p { margin: 0 0 14px; color: var(--muted); font-size: 12px; }
+    .modal-google-card label { display: block; margin: 8px 0 4px; font-size: 11.5px; font-weight: 700; color: var(--ink-2); }
+    .modal-google-card input { width: 100%; height: 42px; border: 1px solid var(--line); border-radius: 10px; padding: 0 12px; margin-bottom: 10px; font-size: 13px; }
+    .modal-google-actions { display: flex; gap: 8px; margin-top: 12px; }
+    .modal-google-actions button { flex: 1; height: 40px; border-radius: 10px; font-size: 12.5px; font-weight: 700; }
+    .modal-google-cancel { border: 1px solid var(--line); background: #fff; color: var(--muted); }
     .modal-google-submit { border: 0; background: var(--blue); color: #fff; }
 
-    /* Dashboard Pelanggan Utama */
+    /* ===== SHELL APLIKASI MOBILE ===== */
     #customer-app.app {
       width: min(100%, 430px);
       min-height: 100vh;
       margin: 0 auto;
-      padding: 0 16px 88px;
       background: var(--bg);
-      box-shadow: 0 0 45px rgba(24, 56, 78, 0.08);
+      padding-bottom: 86px;
       position: relative;
+      box-shadow: 0 0 40px rgba(15, 23, 42, 0.08);
     }
 
-    /* Header */
-    .dashboard-header {
+    /* Header Biru Beranda (sesuai mockup) */
+    .home-header {
+      background: linear-gradient(155deg, var(--blue) 0%, var(--blue-light) 100%);
+      color: #fff;
+      padding: 18px 16px 20px;
+      border-radius: 0 0 24px 24px;
+      box-shadow: 0 6px 20px rgba(0, 119, 192, 0.18);
+    }
+    .header-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 18px 0 14px;
+      margin-bottom: 10px;
     }
-    .welcome-wrap {
-      display: flex;
-      align-items: center;
-      gap: 12px;
+    .header-title {
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -0.2px;
     }
-    .welcome-wrap .avatar {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #247fc2, #1769aa);
+    .bell-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: rgba(255, 255, 255, 0.15);
       color: #fff;
       display: grid;
       place-items: center;
-      font-size: 16px;
-      font-weight: 800;
-      border: 2px solid #fff;
-      box-shadow: 0 4px 12px rgba(23, 105, 170, 0.22);
-      flex-shrink: 0;
+      position: relative;
     }
-    .welcome-wrap .welcome-text p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 11px;
-      font-weight: 500;
-    }
-    .welcome-wrap .welcome-text h1 {
-      margin: 2px 0 0;
-      color: var(--ink);
-      font-size: 18px;
-      font-weight: 800;
-    }
-    .dashboard-header .bell {
-      width: 42px;
-      height: 42px;
+    .bell-btn svg { width: 19px; height: 19px; }
+    .bell-dot {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
-      border: 1px solid var(--line);
-      background: #fff;
-      display: grid;
-      place-items: center;
-      color: #4b5563;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-      transition: all .2s;
+      background: #fbbf24;
+      border: 1.5px solid var(--blue);
     }
-    .dashboard-header .bell:active {
-      transform: scale(0.95);
-      background: #f1f5f9;
-    }
-    .dashboard-header .bell svg {
-      width: 20px;
-      height: 20px;
-    }
-
-    /* Kotak Pencarian */
-    .search-wrap {
-      display: flex;
-      align-items: center;
-      height: 48px;
-      margin: 4px 0 14px;
-      padding: 0 8px 0 14px;
-      border-radius: 14px;
-      background: #fff;
-      border: 1px solid var(--line);
-      box-shadow: 0 4px 14px rgba(24, 56, 78, 0.04);
-    }
-    .search-wrap span { display: none !important; }
-    .search-wrap input {
-      flex: 1;
-      height: 100%;
-      border: none;
-      outline: none;
-      background: transparent;
-      font-size: 13px;
-      color: var(--ink);
-    }
-    .search-wrap input::placeholder { color: #94a3b8; }
-    .search-wrap button {
-      width: 34px;
-      height: 34px;
-      border: none;
-      border-radius: 10px;
-      background: var(--blue-soft);
-      color: var(--blue);
-      display: grid;
-      place-items: center;
-      flex-shrink: 0;
-      transition: background .2s;
-    }
-    .search-wrap button svg { width: 17px; height: 17px; }
-
-    /* Baris Kategori Chips */
-    .category-row {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding: 0 0 14px;
-      scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
-    }
-    .category-row::-webkit-scrollbar { display: none; }
-    .category-chip {
-      flex-shrink: 0;
-      height: 34px;
-      padding: 0 14px;
-      border-radius: 10px;
-      border: 1px solid var(--line);
-      background: #fff;
-      color: #64748b;
-      font-size: 12px;
-      font-weight: 600;
+    .addr-pill {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all .2s;
-      box-shadow: 0 2px 6px rgba(24, 56, 78, 0.03);
-    }
-    .category-chip.active {
-      background: var(--blue);
-      border-color: var(--blue);
-      color: #fff;
-      font-weight: 700;
-      box-shadow: 0 4px 12px rgba(23, 105, 170, 0.28);
-    }
-
-    /* Banner Promo Hero */
-    .hero {
-      position: relative;
-      overflow: hidden;
-      border-radius: 20px;
-      background: linear-gradient(135deg, #dff0fc 0%, #a4d2f0 100%);
-      padding: 22px 18px;
-      min-height: 165px;
-      box-shadow: 0 10px 24px rgba(23, 105, 170, 0.12);
-      margin-bottom: 20px;
-    }
-    .hero-copy {
-      position: relative;
-      z-index: 2;
-      max-width: 65%;
-    }
-    .hero-copy span {
-      display: inline-block;
-      padding: 4px 8px;
-      border-radius: 6px;
-      background: rgba(23, 105, 170, 0.14);
-      color: #0d4f89;
-      font-size: 10px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .5px;
-      margin-bottom: 6px;
-    }
-    .hero-copy h2 {
-      margin: 4px 0 14px;
-      font-size: 21px;
-      font-weight: 800;
-      color: #0b395e;
-      line-height: 1.18;
-    }
-    .hero-copy button {
+      gap: 6px;
+      max-width: 100%;
+      background: rgba(255, 255, 255, 0.16);
       border: 0;
-      border-radius: 12px;
-      padding: 10px 18px;
-      background: var(--blue);
       color: #fff;
-      font-size: 12px;
-      font-weight: 700;
-      box-shadow: 0 6px 16px rgba(23, 105, 170, 0.25);
-      transition: all .2s;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 11.5px;
+      font-weight: 600;
+      margin-bottom: 8px;
     }
-    .hero-copy button:active { transform: scale(0.96); }
-
-    /* Galon Illustration CSS Murni (Tidak ada broken image) */
-    .gallon {
-      position: absolute;
-      right: 22px;
-      bottom: -12px;
-      width: 72px;
-      height: 142px;
-      border: 6px solid #64b5f6;
-      border-radius: 36px 36px 20px 20px;
-      background: linear-gradient(150deg, #ffffff, #bbdefb);
-      transform: rotate(8deg);
-      box-shadow: 0 8px 24px rgba(13, 79, 137, 0.18);
-      z-index: 1;
+    .addr-pill span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
-    .gallon:before {
-      content: "";
-      position: absolute;
-      left: 21px;
-      top: -24px;
-      width: 16px;
-      height: 24px;
-      border: 5px solid #64b5f6;
-      border-bottom: 0;
-      background: #e3f2fd;
-      border-radius: 4px 4px 0 0;
-    }
-    .gallon:after {
-      content: "GALON";
-      position: absolute;
-      left: 9px;
-      bottom: 28px;
-      color: #1769aa;
-      font-size: 8px;
-      font-weight: 900;
-      letter-spacing: 1.2px;
-    }
-
-    /* Section & Headings */
-    .section { margin-bottom: 20px; }
-    .heading {
+    .greeting-row {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      margin-bottom: 11px;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
     }
-    .heading h2 {
-      margin: 0;
-      font-size: 16px;
+    .greeting-text {
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+    .points-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255, 255, 255, 0.96);
+      color: var(--ink);
+      padding: 9px 12px;
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    .points-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .points-star {
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
+      background: var(--amber-soft);
+      color: #d97706;
+      display: grid;
+      place-items: center;
+    }
+    .points-btn {
+      border: 0;
+      background: var(--blue-soft);
+      color: var(--blue);
+      padding: 6px 12px;
+      border-radius: 9px;
+      font-size: 11.5px;
+      font-weight: 800;
+    }
+
+    /* Konten Utama */
+    .main-body {
+      padding: 14px 16px 0;
+    }
+
+    /* Mini GPS Map Card */
+    .map-card {
+      background: #fff;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      overflow: hidden;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+    }
+    .map-card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 11px 14px 8px;
+    }
+    .map-card-head strong {
+      font-size: 13px;
       font-weight: 800;
       color: var(--ink);
     }
-    .heading .text-button {
+    .map-card-head span {
+      font-size: 11px;
+      color: var(--green);
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .map-visual {
+      height: 112px;
+      position: relative;
+      background-color: #e6eff5;
+      background-image:
+        linear-gradient(25deg, transparent 46%, #ffffff 47%, #ffffff 50%, transparent 51%),
+        linear-gradient(112deg, transparent 45%, #fde68a 46%, #fde68a 49%, transparent 50%),
+        linear-gradient(155deg, transparent 46%, #ffffff 47%, #ffffff 50%, transparent 51%);
+      background-size: 90px 76px, 140px 100px, 85px 105px;
+      margin: 0 12px;
+      border-radius: 12px;
+      border: 1px solid #dbe6ef;
+      overflow: hidden;
+    }
+    .map-pin-user {
+      position: absolute;
+      left: 48%;
+      top: 44%;
+      transform: translate(-50%, -50%);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(0, 119, 192, 0.18);
+      display: grid;
+      place-items: center;
+    }
+    .map-pin-user i {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--blue);
+      border: 2.5px solid #fff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, .25);
+    }
+    .map-pin-courier {
+      position: absolute;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #fff;
+      color: var(--amber);
+      display: grid;
+      place-items: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+      border: 1.5px solid #f59e0b;
+    }
+    .map-pin-courier svg { width: 14px; height: 14px; }
+    .map-card-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+    }
+    .map-foot-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--ink-2);
+    }
+    .map-foot-btn {
+      border: 0;
+      background: var(--blue-soft);
+      color: var(--blue);
+      padding: 5px 10px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    /* Service Buttons (3 Kolom sesuai mockup) */
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .section-title h2 {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--ink);
+    }
+    .section-title button {
       border: 0;
       background: transparent;
       color: var(--blue);
       font-size: 12px;
       font-weight: 700;
-      cursor: pointer;
-      padding: 0;
+    }
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .service-btn {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px 8px 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+      transition: transform .12s, border-color .15s;
+    }
+    .service-btn:active { transform: scale(0.96); border-color: var(--blue); }
+    .service-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+    }
+    .service-icon.blue { background: var(--blue-soft); color: var(--blue); }
+    .service-icon.amber { background: var(--amber-soft); color: #d97706; }
+    .service-icon.green { background: var(--green-soft); color: #059669; }
+    .service-icon svg { width: 24px; height: 24px; }
+    .service-btn span {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--ink);
+      text-align: center;
     }
 
     /* Pesanan Aktif */
@@ -321,11 +477,12 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      padding: 13px 15px;
+      padding: 13px 14px;
       border-radius: 16px;
       background: #fff;
       border: 1px solid var(--line);
-      box-shadow: 0 4px 16px rgba(24, 56, 78, 0.04);
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+      margin-bottom: 18px;
     }
     .active-order-icon {
       width: 42px;
@@ -337,303 +494,262 @@
       place-items: center;
       flex-shrink: 0;
     }
-    .active-order-icon svg { width: 22px; height: 22px; }
+    .active-order-icon svg { width: 21px; height: 21px; }
     .active-order-copy { flex: 1; min-width: 0; }
-    .active-order-copy strong {
-      display: block;
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--ink);
-    }
-    .active-order-copy small {
-      display: block;
-      font-size: 11px;
-      color: var(--muted);
-      margin-top: 2px;
-    }
+    .active-order-copy strong { display: block; font-size: 13px; font-weight: 800; color: var(--ink); }
+    .active-order-copy small { display: block; font-size: 11.5px; color: var(--muted); margin-top: 2px; }
     .active-order button {
       border: 0;
       border-radius: 10px;
-      padding: 8px 14px;
-      background: var(--blue-soft);
-      color: var(--blue);
-      font-size: 11px;
+      padding: 8px 13px;
+      background: var(--blue);
+      color: #fff;
+      font-size: 11.5px;
       font-weight: 700;
-      cursor: pointer;
-      transition: all .2s;
-    }
-    .active-order button:active { transform: scale(0.96); }
-
-    /* Promo Card */
-    .promo {
-      min-height: 96px;
-      border-radius: 16px;
-      padding: 16px 18px;
-      background: linear-gradient(135deg, #e0f2fe, #bae6fd);
-      border: 1px solid #bae6fd;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      box-shadow: 0 4px 14px rgba(3, 105, 161, 0.08);
-    }
-    .promo h3 {
-      margin: 0 0 4px;
-      font-size: 15px;
-      font-weight: 800;
-      color: #0369a1;
-    }
-    .promo em {
-      font-style: normal;
-      font-size: 12px;
-      font-weight: 600;
-      color: #0284c7;
     }
 
-    /* Baris & Kartu Produk */
-    .row {
-      display: flex;
-      gap: 12px;
-      overflow-x: auto;
-      padding: 2px 2px 14px;
-      scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
+    /* Katalog Produk Cepat di Beranda (2-kolom grid rapi) */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 11px;
+      margin-bottom: 18px;
     }
-    .row::-webkit-scrollbar { display: none; }
     .product {
-      flex: 0 0 152px;
-      min-width: 152px;
-      border-radius: 16px;
       background: #fff;
       border: 1px solid var(--line);
-      box-shadow: 0 4px 16px rgba(24, 56, 78, 0.05);
+      border-radius: 16px;
       overflow: hidden;
-      position: relative;
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+      display: flex;
+      flex-direction: column;
       cursor: pointer;
-      transition: transform .15s, box-shadow .15s;
+      transition: transform .12s;
     }
     .product:active { transform: scale(0.98); }
     .product-art {
-      height: 108px;
-      background: linear-gradient(180deg, #f0f7fc, #e3effa);
+      height: 104px;
+      background: linear-gradient(180deg, #f0f8ff 0%, #e0f0fc 100%);
       display: grid;
       place-items: center;
       position: relative;
     }
-    .product-art i {
-      display: block;
-      width: 42px;
-      height: 66px;
-      border: 4px solid #77acd0;
-      border-radius: 18px 18px 10px 10px;
-      background: linear-gradient(145deg, #fff, #cbe7f7);
-      position: relative;
-      box-shadow: 0 4px 10px rgba(119, 172, 208, 0.25);
-    }
-    .product-art i:before {
-      content: "";
+    .product-badge {
       position: absolute;
-      left: 13px;
-      top: -11px;
-      width: 8px;
-      height: 10px;
-      border: 3px solid #77acd0;
-      border-bottom: 0;
-      background: #fff;
-      border-radius: 3px 3px 0 0;
-    }
-    .product[data-product="2"] .product-art i {
-      border-color: #2563eb;
-      background: linear-gradient(145deg, #fff, #93c5fd);
-    }
-    .product[data-product="2"] .product-art i:before {
-      border-color: #2563eb;
-    }
-    .product[data-product="3"] .product-art i {
-      border-color: #059669;
-      background: linear-gradient(145deg, #fff, #a7f3d0);
-    }
-    .product[data-product="3"] .product-art i:before {
-      border-color: #059669;
+      top: 8px;
+      left: 8px;
+      font-size: 9.5px;
+      font-weight: 800;
+      padding: 3px 7px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.92);
+      color: var(--blue);
     }
     .product-info {
-      padding: 12px;
-      position: relative;
-    }
-    .product-info small {
-      display: block;
-      color: var(--muted);
-      font-size: 9px;
-      text-transform: uppercase;
-      font-weight: 700;
-      letter-spacing: .4px;
-      margin-bottom: 3px;
-    }
-    .product-info h3 {
-      margin: 0 28px 6px 0;
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--ink);
-      line-height: 1.3;
-      min-height: 32px;
-    }
-    .product-info strong {
-      display: block;
-      font-size: 13px;
-      font-weight: 800;
-      color: var(--blue);
-    }
-    .product-info .add {
-      position: absolute;
-      right: 10px;
-      bottom: 10px;
-      width: 30px;
-      height: 30px;
-      border-radius: 9px;
-      border: 0;
-      background: var(--blue);
-      color: #fff;
-      font-size: 18px;
-      font-weight: 700;
-      display: grid;
-      place-items: center;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(23, 105, 170, 0.3);
-      transition: all .2s;
-    }
-    .product-info .add:active { transform: scale(0.92); }
-
-    /* Navigasi Bawah Fixed */
-    .nav {
-      position: fixed;
-      z-index: 50;
-      left: 50%;
-      bottom: 0;
-      width: min(100%, 430px);
-      height: 70px;
-      transform: translateX(-50%);
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      align-items: center;
-      border-top: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 -4px 20px rgba(24, 56, 78, 0.06);
-      padding-bottom: env(safe-area-inset-bottom);
-    }
-    .nav button {
+      padding: 11px;
       display: flex;
       flex-direction: column;
+      flex: 1;
+    }
+    .product-info small {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    .product-info h3 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+      margin: 3px 0 6px;
+      line-height: 1.3;
+    }
+    .product-info strong {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--blue);
+      margin-bottom: 9px;
+      font-variant-numeric: tabular-nums;
+    }
+    .product-info .add {
+      margin-top: auto;
+      width: 100%;
+      height: 34px;
+      border: 0;
+      border-radius: 10px;
+      background: var(--blue);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
       align-items: center;
       justify-content: center;
-      gap: 4px;
-      border: 0;
-      background: transparent;
-      color: #8995a8;
-      font-size: 10px;
-      font-weight: 600;
-      height: 100%;
-      cursor: pointer;
-      transition: color .15s;
-    }
-    .nav button svg {
-      width: 20px;
-      height: 20px;
-      stroke: #8995a8;
-      transition: stroke .15s;
-    }
-    .nav button.active {
-      color: var(--blue);
-      font-weight: 700;
-    }
-    .nav button.active svg {
-      stroke: var(--blue);
-    }
-    .nav button.main {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: linear-gradient(145deg, #247fc2, #1769aa);
-      color: #fff;
-      border: 0;
-      display: grid;
-      place-items: center;
-      box-shadow: 0 8px 20px rgba(23, 105, 170, 0.35);
-      transform: translateY(-12px);
-      font-size: 26px;
-      font-weight: 400;
-      justify-self: center;
-    }
-    .nav button.main b {
-      line-height: 1;
+      gap: 5px;
     }
 
-    /* Layar Mobile (Pelacakan, dll) */
+    /* ===== LAYAR LAINNYA (KATALOG, LACAK, PROFIL) ===== */
     .mobile-screen {
       position: fixed;
-      z-index: 55;
+      z-index: 45;
       inset: 0 50%;
       width: min(100%, 430px);
       transform: translateX(-50%);
       overflow-y: auto;
       background: var(--bg);
-      padding: 0 16px 88px;
+      padding-bottom: 90px;
     }
     .mobile-screen.hidden { display: none !important; }
-    .screen-header {
+    .sub-header {
+      background: var(--blue);
+      color: #fff;
+      padding: 16px;
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 16px 0;
-      border-bottom: 1px solid var(--line);
-      margin-bottom: 14px;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 5;
     }
-    .screen-header button {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      border: 1px solid var(--line);
-      background: #fff;
-      color: var(--ink);
-      font-size: 22px;
+    .sub-header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .back-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      border: 0;
+      background: rgba(255, 255, 255, 0.18);
+      color: #fff;
       display: grid;
       place-items: center;
-      cursor: pointer;
     }
-    .screen-header h2 {
-      margin: 0;
-      font-size: 17px;
+    .sub-header h2 { font-size: 17px; font-weight: 800; }
+    .sub-body { padding: 14px 16px; }
+
+    /* Filter Chips Katalog */
+    .category-row {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      scrollbar-width: none;
+    }
+    .category-row::-webkit-scrollbar { display: none; }
+    .category-chip {
+      flex-shrink: 0;
+      height: 34px;
+      padding: 0 14px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+    }
+    .category-chip.active {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+    }
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 0 12px;
+      height: 42px;
+      margin-bottom: 12px;
+    }
+    .search-box svg { width: 17px; height: 17px; color: var(--muted); }
+    .search-box input {
+      flex: 1;
+      border: 0;
+      outline: none;
+      font-size: 13px;
+      background: transparent;
+    }
+
+    /* Stepper Lacak Pesanan */
+    .stepper-card {
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+    .stepper-title { font-size: 12px; font-weight: 800; color: var(--muted); margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.4px; }
+    .stepper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+    .stepper::before {
+      content: "";
+      position: absolute;
+      left: 16%;
+      right: 16%;
+      top: 14px;
+      height: 3px;
+      background: var(--line);
+      z-index: 1;
+    }
+    .step {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      width: 33.3%;
+    }
+    .step-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #fff;
+      border: 3px solid var(--line);
+      display: grid;
+      place-items: center;
+      font-size: 12px;
       font-weight: 800;
+      color: var(--muted);
     }
-    .map-area {
-      height: 160px;
+    .step.done .step-dot, .step.active .step-dot {
+      background: var(--blue);
+      border-color: var(--blue-soft);
+      color: #fff;
+    }
+    .step span { font-size: 11.5px; font-weight: 700; color: var(--muted); }
+    .step.done span, .step.active span { color: var(--blue); }
+
+    .tracking-map-large {
+      height: 170px;
       position: relative;
       border-radius: 16px;
       overflow: hidden;
-      background-color: #e8f0e9;
+      background-color: #e6eff5;
       background-image:
-        linear-gradient(24deg, transparent 46%, #fff 47%, #fff 50%, transparent 51%),
-        linear-gradient(112deg, transparent 46%, #f8d987 47%, #f8d987 49%, transparent 50%),
-        linear-gradient(158deg, transparent 46%, #fff 47%, #fff 50%, transparent 51%);
+        linear-gradient(25deg, transparent 46%, #ffffff 47%, #ffffff 50%, transparent 51%),
+        linear-gradient(112deg, transparent 45%, #fde68a 46%, #fde68a 49%, transparent 50%),
+        linear-gradient(155deg, transparent 46%, #ffffff 47%, #ffffff 50%, transparent 51%);
       background-size: 95px 80px, 130px 100px, 80px 110px;
+      border: 1px solid var(--line);
       margin-bottom: 14px;
     }
-    .map-pin {
-      position: absolute;
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: var(--blue);
-      border: 3px solid #fff;
-      box-shadow: 0 3px 8px rgba(0,0,0,.2);
-    }
-    .map-pin.store { background: #13ae78; }
-    .map-pin.home { background: #f59e0b; }
     .tracking-card {
       background: #fff;
       border-radius: 16px;
       padding: 16px;
       border: 1px solid var(--line);
-      box-shadow: 0 4px 16px rgba(24, 56, 78, 0.05);
+      margin-bottom: 14px;
     }
     .tracking-card .eta {
       display: flex;
@@ -643,95 +759,218 @@
       border-bottom: 1px solid var(--line);
       margin-bottom: 12px;
     }
-    .tracking-card .eta span {
-      font-size: 10px;
-      color: var(--muted);
-      display: block;
+    .tracking-card .eta span { font-size: 11px; color: var(--muted); display: block; }
+    .tracking-card .eta strong { font-size: 18px; color: var(--blue); font-weight: 800; }
+    .tracking-card .eta b { font-size: 11.5px; color: #059669; background: var(--green-soft); padding: 5px 10px; border-radius: 8px; }
+    .tracking-card h3 { margin: 10px 0 3px; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .4px; }
+    .tracking-card p { margin: 0 0 8px; font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+    .kurir-box {
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      padding: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
     }
-    .tracking-card .eta strong {
-      font-size: 18px;
+    .kurir-info { display: flex; align-items: center; gap: 10px; }
+    .kurir-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--amber-soft);
+      color: #d97706;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 16px;
+    }
+    .kurir-info small { display: block; font-size: 11px; color: var(--muted); }
+    .kurir-info strong { font-size: 13.5px; font-weight: 800; }
+    .kurir-actions { display: flex; gap: 6px; }
+    .kurir-actions button {
+      border: 1px solid var(--line);
+      background: #fff;
       color: var(--blue);
-      display: block;
-    }
-    .tracking-card .eta b {
+      padding: 7px 12px;
+      border-radius: 10px;
       font-size: 12px;
-      color: #13ae78;
-      background: #eaf8f2;
-      padding: 4px 10px;
-      border-radius: 8px;
+      font-weight: 700;
     }
-    .tracking-card h3 {
-      margin: 10px 0 2px;
-      font-size: 11px;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: .5px;
+    .kurir-actions button.primary {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
     }
-    .tracking-card p {
-      margin: 0 0 10px;
-      font-size: 13px;
+
+    /* Profil Screen */
+    .profile-hero {
+      background: #fff;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      padding: 20px 16px;
+      text-align: center;
+      margin-bottom: 14px;
+    }
+    .profile-avatar {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--blue-light));
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 26px;
+      font-weight: 800;
+      margin: 0 auto 10px;
+      border: 3px solid var(--blue-soft);
+    }
+    .profile-hero h3 { font-size: 17px; font-weight: 800; }
+    .profile-hero p { font-size: 12.5px; color: var(--muted); margin: 3px 0 8px; }
+    .profile-poin {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--amber-soft);
+      color: #b45309;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .menu-list {
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      overflow: hidden;
+    }
+    .menu-item {
+      width: 100%;
+      background: #fff;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-align: left;
+      font-size: 13.5px;
       font-weight: 600;
       color: var(--ink);
     }
+    .menu-item:last-child { border-bottom: 0; }
+    .menu-item-left { display: flex; align-items: center; gap: 12px; }
+    .menu-item-left svg { width: 18px; height: 18px; color: var(--blue); }
+    .menu-item.danger { color: var(--red); }
+    .menu-item.danger svg { color: var(--red); }
 
-    /* Bottom Sheet */
+    /* ===== BOTTOM NAVIGATION BAR (5 ITEMS + CENTER FLOATING BUTTON) ===== */
+    .nav {
+      position: fixed;
+      z-index: 50;
+      left: 50%;
+      bottom: 0;
+      width: min(100%, 430px);
+      height: 68px;
+      transform: translateX(-50%);
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      align-items: center;
+      background: #ffffff;
+      border-top: 1px solid var(--line);
+      box-shadow: 0 -4px 18px rgba(15, 23, 42, 0.06);
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+    .nav button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      border: 0;
+      background: transparent;
+      color: #94a3b8;
+      font-size: 10.5px;
+      font-weight: 600;
+      height: 100%;
+    }
+    .nav button svg { width: 21px; height: 21px; stroke: #94a3b8; }
+    .nav button.active { color: var(--blue); font-weight: 800; }
+    .nav button.active svg { stroke: var(--blue); }
+    .nav button.main {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, var(--blue-light), var(--blue));
+      color: #fff;
+      border: 4px solid #fff;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 6px 18px rgba(0, 119, 192, 0.35);
+      transform: translateY(-14px);
+      justify-self: center;
+    }
+    .nav button.main b { font-size: 24px; font-weight: 500; line-height: 1; }
+
+    /* ===== BOTTOM SHEET CHECKOUT ===== */
+    .backdrop { position: fixed; z-index: 59; inset: 0; background: rgba(15, 23, 42, 0.45); opacity: 0; pointer-events: none; transition: .25s; }
+    .backdrop.open { opacity: 1; pointer-events: auto; }
     .sheet {
-      display: block;
       position: fixed;
       z-index: 60;
       left: 50%;
       bottom: 0;
       width: min(100%, 430px);
-      max-height: 86vh;
+      max-height: 88vh;
       overflow-y: auto;
       transform: translate(-50%, 105%);
       border-radius: 24px 24px 0 0;
       background: #fff;
-      padding: 8px 18px calc(18px + env(safe-area-inset-bottom));
-      box-shadow: 0 -18px 48px rgba(24, 56, 78, 0.22);
-      transition: transform .28s ease;
+      padding: 10px 18px calc(20px + env(safe-area-inset-bottom));
+      box-shadow: 0 -14px 40px rgba(15, 23, 42, 0.22);
+      transition: transform .26s ease;
     }
     .sheet.open { transform: translate(-50%, 0); }
-    .sheet-grabber { width: 42px; height: 4px; margin: 2px auto 10px; border-radius: 4px; background: #dce5ea; }
-    .sheet header { display: flex; align-items: center; justify-content: space-between; margin: 0 0 12px; }
-    .sheet header small { display: block; margin-bottom: 2px; color: #718495; font-size: 10px; }
-    .sheet header h2 { margin: 0; font-size: 19px; }
-    .sheet header button { display: grid; width: 36px; height: 36px; place-items: center; border: 0; border-radius: 50%; background: #edf3f6; color: #718495; font-size: 22px; line-height: 1; }
-    .sheet-product { display: flex; align-items: center; gap: 12px; margin: 0 0 12px; padding: 10px; border: 1px solid #edf1f4; border-radius: 13px; background: #f8fafc; }
-    .sheet-product-art { display: grid; flex: 0 0 58px; height: 58px; place-items: center; border-radius: 10px; background: #eaf5fc; }
-    .sheet-product-art i { display: block; width: 32px; height: 48px; border: 5px solid #77acd0; border-radius: 15px 15px 9px 9px; background: linear-gradient(145deg, #fff, #cfeafa); }
-    .sheet-product small, .sheet-product strong, .sheet-product b { display: block; }
-    .sheet-product small { color: #718495; font-size: 9px; }
-    .sheet-product strong { margin: 3px 0; font-size: 12px; }
-    .sheet-product b { color: var(--blue); font-size: 12px; }
-    .sheet-label { display: block; margin: 10px 0; color: #18384e; font-size: 11px; font-weight: 800; }
-    .sheet-label select, .sheet-label input[type="file"] { display: block; width: 100%; height: 43px; margin-top: 7px; border: 1px solid #dfe8ed; border-radius: 10px; background: #fff; padding: 0 10px; font-weight: 400; }
-    .sheet .qty { display: grid; grid-template-columns: 43px 1fr 43px; width: 100%; height: 43px; margin-top: 7px; border: 1px solid #dfe8ed; border-radius: 10px; overflow: hidden; }
-    .sheet .qty button { height: 41px; border: 0; background: #f2f7fa; color: var(--blue); font-size: 18px; }
-    .sheet .qty input { height: 41px; margin: 0; border: 0; border-left: 1px solid #dfe8ed; border-right: 1px solid #dfe8ed; border-radius: 0; text-align: center; }
-    .courier { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 12px; padding: 10px 12px; border-radius: 11px; background: #edf7f4; font-size: 11px; }
+    .sheet-grabber { width: 40px; height: 4px; margin: 0 auto 12px; border-radius: 4px; background: #cbd5e1; }
+    .sheet header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+    .sheet header small { display: block; color: var(--muted); font-size: 11px; }
+    .sheet header h2 { font-size: 18px; font-weight: 800; }
+    .sheet header button { width: 34px; height: 34px; border: 0; border-radius: 50%; background: #f1f5f9; color: var(--muted); font-size: 20px; display: grid; place-items: center; }
+    .sheet-product { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; padding: 12px; border: 1px solid var(--line); border-radius: 14px; background: #f8fafc; }
+    .sheet-product-art { width: 54px; height: 54px; border-radius: 12px; background: var(--blue-soft); display: grid; place-items: center; flex-shrink: 0; color: var(--blue); }
+    .sheet-product small { display: block; color: var(--muted); font-size: 10px; font-weight: 700; }
+    .sheet-product strong { display: block; margin: 2px 0; font-size: 13.5px; }
+    .sheet-product b { color: var(--blue); font-size: 13.5px; }
+    .sheet-label { display: block; margin-bottom: 12px; color: var(--ink-2); font-size: 12px; font-weight: 700; }
+    .sheet-label select, .sheet-label input[type="file"] { display: block; width: 100%; height: 44px; margin-top: 6px; border: 1px solid var(--line); border-radius: 12px; background: #fff; padding: 0 12px; font-size: 13px; }
+    .sheet .qty { display: grid; grid-template-columns: 44px 1fr 44px; width: 100%; height: 44px; margin-top: 6px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .sheet .qty button { border: 0; background: #f1f5f9; color: var(--blue); font-size: 18px; font-weight: 700; }
+    .sheet .qty input { border: 0; border-left: 1px solid var(--line); border-right: 1px solid var(--line); text-align: center; font-weight: 700; font-size: 14px; }
+    .courier { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; margin-top: 10px; padding: 12px; border-radius: 12px; background: #ecfdf5; border: 1px solid #a7f3d0; font-size: 12px; }
     .courier > div:first-child { display: flex; align-items: center; gap: 8px; }
-    .courier-dot { width: 8px; height: 8px; border-radius: 50%; background: #34b98a; }
-    .courier button { border: 0; background: transparent; color: var(--blue); font-size: 10px; font-weight: 800; }
-    .courier #couriers { display: block; width: 100%; margin-top: 8px; }
-    .sheet .checkout { width: 100%; height: 48px; margin-top: 12px; border: 0; border-radius: 12px; background: var(--blue); color: #fff; font-size: 13px; font-weight: 800; box-shadow: 0 8px 18px rgba(23, 105, 170, 0.22); }
-    .sheet #result { display: none; }
-    .backdrop { position: fixed; z-index: 59; inset: 0; background: rgba(15, 47, 69, 0.38); opacity: 0; pointer-events: none; transition: .25s; }
-    .backdrop.open { opacity: 1; pointer-events: auto; }
+    .courier-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
+    .courier button { border: 0; background: #fff; color: #059669; padding: 5px 10px; border-radius: 8px; font-size: 11px; font-weight: 800; }
+    .courier #couriers { width: 100%; }
+    .sheet .checkout { width: 100%; height: 48px; margin-top: 14px; border: 0; border-radius: 12px; background: var(--blue); color: #fff; font-size: 14px; font-weight: 800; box-shadow: 0 6px 16px rgba(0, 119, 192, 0.25); }
+    .sheet #result { margin-top: 10px; font-size: 11px; color: var(--ink-2); white-space: pre-wrap; background: #f8fafc; padding: 8px; border-radius: 8px; }
+    .sheet #result:empty { display: none; }
 
     @media (min-width: 431px) {
-      #customer-app.app {
-        margin: 16px auto;
-        min-height: calc(100vh - 32px);
-        border-radius: 25px;
-      }
-      .nav {
-        bottom: 16px;
-        border-radius: 0 0 25px 25px;
+      #customer-app.app, .mobile-screen {
+        margin-top: 14px;
+        margin-bottom: 14px;
+        min-height: calc(100vh - 28px);
+        border-radius: 26px;
+        overflow-x: hidden;
       }
       .mobile-screen {
-        inset: 16px 50%;
-        border-radius: 25px;
+        inset: 14px 50%;
+      }
+      .nav {
+        bottom: 14px;
+        border-radius: 0 0 26px 26px;
       }
     }
   </style>
@@ -740,26 +979,31 @@
   <!-- Layar Login & Register Pelanggan -->
   <section class="login-wrap" id="auth-screen">
     <div class="login-card">
-      <h1>GalonKu Pelanggan</h1>
-      <p id="customer-auth-description">Masuk untuk memesan dan mengelola pesanan galon.</p>
+      <div class="brand-mark">
+        <div class="brand-drop">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+        </div>
+        <h1>GalonKu</h1>
+      </div>
+      <p id="customer-auth-description">Masuk untuk memesan air galon segar langsung ke rumah Anda.</p>
       <div class="auth-tabs">
         <button type="button" class="active" data-customer-auth="login">Masuk</button>
         <button type="button" data-customer-auth="register">Daftar</button>
       </div>
       <form id="customer-login-form">
-        <label>Email atau nomor HP<input id="customer-login-identity" autocomplete="username" required></label>
-        <label>Password<input id="customer-login-password" type="password" autocomplete="current-password" minlength="6" required></label>
-        <button type="submit">Masuk sebagai Pelanggan</button>
+        <label>Email atau nomor HP<input id="customer-login-identity" placeholder="contoh@email.com" autocomplete="username" required></label>
+        <label>Password<input id="customer-login-password" type="password" placeholder="Minimal 6 karakter" autocomplete="current-password" minlength="6" required></label>
+        <button type="submit">MASUK</button>
       </form>
       <form id="customer-register-form" hidden>
-        <label>Nama Lengkap<input id="register-name" autocomplete="name" required></label>
-        <label>Email<input id="register-email" type="email" autocomplete="email" required></label>
-        <label>No. HP<input id="register-phone" type="tel" autocomplete="tel" required></label>
-        <label>Password<input id="register-password" type="password" minlength="6" autocomplete="new-password" required></label>
+        <label>Nama Lengkap<input id="register-name" placeholder="Nama lengkap Anda" autocomplete="name" required></label>
+        <label>Email<input id="register-email" type="email" placeholder="contoh@email.com" autocomplete="email" required></label>
+        <label>No. HP<input id="register-phone" type="tel" placeholder="0812xxxxxxxx" autocomplete="tel" required></label>
+        <label>Password<input id="register-password" type="password" placeholder="Minimal 6 karakter" minlength="6" autocomplete="new-password" required></label>
         <label>Alamat Lengkap (opsional)<input id="register-address" autocomplete="street-address" placeholder="Contoh: Jl. Merdeka No. 10"></label>
-        <button type="submit">Daftar sebagai Pelanggan</button>
+        <button type="submit">DAFTAR SEKARANG</button>
       </form>
-      <p class="login-divider">atau</p>
+      <div class="login-divider">atau</div>
       <button class="btn-google" id="google-btn" type="button">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
         <span id="google-btn-label">Masuk dengan Google</span>
@@ -774,120 +1018,154 @@
 
   <!-- Dashboard Pelanggan -->
   <main class="app" id="customer-app" hidden>
-    <!-- Header -->
-    <header class="dashboard-header">
-      <div class="welcome-wrap">
-        <div class="avatar">A</div>
-        <div class="welcome-text">
-          <p>Selamat datang kembali,</p>
-          <h1>GalonKu Pelanggan</h1>
-        </div>
+    <header class="home-header">
+      <div class="header-top">
+        <span class="header-title">Beranda</span>
+        <button class="bell-btn" id="bell-btn" type="button" aria-label="Notifikasi">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+          <span class="bell-dot"></span>
+        </button>
       </div>
-      <button class="bell" id="bell-btn" aria-label="Notifikasi pesanan">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-          <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-        </svg>
+      <button class="addr-pill" id="locate" type="button">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        <span id="gps-status">Alamat pengiriman Anda</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
       </button>
+      <div class="greeting-row">
+        <div class="greeting-text" id="greeting-name">Halo! Mau pesan galon?</div>
+      </div>
+      <div class="points-bar">
+        <div class="points-left">
+          <div class="points-star">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <span>Poin: 120</span>
+        </div>
+        <button class="points-btn" id="order-now" type="button">Pesan Cepat</button>
+      </div>
     </header>
 
-    <!-- Pencarian -->
-    <div class="search-wrap">
-      <span>Cari produk atau layanan</span>
-      <input type="text" id="search-input" placeholder="Cari produk atau layanan..." aria-label="Cari produk atau layanan">
-      <button type="button" id="search-btn" aria-label="Cari">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="11" cy="11" r="8"></circle>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-      </button>
-    </div>
-
-    <!-- Kategori Pilihan -->
-    <div class="category-row">
-      <div class="category-chip active" data-category="all">Semua</div>
-      <div class="category-chip" data-category="isi_ulang">Air Mineral</div>
-      <div class="category-chip" data-category="galon_baru">Galon Baru</div>
-      <div class="category-chip" data-category="galon_bekas">Tukar Galon</div>
-      <div class="category-chip" data-category="lainnya">Lainnya</div>
-    </div>
-
-    <!-- Hero Card Promo -->
-    <div class="hero">
-      <div class="hero-copy">
-        <span>Promo Spesial</span>
-        <h2>Dapatkan diskon hingga 50%</h2>
-        <button id="order-now" type="button">Pesan Sekarang</button>
+    <div class="main-body">
+      <!-- Mini GPS Map -->
+      <div class="map-card">
+        <div class="map-card-head">
+          <strong>Mini GPS Map</strong>
+          <span>● Kurir Aktif</span>
+        </div>
+        <div class="map-visual">
+          <div class="map-pin-user"><i></i></div>
+          <div class="map-pin-courier" style="left:22%;top:32%">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-3 11.5V14l-3-3 4-3 2 3h2"/></svg>
+          </div>
+          <div class="map-pin-courier" style="left:74%;top:28%">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-3 11.5V14l-3-3 4-3 2 3h2"/></svg>
+          </div>
+        </div>
+        <div class="map-card-foot">
+          <div class="map-foot-left">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0077c0" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Tukang Galon Terdekat</span>
+          </div>
+          <button class="map-foot-btn" id="home-find-courier" type="button">Cek Radius</button>
+        </div>
       </div>
-      <div class="gallon" aria-hidden="true"></div>
-    </div>
 
-    <!-- Pesanan Aktif -->
-    <div class="section">
-      <div class="heading">
+      <!-- Service Buttons (3 Kolom) -->
+      <div class="section-title">
+        <h2>Layanan GalonKu</h2>
+      </div>
+      <div class="service-grid">
+        <button class="service-btn" type="button" data-product="1">
+          <div class="service-icon blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3h6v3l2 3v10a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V9l2-3V3z"/><path d="M9 13h6"/></svg>
+          </div>
+          <span>Isi Ulang</span>
+        </button>
+        <button class="service-btn" type="button" data-product="2">
+          <div class="service-icon amber">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3h6v3l2 3v10a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V9l2-3V3z"/><path d="M12 11v6"/><path d="M9 14h6"/></svg>
+          </div>
+          <span>Galon Baru</span>
+        </button>
+        <button class="service-btn" type="button" data-product="3">
+          <div class="service-icon green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+          </div>
+          <span>Jual Bekas</span>
+        </button>
+      </div>
+
+      <!-- Pesanan Aktif -->
+      <div class="section-title">
         <h2>Pesanan Aktif</h2>
-        <button class="text-button" id="view-orders" type="button">Lihat semua</button>
+        <button id="view-orders" type="button">Lihat semua</button>
       </div>
       <div class="active-order">
         <div class="active-order-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M16 8v8a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2z"></path>
-            <path d="M2 12h20"></path>
-            <path d="M12 2v20"></path>
-          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
         </div>
         <div class="active-order-copy">
           <strong>Pesanan Galon</strong>
-          <small id="active-order-sub">Dikirim oleh Kurir</small>
+          <small id="active-order-sub">Siap dipesan · Pengantaran cepat</small>
         </div>
-        <button id="tracking" type="button">Detail</button>
+        <button id="tracking" type="button">Lacak</button>
       </div>
-    </div>
 
-    <!-- Promo Hari Ini -->
-    <div class="section">
-      <div class="heading">
-        <h2>Promo Hari Ini</h2>
-        <button class="text-button" type="button">Lihat semua</button>
+      <!-- Katalog Galon -->
+      <div class="section-title" id="galon-products">
+        <h2>Katalog Galon</h2>
+        <button id="view-all-galon" type="button">Lihat semua</button>
       </div>
-      <div class="promo">
-        <h3>Diskon 20% untuk semua produk</h3>
-        <em>Gunakan kode: DISKON20</em>
-      </div>
-    </div>
-
-    <!-- Katalog Produk -->
-    <div class="section" id="galon-products">
-      <div class="heading">
-        <h2>Isi Ulang Galon</h2>
-        <button class="text-button" id="view-all-galon" type="button">Lihat semua</button>
-      </div>
-      <div class="row">
+      <div class="product-grid">
         <div class="product" data-product="1">
-          <div class="product-art"><i></i></div>
+          <div class="product-art">
+            <span class="product-badge">Terlaris</span>
+            <svg width="46" height="66" viewBox="0 0 48 68" fill="none">
+              <rect x="17" y="2" width="14" height="6" rx="2" fill="#0077c0"/>
+              <path d="M15 8h18l5 9v43a5 5 0 0 1-5 5H15a5 5 0 0 1-5-5V17l5-9z" fill="#bae6fd" stroke="#0077c0" stroke-width="2.5"/>
+              <path d="M12 29h24v13H12z" fill="#ffffff" fill-opacity="0.7"/>
+              <path d="M15 35h18" stroke="#0077c0" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
           <div class="product-info">
             <small>Isi Ulang</small>
             <h3>Isi Ulang 19 Liter</h3>
             <strong>Rp15.000</strong>
-            <button class="add" data-product="1" type="button" aria-label="Pesan isi ulang">+</button>
+            <button class="add" data-product="1" type="button">+ Tambah</button>
           </div>
         </div>
         <div class="product" data-product="2">
-          <div class="product-art"><i></i></div>
+          <div class="product-art">
+            <span class="product-badge" style="color:#d97706">Baru</span>
+            <svg width="46" height="66" viewBox="0 0 48 68" fill="none">
+              <rect x="17" y="2" width="14" height="6" rx="2" fill="#0284c7"/>
+              <path d="M15 8h18l5 9v43a5 5 0 0 1-5 5H15a5 5 0 0 1-5-5V17l5-9z" fill="#7dd3fc" stroke="#0284c7" stroke-width="2.5"/>
+              <path d="M12 29h24v13H12z" fill="#ffffff" fill-opacity="0.8"/>
+              <path d="M15 35h18" stroke="#0284c7" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
           <div class="product-info">
             <small>Galon Baru</small>
             <h3>Galon Baru 19 Liter</h3>
             <strong>Rp80.000</strong>
-            <button class="add" data-product="2" type="button" aria-label="Pesan galon baru">+</button>
+            <button class="add" data-product="2" type="button">+ Tambah</button>
           </div>
         </div>
         <div class="product" data-product="3">
-          <div class="product-art"><i></i></div>
+          <div class="product-art">
+            <span class="product-badge" style="color:#059669">Tukar</span>
+            <svg width="46" height="66" viewBox="0 0 48 68" fill="none">
+              <rect x="17" y="2" width="14" height="6" rx="2" fill="#059669"/>
+              <path d="M15 8h18l5 9v43a5 5 0 0 1-5 5H15a5 5 0 0 1-5-5V17l5-9z" fill="#a7f3d0" stroke="#059669" stroke-width="2.5"/>
+              <path d="M12 29h24v13H12z" fill="#ffffff" fill-opacity="0.75"/>
+              <path d="M15 35h18" stroke="#059669" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
           <div class="product-info">
             <small>Galon Bekas</small>
             <h3>Tukar Galon Bekas</h3>
             <strong>Rp25.000</strong>
-            <button class="add" data-product="3" type="button" aria-label="Pesan tukar galon bekas">+</button>
+            <button class="add" data-product="3" type="button">+ Tambah</button>
           </div>
         </div>
       </div>
@@ -896,71 +1174,191 @@
     <!-- Navigasi Bawah -->
     <nav class="nav" id="customer-nav" hidden>
       <button class="active" id="nav-home" type="button">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"></path><path d="M5 10v10h14V10"></path></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
         <span>Beranda</span>
       </button>
       <button id="nav-products" type="button">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
-        <span>Produk</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        <span>Katalog</span>
       </button>
       <button class="main" id="nav-order" type="button" aria-label="Pesan sekarang"><b>+</b></button>
       <button id="nav-orders" type="button">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"></rect><path d="M16 8h4l3 3v5h-7z"></path><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
         <span>Pesanan</span>
       </button>
       <button id="nav-account" type="button">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c.8-5 3.4-7 8-7s7.2 2 8 7"></path></svg>
-        <span>Akun</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c.8-5 3.4-7 8-7s7.2 2 8 7"/></svg>
+        <span>Profil</span>
       </button>
     </nav>
   </main>
 
-  <!-- Layar Pelacakan Pesanan -->
-  <section class="mobile-screen hidden" id="tracking-screen">
-    <div class="screen-header">
-      <button id="tracking-back" type="button">‹</button>
-      <h2>Pelacakan Pesanan</h2>
-    </div>
-    <div class="map-area tracking-map">
-      <span class="map-pin" style="left:18%;top:24%"></span>
-      <span class="map-pin store" style="left:68%;top:18%"></span>
-      <span class="map-pin home" style="left:49%;top:64%"></span>
-    </div>
-    <div class="tracking-card">
-      <div class="eta">
-        <div>
-          <span>Estimasi tiba</span>
-          <strong>01:30 WIB</strong>
-        </div>
-        <b id="tracking-distance">Radius 5 km</b>
+  <!-- Layar Katalog Penuh -->
+  <section class="mobile-screen hidden" id="catalog-screen">
+    <div class="sub-header">
+      <div class="sub-header-left">
+        <button class="back-btn" id="catalog-back" type="button">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <h2>Katalog Galon</h2>
       </div>
-      <h3>Pesanan Galon</h3>
-      <p id="tracking-product">Galon 19 Liter • Jumlah 1</p>
-      <h3>Alamat Pengiriman</h3>
-      <p id="tracking-address">Alamat belum ditentukan</p>
-      <h3>Status Pengantaran</h3>
-      <p id="tracking-status" style="color:var(--blue)">Memuat pesanan...</p>
+    </div>
+    <div class="sub-body">
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="search-input" placeholder="Cari air mineral, galon baru...">
+      </div>
+      <div class="category-row">
+        <div class="category-chip active" data-category="all">Semua</div>
+        <div class="category-chip" data-category="isi_ulang">Isi Ulang</div>
+        <div class="category-chip" data-category="galon_baru">Galon Baru</div>
+        <div class="category-chip" data-category="galon_bekas">Galon Bekas</div>
+      </div>
+      <div class="product-grid" id="catalog-grid">
+        <div class="product" data-product="1">
+          <div class="product-art">
+            <span class="product-badge">Terlaris</span>
+            <svg width="46" height="66" viewBox="0 0 48 68" fill="none"><rect x="17" y="2" width="14" height="6" rx="2" fill="#0077c0"/><path d="M15 8h18l5 9v43a5 5 0 0 1-5 5H15a5 5 0 0 1-5-5V17l5-9z" fill="#bae6fd" stroke="#0077c0" stroke-width="2.5"/></svg>
+          </div>
+          <div class="product-info"><small>Isi Ulang</small><h3>Isi Ulang 19 Liter</h3><strong>Rp15.000</strong><button class="add" data-product="1" type="button">+ Tambah</button></div>
+        </div>
+        <div class="product" data-product="2">
+          <div class="product-art">
+            <span class="product-badge" style="color:#d97706">Baru</span>
+            <svg width="46" height="66" viewBox="0 0 48 68" fill="none"><rect x="17" y="2" width="14" height="6" rx="2" fill="#0284c7"/><path d="M15 8h18l5 9v43a5 5 0 0 1-5 5H15a5 5 0 0 1-5-5V17l5-9z" fill="#7dd3fc" stroke="#0284c7" stroke-width="2.5"/></svg>
+          </div>
+          <div class="product-info"><small>Galon Baru</small><h3>Galon Baru 19 Liter</h3><strong>Rp80.000</strong><button class="add" data-product="2" type="button">+ Tambah</button></div>
+        </div>
+        <div class="product" data-product="3">
+          <div class="product-art">
+            <span class="product-badge" style="color:#059669">Tukar</span>
+            <svg width="46" height="66" viewBox="0 0 48 68" fill="none"><rect x="17" y="2" width="14" height="6" rx="2" fill="#059669"/><path d="M15 8h18l5 9v43a5 5 0 0 1-5 5H15a5 5 0 0 1-5-5V17l5-9z" fill="#a7f3d0" stroke="#059669" stroke-width="2.5"/></svg>
+          </div>
+          <div class="product-info"><small>Galon Bekas</small><h3>Tukar Galon Bekas</h3><strong>Rp25.000</strong><button class="add" data-product="3" type="button">+ Tambah</button></div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Bottom Sheet Pemesanan -->
+  <!-- Layar Pelacakan Pesanan (dengan Stepper) -->
+  <section class="mobile-screen hidden" id="tracking-screen">
+    <div class="sub-header">
+      <div class="sub-header-left">
+        <button class="back-btn" id="tracking-back" type="button">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <h2>Lacak Pesanan</h2>
+      </div>
+    </div>
+    <div class="sub-body">
+      <div class="stepper-card">
+        <div class="stepper-title">Lacak Stepper</div>
+        <div class="stepper">
+          <div class="step done" id="step-mencari"><div class="step-dot">1</div><span>Mencari</span></div>
+          <div class="step" id="step-jalan"><div class="step-dot">2</div><span>Jalan</span></div>
+          <div class="step" id="step-sampai"><div class="step-dot">3</div><span>Sampai</span></div>
+        </div>
+      </div>
+      <div class="tracking-map-large">
+        <div class="map-pin-courier" style="left:22%;top:30%">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-3 11.5V14l-3-3 4-3 2 3h2"/></svg>
+        </div>
+        <div class="map-pin-user" style="left:70%;top:64%"><i></i></div>
+      </div>
+      <div class="tracking-card">
+        <div class="eta">
+          <div>
+            <span>Estimasi tiba</span>
+            <strong>15 - 25 Menit</strong>
+          </div>
+          <b id="tracking-distance">Radius 5 km</b>
+        </div>
+        <h3>Pesanan Galon</h3>
+        <p id="tracking-product">Galon 19 Liter • Jumlah 1</p>
+        <h3>Alamat Pengiriman</h3>
+        <p id="tracking-address">Alamat belum ditentukan</p>
+        <h3>Status Pengantaran</h3>
+        <p id="tracking-status" style="color:var(--blue)">Menunggu penugasan kurir</p>
+      </div>
+      <div class="kurir-box">
+        <div class="kurir-info">
+          <div class="kurir-avatar">K</div>
+          <div>
+            <small>Mitra Kurir</small>
+            <strong id="tracking-courier-name">Kurir GalonKu</strong>
+          </div>
+        </div>
+        <div class="kurir-actions">
+          <button type="button" onclick="alert('Menghubungi kurir...')">Call</button>
+          <button class="primary" type="button" onclick="alert('Chat kurir segera tersedia.')">Chat</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Layar Profil Pelanggan -->
+  <section class="mobile-screen hidden" id="profile-screen">
+    <div class="sub-header">
+      <div class="sub-header-left">
+        <button class="back-btn" id="profile-back" type="button">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <h2>Profil Saya</h2>
+      </div>
+    </div>
+    <div class="sub-body">
+      <div class="profile-hero">
+        <div class="profile-avatar" id="profile-avatar">A</div>
+        <h3 id="profile-name">Pelanggan GalonKu</h3>
+        <p id="profile-email">pelanggan@galonku.id</p>
+        <span class="profile-poin">★ 120 Poin Member</span>
+      </div>
+      <div class="menu-list">
+        <button class="menu-item" type="button" onclick="document.getElementById('nav-orders').click()">
+          <span class="menu-item-left">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Riwayat & Lacak Pesanan
+          </span>
+          <span>›</span>
+        </button>
+        <button class="menu-item" type="button" onclick="alert(document.getElementById('gps-status').textContent)">
+          <span class="menu-item-left">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Daftar Alamat
+          </span>
+          <span>›</span>
+        </button>
+        <button class="menu-item danger" id="btn-logout-customer" type="button">
+          <span class="menu-item-left">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            Keluar dari Akun
+          </span>
+          <span>›</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom Sheet Checkout -->
   <div class="backdrop" id="backdrop"></div>
   <aside class="sheet" id="sheet" aria-hidden="true">
     <div class="sheet-grabber" aria-hidden="true"></div>
     <header>
-      <div><small>Konfirmasi pesanan</small><h2 id="sheet-title">Pesan Galon</h2></div>
+      <div><small>Checkout Pesanan</small><h2 id="sheet-title">Pesan Galon</h2></div>
       <button id="close-sheet" type="button" aria-label="Tutup">×</button>
     </header>
     <input type="hidden" id="produk" value="1">
     <div class="sheet-product">
-      <div class="sheet-product-art"><i></i></div>
+      <div class="sheet-product-art">
+        <svg width="30" height="40" viewBox="0 0 48 68" fill="none"><rect x="17" y="2" width="14" height="6" rx="2" fill="#0077c0"/><path d="M15 8h18l5 9v43a5 5 0 0 1-5 5H15a5 5 0 0 1-5-5V17l5-9z" fill="#bae6fd" stroke="#0077c0" stroke-width="3"/></svg>
+      </div>
       <div>
         <small>Produk dipilih</small>
         <strong id="sheet-product-name">Isi Ulang 19 Liter</strong>
         <b id="sheet-product-price">Rp15.000</b>
       </div>
     </div>
-    <label class="sheet-label">Jumlah
+    <label class="sheet-label">Jumlah Galon
       <div class="qty">
         <button id="minus" type="button">−</button>
         <input id="jumlah" type="number" min="1" value="1" inputmode="numeric">
@@ -969,12 +1367,12 @@
     </label>
     <label class="sheet-label">Metode Pembayaran
       <select id="metode">
-        <option value="tunai">COD / Bayar di Tempat</option>
-        <option value="qris">QRIS (GoPay/OVO/Dana)</option>
+        <option value="tunai">COD / Tunai di Tempat</option>
+        <option value="qris">QRIS</option>
         <option value="transfer">Transfer Bank</option>
       </select>
     </label>
-    <label class="sheet-label hidden" id="photo-label">Foto Galon Bekas
+    <label class="sheet-label hidden" id="photo-label">Foto Kondisi Galon Bekas
       <input id="photo" type="file" accept="image/jpeg,image/png,image/webp">
     </label>
     <div class="courier">
@@ -982,7 +1380,7 @@
       <button id="search-courier" type="button">Cari kurir</button>
       <div id="couriers"></div>
     </div>
-    <button class="checkout" id="checkout" type="button">Pesan Sekarang</button>
+    <button class="checkout" id="checkout" type="button">PESAN SEKARANG</button>
     <pre id="result"></pre>
   </aside>
 

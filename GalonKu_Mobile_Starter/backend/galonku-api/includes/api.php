@@ -21,9 +21,29 @@ function requestJson(): array
 
 function bearerToken(): ?string
 {
-    $header = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
-    if (preg_match('/^Bearer\\s+(.+)$/i', $header, $m)) {
-        return trim($m[1]);
+    $candidates = [
+        $_SERVER['HTTP_AUTHORIZATION'] ?? '',
+        $_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ?? '',
+    ];
+    if (function_exists('apache_request_headers')) {
+        $headers = apache_request_headers();
+        if (is_array($headers)) {
+            foreach ($headers as $key => $val) {
+                if (strcasecmp((string)$key, 'Authorization') === 0) {
+                    $candidates[] = (string)$val;
+                } elseif (strcasecmp((string)$key, 'X-Auth-Token') === 0 && trim((string)$val) !== '') {
+                    return trim((string)$val);
+                }
+            }
+        }
+    }
+    foreach ($candidates as $header) {
+        if ($header !== '' && preg_match('/^Bearer\\s+(.+)$/i', $header, $m)) {
+            return trim($m[1]);
+        }
+    }
+    if (!empty($_SERVER['HTTP_X_AUTH_TOKEN'])) {
+        return trim((string)$_SERVER['HTTP_X_AUTH_TOKEN']);
     }
     return null;
 }

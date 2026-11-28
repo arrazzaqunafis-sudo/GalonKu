@@ -2,74 +2,783 @@
 <html lang="id">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#244fd0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f97316">
   <link rel="manifest" href="manifest.webmanifest">
   <title>GalonKu Mitra Kurir</title>
   <style>
-    :root{--blue:#2853d4;--blue2:#183ba7;--ink:#17243a;--muted:#758196;--line:#e7ebf2;--green:#13ae78;--red:#ed5a4f}
-    *{box-sizing:border-box}body{margin:0;background:#f1f4f9;color:var(--ink);font-family:Inter,"Segoe UI",Arial,sans-serif}
-    button,input{font:inherit}button{cursor:pointer}.app{width:min(100%,430px);min-height:100vh;margin:auto;background:#f7f8fb;padding:0 15px 86px;box-shadow:0 0 42px #192c5418}
-    .top{margin:0 -15px;padding:20px 17px 18px;color:#fff;background:linear-gradient(145deg,#244fd0,#3467eb);border-radius:0 0 23px 23px}
-    .topbar{display:flex;align-items:center;justify-content:space-between}.brand{font-size:17px;font-weight:850;letter-spacing:.2px}.top-actions{display:flex;align-items:center;gap:8px}.avatar{display:grid;width:35px;height:35px;place-items:center;border:2px solid #ffffff80;border-radius:50%;background:#c9dcf4;color:#2049bc;font-size:13px;font-weight:800}
-    .online-toggle{display:flex;align-items:center;gap:7px;padding:7px 10px;border:1px solid #ffffff65;border-radius:30px;background:#ffffff20;color:#fff;font-size:10px;font-weight:700}
-    .switch{position:relative;width:28px;height:16px;border-radius:20px;background:#96a4bf}.switch:after{content:"";position:absolute;left:2px;top:2px;width:12px;height:12px;border-radius:50%;background:#fff;transition:.2s}.online .switch{background:#21c88a}.online .switch:after{left:14px}
-    .welcome{margin:19px 0 4px;color:#ffffffb5;font-size:11px}.driver-name{margin:0;font-size:20px}.online-state{display:flex;align-items:center;gap:6px;margin-top:8px;color:#dbe5ff;font-size:10px}.green-dot{width:7px;height:7px;border-radius:50%;background:#54e2a8;box-shadow:0 0 0 4px #ffffff1b}
-    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:19px}.stat{padding:10px 9px;border:1px solid #ffffff24;border-radius:12px;background:#ffffff12}.stat span{display:block;color:#ffffffb5;font-size:9px}.stat strong{display:block;margin-top:5px;font-size:16px}
-    .section-title{display:flex;align-items:end;justify-content:space-between;margin:19px 1px 10px}.section-title h2{margin:0;font-size:15px}.section-title span{color:var(--muted);font-size:10px}
-    .card{padding:13px;border:1px solid #edf0f5;border-radius:15px;background:#fff;box-shadow:0 5px 18px #21345408}
-    .next-card{border:0;background:linear-gradient(135deg,#fff,#f8fbff)}.trip-head{display:flex;justify-content:space-between;align-items:center}.trip-head strong{font-size:12px}.badge{padding:5px 8px;border-radius:15px;background:#e8efff;color:#2853d4;font-size:9px;font-weight:800}.route{margin:12px 0 10px;padding-left:13px;border-left:2px solid #d6e0f6}.route-point{position:relative;padding:0 0 12px 5px}.route-point:last-child{padding-bottom:0}.route-point:before{content:"";position:absolute;left:-20px;top:2px;width:8px;height:8px;border:2px solid #fff;border-radius:50%;background:#3366dc;box-shadow:0 0 0 1px #3366dc}.route-point.drop:before{background:#16ab78;box-shadow:0 0 0 1px #16ab78}.route-point small{display:block;margin-bottom:3px;color:var(--muted);font-size:9px}.route-point strong{display:block;font-size:11px;font-weight:650}
-    .trip-meta{display:flex;gap:14px;padding-top:10px;border-top:1px solid var(--line);color:var(--muted);font-size:9px}.trip-meta b{color:var(--ink);font-size:10px}
-    .button-row{display:flex;gap:8px;margin-top:12px}.button-row button{flex:1;height:38px;border:0;border-radius:10px;font-size:10px;font-weight:800}.accept{background:var(--blue);color:#fff}.reject{border:1px solid #f3d9d6!important;background:#fff;color:var(--red)}
-    .map-card{height:170px;position:relative;overflow:hidden;padding:0;background-color:#e8f0e9;background-image:linear-gradient(24deg,transparent 46%,#fff 47%,#fff 50%,transparent 51%),linear-gradient(112deg,transparent 46%,#f8d987 47%,#f8d987 49%,transparent 50%),linear-gradient(158deg,transparent 46%,#fff 47%,#fff 50%,transparent 51%);background-size:95px 80px,130px 100px,80px 110px}
-    .road-label{position:absolute;color:#758496;font-size:7px;text-transform:uppercase;letter-spacing:.7px;transform:rotate(-25deg)}.pin{position:absolute;display:grid;width:28px;height:28px;place-items:center;border:3px solid #fff;border-radius:50% 50% 50% 8px;background:var(--blue);color:#fff;box-shadow:0 4px 9px #29498735;transform:rotate(-45deg)}.pin span{font-size:11px;transform:rotate(45deg)}.pin.me{left:43%;top:46%;background:#12a876}.pin.destination{left:72%;top:22%}
-    .map-status{position:absolute;left:10px;bottom:10px;padding:7px 9px;border-radius:8px;background:#fff;color:var(--ink);font-size:9px;box-shadow:0 3px 12px #20334a18}
-    .job-list{display:grid;gap:9px}.job-card{padding:12px}.job-top{display:flex;justify-content:space-between;gap:8px}.job-id{font-size:11px;font-weight:800}.distance{color:var(--blue);font-size:10px;font-weight:800}.job-card .route{margin:10px 0}.job-footer{display:flex;justify-content:space-between;align-items:center;padding-top:9px;border-top:1px solid var(--line)}.job-footer strong{color:var(--blue);font-size:12px}.job-footer small{color:var(--muted);font-size:9px}
-    .empty{padding:24px 12px;text-align:center;color:var(--muted);font-size:11px}.empty b{display:block;margin-bottom:5px;color:var(--ink);font-size:12px}
-    .nav{position:fixed;z-index:10;left:50%;bottom:0;width:min(100%,430px);height:70px;transform:translateX(-50%);display:grid;grid-template-columns:repeat(4,1fr);align-items:center;border-top:1px solid var(--line);background:#fff;padding-bottom:env(safe-area-inset-bottom)}.nav button{display:flex;flex-direction:column;align-items:center;gap:4px;border:0;background:#fff;color:#8995a8;font-size:9px}.nav button.active{color:var(--blue)}.nav i{font-size:19px;font-style:normal}
-    .screen{display:none}.screen.active{display:block}
-    [hidden]{display:none!important}.login-wrap{display:grid;min-height:100vh;place-items:center;padding:20px}.login-card{width:min(100%,360px);padding:24px;border-radius:20px;background:#fff;box-shadow:0 12px 40px #1a35601b}.login-card h1{margin:0;color:var(--blue);font-size:23px}.login-card p{color:var(--muted);font-size:12px}.login-card label{display:block;margin:14px 0;font-size:11px;font-weight:700}.login-card input{width:100%;height:43px;margin-top:6px;border:1px solid var(--line);border-radius:10px;padding:0 11px}.login-card button{width:100%;height:44px;border:0;border-radius:10px;background:var(--blue);color:#fff;font-weight:800}.login-card .google-native,.login-card .google-fallback{margin-top:12px;border:1px solid var(--line);background:#fff;color:var(--ink)}.google-signin{display:flex;justify-content:center;margin-top:12px}.login-card .login-divider{margin:14px 0 6px;text-align:center;color:var(--muted);font-size:10px}.error{color:#c33;font-size:11px;min-height:14px}
-    .btn-google{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:44px;margin-top:6px;border:1px solid #dadce0;border-radius:10px;background:#fff;color:#3c4043;font-size:12px;font-weight:700;box-shadow:0 1px 3px rgba(60,64,67,.08);transition:all .2s;cursor:pointer}
-    .btn-google:hover{background:#f8fafd;border-color:#c2c8d0}
-    .btn-google svg{width:18px;height:18px;flex-shrink:0}
-    .modal-google{position:fixed;z-index:200;inset:0;background:rgba(20,30,45,.5);display:flex;align-items:center;justify-content:center;padding:16px}
-    .modal-google-card{width:min(100%,360px);background:#fff;border-radius:16px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,.2)}
-    .modal-google-card h3{margin:0 0 6px;color:#202124;font-size:16px;display:flex;align-items:center;gap:8px}
-    .modal-google-card p{margin:0 0 14px;color:#5f6368;font-size:11px}
-    .modal-google-card input{width:100%;height:40px;border:1px solid #dadce0;border-radius:8px;padding:0 10px;margin-bottom:10px;font-size:12px}
-    .modal-google-actions{display:flex;gap:8px;margin-top:10px}
-    .modal-google-actions button{flex:1;height:38px;border-radius:8px;font-size:11px;font-weight:700}
-    .modal-google-cancel{border:1px solid #dadce0;background:#fff;color:#5f6368}
-    .modal-google-submit{border:0;background:#2853d4;color:#fff}
-    .modal{position:fixed;z-index:30;inset:0;display:none;align-items:end;justify-content:center;background:#101b3075}.modal.open{display:flex}.modal-box{width:min(100%,430px);padding:20px;border-radius:22px 22px 0 0;background:#fff}.modal-box h2{margin:0 0 7px;font-size:17px}.modal-box p{color:var(--muted);font-size:11px}.modal-box label{display:block;margin:12px 0;font-size:11px;font-weight:700}.modal-box input{width:100%;margin-top:7px}.modal-box button{width:100%;height:43px;border:0;border-radius:10px;background:var(--blue);color:#fff;font-weight:800}
-    .notice{position:fixed;z-index:40;left:50%;top:15px;transform:translate(-50%,-20px);opacity:0;pointer-events:none;padding:10px 14px;border-radius:12px;background:#17243a;color:white;font-size:11px;transition:.2s}.notice.show{transform:translate(-50%,0);opacity:1}
-    @media(min-width:431px){.app{margin:16px auto;min-height:calc(100vh - 32px);border-radius:25px}.nav{bottom:16px;border-radius:0 0 25px 25px}}
+    :root {
+      --orange: #f97316;
+      --orange-dark: #ea580c;
+      --orange-light: #fb923c;
+      --orange-soft: #fff7ed;
+      --blue: #0077c0;
+      --blue-soft: #e0f2fe;
+      --green: #10b981;
+      --green-soft: #d1fae5;
+      --red: #ef4444;
+      --red-soft: #fef2f2;
+      --ink: #0f172a;
+      --ink-2: #334155;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --bg: #f1f5f9;
+      --surface: #ffffff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      background: #e6eff6;
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
+    [hidden], .hidden { display: none !important; }
+
+    /* ===== LAYAR LOGIN & DAFTAR MITRA ===== */
+    .login-wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 16px;
+      background: linear-gradient(180deg, #ffedd5 0%, #f1f5f9 55%, #ffffff 100%);
+    }
+    .login-card {
+      width: min(100%, 380px);
+      background: #fff;
+      border-radius: 24px;
+      padding: 28px 22px 24px;
+      box-shadow: 0 14px 40px rgba(249, 115, 22, 0.12);
+      border: 1px solid rgba(226, 232, 240, 0.85);
+    }
+    .brand-mark {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .brand-drop {
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #fff7ed, #ffedd5);
+      display: grid;
+      place-items: center;
+      margin-bottom: 10px;
+      color: var(--orange);
+      border: 1px solid #fed7aa;
+    }
+    .brand-mark h1 {
+      font-size: 23px;
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.5px;
+    }
+    .brand-mark h1 span { color: var(--orange); }
+    .login-card > p {
+      text-align: center;
+      color: var(--muted);
+      font-size: 12.5px;
+      margin-bottom: 16px;
+      line-height: 1.45;
+    }
+    .auth-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+      padding: 4px;
+      border-radius: 12px;
+      background: #f1f5f9;
+      margin-bottom: 16px;
+    }
+    .auth-tabs button {
+      height: 36px;
+      border: 0;
+      border-radius: 9px;
+      background: transparent;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      transition: all .18s;
+    }
+    .auth-tabs button.active {
+      background: #fff;
+      color: var(--orange-dark);
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06);
+    }
+    .login-card label {
+      display: block;
+      margin-bottom: 12px;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--ink-2);
+    }
+    .login-card input {
+      width: 100%;
+      height: 44px;
+      margin-top: 5px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 0 13px;
+      background: #f8fafc;
+      font-size: 13.5px;
+      color: var(--ink);
+      transition: border-color .15s, background .15s;
+    }
+    .login-card input:focus {
+      outline: none;
+      border-color: var(--orange);
+      background: #fff;
+    }
+    .login-card button[type="submit"] {
+      width: 100%;
+      height: 46px;
+      margin-top: 4px;
+      border: 0;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+      color: #fff;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.2px;
+      box-shadow: 0 6px 16px rgba(249, 115, 22, 0.28);
+      transition: transform .1s;
+    }
+    .login-card button[type="submit"]:active { transform: scale(0.98); }
+    .login-divider {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 16px 0 12px;
+      color: #94a3b8;
+      font-size: 11.5px;
+    }
+    .login-divider::before, .login-divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+    }
+    .btn-google {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 700;
+      transition: background .15s;
+    }
+    .btn-google:hover { background: #f8fafc; }
+    .btn-google svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .google-signin { display: flex; justify-content: center; margin-top: 10px; }
+    .error { color: var(--red); font-size: 12px; min-height: 16px; margin-top: 10px; text-align: center; font-weight: 600; }
+
+    /* Modal Google */
+    .modal-google { position: fixed; z-index: 200; inset: 0; background: rgba(15, 23, 42, 0.55); display: flex; align-items: center; justify-content: center; padding: 16px; }
+    .modal-google-card { width: min(100%, 360px); background: #fff; border-radius: 18px; padding: 22px; box-shadow: 0 16px 40px rgba(0, 0, 0, .2); }
+    .modal-google-card h3 { margin: 0 0 4px; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+    .modal-google-card p { margin: 0 0 14px; color: var(--muted); font-size: 12px; }
+    .modal-google-card label { display: block; margin: 8px 0 4px; font-size: 11.5px; font-weight: 700; color: var(--ink-2); }
+    .modal-google-card input { width: 100%; height: 42px; border: 1px solid var(--line); border-radius: 10px; padding: 0 12px; margin-bottom: 10px; font-size: 13px; }
+    .modal-google-actions { display: flex; gap: 8px; margin-top: 12px; }
+    .modal-google-actions button { flex: 1; height: 40px; border-radius: 10px; font-size: 12.5px; font-weight: 700; }
+    .modal-google-cancel { border: 1px solid var(--line); background: #fff; color: var(--muted); }
+    .modal-google-submit { border: 0; background: var(--orange); color: #fff; }
+
+    /* ===== SHELL APLIKASI KURIR ===== */
+    .app {
+      width: min(100%, 430px);
+      min-height: 100vh;
+      margin: 0 auto;
+      background: var(--bg);
+      padding-bottom: 88px;
+      position: relative;
+      box-shadow: 0 0 40px rgba(15, 23, 42, 0.08);
+    }
+    .screen { display: none; }
+    .screen.active { display: block; }
+
+    /* Header Oranye Dashboard (sesuai mockup) */
+    .top {
+      background: linear-gradient(155deg, #f97316 0%, #fb923c 100%);
+      color: #fff;
+      padding: 18px 16px 20px;
+      border-radius: 0 0 24px 24px;
+      box-shadow: 0 6px 20px rgba(249, 115, 22, 0.22);
+    }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .brand {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -0.2px;
+    }
+    .brand span { font-weight: 500; opacity: 0.9; }
+    .top-actions { display: flex; align-items: center; gap: 10px; }
+    .avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.25);
+      border: 2px solid rgba(255, 255, 255, 0.75);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .welcome {
+      font-size: 12px;
+      opacity: 0.9;
+      margin-bottom: 2px;
+    }
+    .driver-name {
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      letter-spacing: -0.3px;
+    }
+
+    /* Pill Toggle ONLINE / OFFLINE besar sesuai mockup */
+    .status-bar-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 16px;
+      padding: 10px 12px;
+      margin-bottom: 14px;
+    }
+    .online-state {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .green-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #4ade80;
+      box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.25);
+      flex-shrink: 0;
+    }
+    .online-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border: 0;
+      border-radius: 24px;
+      background: rgba(15, 23, 42, 0.22);
+      color: #fff;
+      font-size: 11.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      transition: background .2s;
+    }
+    .online-toggle.online {
+      background: #10b981;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+    }
+    .switch {
+      position: relative;
+      width: 30px;
+      height: 17px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.35);
+    }
+    .switch:after {
+      content: "";
+      position: absolute;
+      left: 2px;
+      top: 2px;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: #fff;
+      transition: .2s;
+    }
+    .online-toggle.online .switch { background: rgba(255, 255, 255, 0.45); }
+    .online-toggle.online .switch:after { left: 15px; }
+
+    /* Stat Cards di Header (Tugas Selesai, Jarak, Pendapatan) */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .stat {
+      background: rgba(255, 255, 255, 0.96);
+      color: var(--ink);
+      border-radius: 14px;
+      padding: 10px 9px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    .stat span {
+      display: block;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+    .stat strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--ink);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Sub-header Biru untuk halaman lain (Pesanan Masuk, Riwayat, Pendapatan) */
+    .sub-header {
+      background: linear-gradient(155deg, var(--blue) 0%, #0284c7 100%);
+      color: #fff;
+      padding: 18px 16px;
+      border-radius: 0 0 20px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .sub-header h2 { font-size: 18px; font-weight: 800; }
+    .sub-header span { font-size: 12px; font-weight: 700; background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 20px; }
+
+    /* Konten Body */
+    .body-pad { padding: 14px 16px 0; }
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 16px 0 10px;
+    }
+    .section-title h2 { font-size: 15px; font-weight: 800; color: var(--ink); }
+    .section-title span { font-size: 11.5px; font-weight: 700; color: var(--muted); }
+
+    /* Peta Pantauan Operasional (Heat Map sesuai mockup) */
+    .map-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+      margin-bottom: 16px;
+    }
+    .map-card-head {
+      padding: 12px 14px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .map-card-head strong { font-size: 13.5px; font-weight: 800; display: block; }
+    .map-card-head small { font-size: 11px; color: var(--muted); }
+    .map-visual {
+      height: 155px;
+      position: relative;
+      margin: 0 12px 12px;
+      border-radius: 14px;
+      border: 1px solid #dbe6ef;
+      overflow: hidden;
+      background-color: #e8f0e9;
+      background-image:
+        radial-gradient(circle at 30% 42%, rgba(239, 68, 68, 0.45) 0%, rgba(245, 158, 11, 0.35) 18%, rgba(16, 185, 129, 0.15) 36%, transparent 55%),
+        radial-gradient(circle at 68% 35%, rgba(239, 68, 68, 0.4) 0%, rgba(245, 158, 11, 0.3) 16%, rgba(16, 185, 129, 0.12) 32%, transparent 50%),
+        radial-gradient(circle at 55% 74%, rgba(245, 158, 11, 0.38) 0%, rgba(16, 185, 129, 0.15) 22%, transparent 45%),
+        linear-gradient(24deg, transparent 46%, #fff 47%, #fff 50%, transparent 51%),
+        linear-gradient(112deg, transparent 46%, #fde68a 47%, #fde68a 49%, transparent 50%),
+        linear-gradient(158deg, transparent 46%, #fff 47%, #fff 50%, transparent 51%);
+      background-size: 100% 100%, 100% 100%, 100% 100%, 95px 80px, 130px 100px, 80px 110px;
+    }
+    .road-label {
+      position: absolute;
+      color: #64748b;
+      font-size: 8px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .6px;
+      transform: rotate(-22deg);
+    }
+    .pin {
+      position: absolute;
+      display: grid;
+      width: 28px;
+      height: 28px;
+      place-items: center;
+      border: 2.5px solid #fff;
+      border-radius: 50% 50% 50% 8px;
+      background: var(--blue);
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.25);
+      transform: rotate(-45deg);
+    }
+    .pin span { font-size: 11px; transform: rotate(45deg); }
+    .pin.me { left: 44%; top: 44%; background: var(--green); }
+    .pin.destination { left: 72%; top: 24%; background: var(--orange); }
+    .map-status {
+      position: absolute;
+      left: 10px;
+      bottom: 10px;
+      padding: 6px 10px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.95);
+      color: var(--ink);
+      font-size: 10.5px;
+      font-weight: 700;
+      box-shadow: 0 3px 10px rgba(15, 23, 42, 0.12);
+    }
+
+    /* Job Cards (Radar Pesanan & Tugas Aktif) */
+    .job-list { display: grid; gap: 11px; }
+    .card {
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+    }
+    .next-card {
+      border: 1.5px solid #fed7aa;
+      background: linear-gradient(180deg, #ffffff 0%, #fffbf5 100%);
+    }
+    .trip-head, .job-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .trip-head strong, .job-id { font-size: 13.5px; font-weight: 800; color: var(--ink); }
+    .badge {
+      padding: 4px 9px;
+      border-radius: 20px;
+      background: var(--blue-soft);
+      color: var(--blue);
+      font-size: 10.5px;
+      font-weight: 800;
+    }
+    .badge.orange { background: var(--orange-soft); color: var(--orange-dark); }
+    .badge.green { background: var(--green-soft); color: #059669; }
+    .distance {
+      background: var(--blue-soft);
+      color: var(--blue);
+      padding: 4px 9px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 800;
+    }
+    .route {
+      margin: 8px 0 12px;
+      padding-left: 14px;
+      border-left: 2px solid #cbd5e1;
+    }
+    .route-point { position: relative; padding: 0 0 10px 6px; }
+    .route-point:last-child { padding-bottom: 0; }
+    .route-point:before {
+      content: "";
+      position: absolute;
+      left: -21px;
+      top: 3px;
+      width: 10px;
+      height: 10px;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      background: var(--blue);
+      box-shadow: 0 0 0 1px var(--blue);
+    }
+    .route-point.drop:before { background: var(--orange); box-shadow: 0 0 0 1px var(--orange); }
+    .route-point small { display: block; margin-bottom: 2px; color: var(--muted); font-size: 10.5px; font-weight: 600; }
+    .route-point strong { display: block; font-size: 12.5px; font-weight: 700; color: var(--ink); line-height: 1.35; }
+
+    .trip-meta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      padding: 10px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 10.5px;
+    }
+    .trip-meta b { display: block; color: var(--ink); font-size: 12px; margin-top: 2px; }
+    .job-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+    }
+    .job-footer small { color: var(--muted); font-size: 11px; }
+    .job-footer strong { color: var(--orange-dark); font-size: 14px; font-weight: 800; }
+
+    /* Stepper di Tugas Aktif */
+    .mini-stepper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 10px 0;
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+    .mini-stepper span.active { color: var(--blue); }
+
+    .button-row { display: flex; gap: 8px; margin-top: 12px; }
+    .button-row button, .button-row a {
+      flex: 1;
+      height: 40px;
+      border: 0;
+      border-radius: 11px;
+      font-size: 12px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      text-decoration: none;
+    }
+    .accept {
+      background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(249, 115, 22, 0.25);
+    }
+    .maps-btn {
+      background: var(--blue-soft);
+      color: var(--blue);
+    }
+    .reject {
+      border: 1px solid #fecaca !important;
+      background: var(--red-soft);
+      color: var(--red);
+    }
+
+    .empty {
+      padding: 26px 16px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .empty b { display: block; margin-bottom: 5px; color: var(--ink); font-size: 13.5px; }
+
+    /* Pendapatan Screen */
+    .income-hero {
+      background: linear-gradient(145deg, var(--orange), var(--orange-dark));
+      color: #fff;
+      border-radius: 18px;
+      padding: 20px;
+      margin-bottom: 14px;
+      box-shadow: 0 8px 20px rgba(249, 115, 22, 0.22);
+    }
+    .income-hero small { font-size: 12px; opacity: 0.9; }
+    .income-hero h2 { font-size: 28px; font-weight: 800; margin: 6px 0; }
+    .income-hero p { font-size: 11.5px; opacity: 0.85; line-height: 1.4; }
+
+    /* Bottom Navigation (4 Items dengan SVG rapi) */
+    .nav {
+      position: fixed;
+      z-index: 40;
+      left: 50%;
+      bottom: 0;
+      width: min(100%, 430px);
+      height: 68px;
+      transform: translateX(-50%);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      align-items: center;
+      border-top: 1px solid var(--line);
+      background: #fff;
+      box-shadow: 0 -4px 18px rgba(15, 23, 42, 0.06);
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+    .nav button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      height: 100%;
+      border: 0;
+      background: transparent;
+      color: #94a3b8;
+      font-size: 10.5px;
+      font-weight: 600;
+    }
+    .nav button svg { width: 21px; height: 21px; stroke: #94a3b8; }
+    .nav button.active { color: var(--orange-dark); font-weight: 800; }
+    .nav button.active svg { stroke: var(--orange-dark); }
+
+    /* Modal Tugas Selesai (Foto Bukti + COD) */
+    .modal {
+      position: fixed;
+      z-index: 60;
+      inset: 0;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      background: rgba(15, 23, 42, 0.55);
+    }
+    .modal.open { display: flex; }
+    .modal-box {
+      width: min(100%, 430px);
+      border-radius: 24px 24px 0 0;
+      background: #fff;
+      overflow: hidden;
+      box-shadow: 0 -14px 40px rgba(15, 23, 42, 0.25);
+    }
+    .modal-head-orange {
+      background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+      color: #fff;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .modal-head-orange h2 { font-size: 17px; font-weight: 800; }
+    .modal-head-orange button {
+      width: 30px; height: 30px; border-radius: 50%; border: 0;
+      background: rgba(255,255,255,0.2); color: #fff; font-size: 18px;
+    }
+    .modal-body { padding: 18px 20px calc(22px + env(safe-area-inset-bottom)); }
+    .modal-body p { color: var(--muted); font-size: 12px; line-height: 1.45; margin-bottom: 14px; }
+    .photo-drop {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 2px dashed #cbd5e1;
+      border-radius: 16px;
+      background: #f8fafc;
+      padding: 22px 16px;
+      text-align: center;
+      cursor: pointer;
+      margin-bottom: 14px;
+    }
+    .photo-drop svg { width: 34px; height: 34px; color: var(--blue); }
+    .photo-drop span { font-size: 12.5px; font-weight: 700; color: var(--ink-2); }
+    .photo-drop small { font-size: 11px; color: var(--muted); }
+    .photo-drop input { display: none; }
+    .photo-preview {
+      width: 100%;
+      max-height: 150px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 12px;
+    }
+    .cod-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      margin-bottom: 16px;
+    }
+    .cod-box small { display: block; font-size: 11px; color: var(--muted); }
+    .cod-box strong { font-size: 13px; color: var(--ink); }
+    .cod-box b { font-size: 15px; color: var(--orange-dark); font-weight: 800; }
+    .btn-submit-complete {
+      width: 100%;
+      height: 46px;
+      border: 0;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+      color: #fff;
+      font-size: 14px;
+      font-weight: 800;
+      box-shadow: 0 6px 16px rgba(249, 115, 22, 0.28);
+    }
+    .btn-cancel-complete {
+      width: 100%;
+      height: 40px;
+      margin-top: 8px;
+      border: 0;
+      border-radius: 12px;
+      background: #f1f5f9;
+      color: var(--ink-2);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .notice {
+      position: fixed;
+      z-index: 90;
+      left: 50%;
+      top: 16px;
+      transform: translate(-50%, -24px);
+      opacity: 0;
+      pointer-events: none;
+      padding: 10px 16px;
+      border-radius: 12px;
+      background: #0f172a;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      transition: .2s;
+    }
+    .notice.show { transform: translate(-50%, 0); opacity: 1; }
+
+    @media (min-width: 431px) {
+      .app {
+        margin: 14px auto;
+        min-height: calc(100vh - 28px);
+        border-radius: 26px;
+        overflow-x: hidden;
+      }
+      .nav { bottom: 14px; border-radius: 0 0 26px 26px; }
+    }
   </style>
 </head>
 <body>
+  <!-- Layar Login & Register Kurir -->
   <section class="login-wrap" id="login-screen">
     <div class="login-card">
-      <h1>GalonKu Mitra</h1>
+      <div class="brand-mark">
+        <div class="brand-drop">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-3 11.5V14l-3-3 4-3 2 3h2"/></svg>
+        </div>
+        <h1>GalonKu <span>Mitra</span></h1>
+      </div>
       <p id="courier-auth-description">Masuk untuk menerima dan mengelola pesanan pelanggan.</p>
-      <div class="auth-tabs" style="display:grid;grid-template-columns:1fr 1fr;margin:14px 0;border-radius:10px;background:#f1f4f8;padding:3px">
-        <button type="button" class="active" data-courier-auth="login" style="height:36px;border:0;border-radius:8px;background:#fff;color:#2853d4;font-weight:800">Masuk</button>
-        <button type="button" data-courier-auth="register" style="height:36px;border:0;border-radius:8px;background:transparent;color:#758196;font-weight:800">Daftar</button>
+      <div class="auth-tabs">
+        <button type="button" class="active" data-courier-auth="login">Masuk</button>
+        <button type="button" data-courier-auth="register">Daftar</button>
       </div>
       <form id="login-form">
-        <label>Email atau nomor HP<input id="identity" autocomplete="username" required></label>
-        <label>Password<input id="password" type="password" autocomplete="current-password" required></label>
-        <button type="submit">Masuk sebagai Kurir</button>
+        <label>Email atau nomor HP<input id="identity" placeholder="kurir@galonku.id" autocomplete="username" required></label>
+        <label>Password<input id="password" type="password" placeholder="Masukkan password" autocomplete="current-password" required></label>
+        <button type="submit">MASUK SEBAGAI KURIR</button>
       </form>
       <form id="courier-register-form" hidden>
-        <label>Nama Lengkap<input id="courier-register-name" autocomplete="name" required></label>
-        <label>Email<input id="courier-register-email" type="email" autocomplete="email" required></label>
-        <label>No. HP<input id="courier-register-phone" type="tel" autocomplete="tel" required></label>
-        <label>Password<input id="courier-register-password" type="password" minlength="6" autocomplete="new-password" required></label>
-        <button type="submit">Daftar sebagai Kurir</button>
+        <label>Nama Lengkap<input id="courier-register-name" placeholder="Nama lengkap Anda" autocomplete="name" required></label>
+        <label>Email<input id="courier-register-email" type="email" placeholder="contoh@email.com" autocomplete="email" required></label>
+        <label>No. HP<input id="courier-register-phone" type="tel" placeholder="0812xxxxxxxx" autocomplete="tel" required></label>
+        <label>Password<input id="courier-register-password" type="password" placeholder="Minimal 6 karakter" minlength="6" autocomplete="new-password" required></label>
+        <button type="submit">DAFTAR SEBAGAI KURIR</button>
       </form>
-      <p class="login-divider">atau</p>
+      <div class="login-divider">atau</div>
       <button class="btn-google" id="google-btn" type="button">
-        <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
         <span id="google-btn-label">Masuk dengan Google</span>
       </button>
       <div class="google-signin" id="google-signin-button" style="display:none"></div>
@@ -80,6 +789,7 @@
     </div>
   </section>
 
+  <!-- Modal Google -->
   <div class="modal-google" id="modal-google" hidden>
     <div class="modal-google-card">
       <h3>
@@ -87,9 +797,9 @@
         Lanjutkan dengan Google
       </h3>
       <p id="modal-google-subtitle">Masuk atau daftarkan akun mitra kurir</p>
-      <label style="display:block;margin:6px 0 3px;font-size:11px;font-weight:700;color:#5f6368">Email Google</label>
+      <label>Email Google</label>
       <input type="email" id="modal-google-email" placeholder="contoh@gmail.com" required>
-      <label style="display:block;margin:6px 0 3px;font-size:11px;font-weight:700;color:#5f6368">Nama Lengkap</label>
+      <label>Nama Lengkap</label>
       <input type="text" id="modal-google-name" placeholder="Nama Anda (opsional)">
       <div class="modal-google-actions">
         <button type="button" class="modal-google-cancel" id="modal-google-cancel">Batal</button>
@@ -98,70 +808,150 @@
     </div>
   </div>
 
+  <!-- Aplikasi Utama Kurir -->
   <main class="app" id="app-screen" hidden>
+    <!-- Beranda Kurir -->
     <section class="screen active" id="home-screen">
       <header class="top">
         <div class="topbar">
-          <div class="brand">GalonKu <span style="font-weight:400">Mitra</span></div>
+          <div class="brand">GalonKu <span>Mitra</span></div>
           <div class="top-actions">
-            <button class="online-toggle" id="online-toggle" aria-pressed="false"><span id="online-label">Offline</span><i class="switch"></i></button>
-            <div class="avatar" id="avatar">K</div>
+            <div class="avatar" id="avatar" title="Keluar akun">K</div>
           </div>
         </div>
         <p class="welcome">Halo, selamat bekerja</p>
         <h1 class="driver-name" id="driver-name">Mitra Kurir</h1>
-        <div class="online-state"><i class="green-dot"></i><span id="online-status">Anda sedang offline</span></div>
+        <div class="status-bar-card">
+          <div class="online-state"><i class="green-dot"></i><span id="online-status">Anda siap menerima pesanan</span></div>
+          <button class="online-toggle online" id="online-toggle" type="button" aria-pressed="true">
+            <span id="online-label">Online</span>
+            <i class="switch"></i>
+          </button>
+        </div>
         <div class="stats">
-          <div class="stat"><span>Pesanan selesai</span><strong id="trip-count">0</strong></div>
+          <div class="stat"><span>Tugas selesai</span><strong id="trip-count">0</strong></div>
           <div class="stat"><span>Jarak hari ini</span><strong id="distance-total">0 km</strong></div>
-          <div class="stat"><span>Pendapatan tunai</span><strong id="cash-total">Rp0</strong></div>
+          <div class="stat"><span>Pendapatan</span><strong id="cash-total">Rp0</strong></div>
         </div>
       </header>
 
-      <div class="section-title"><h2>Pesanan aktif</h2><span id="active-count">0 pesanan</span></div>
-      <div id="assigned-list" class="job-list"></div>
-      <div class="section-title"><h2>Peta sekitar</h2><span>Radius 5 km</span></div>
-      <div class="card map-card">
-        <span class="road-label" style="left:14%;top:25%">Jl. Merdeka</span>
-        <span class="road-label" style="left:57%;top:68%">Jl. Sudirman</span>
-        <span class="pin me"><span>●</span></span><span class="pin destination"><span>⌂</span></span>
-        <span class="map-status" id="map-status">Aktifkan status online untuk mulai</span>
+      <div class="body-pad">
+        <!-- Peta Pantauan Operasional -->
+        <div class="section-title"><h2>Peta Pantauan Operasional</h2><span>Radius 5 km</span></div>
+        <div class="map-card">
+          <div class="map-card-head">
+            <div>
+              <strong>Area Permintaan Pelanggan</strong>
+              <small>Heat map area aktif sekitar Anda</small>
+            </div>
+          </div>
+          <div class="map-visual">
+            <span class="road-label" style="left:14%;top:25%">Jl. Merdeka</span>
+            <span class="road-label" style="left:57%;top:68%">Jl. Sudirman</span>
+            <span class="pin me"><span>●</span></span>
+            <span class="pin destination"><span>⌂</span></span>
+            <span class="map-status" id="map-status">Online · Mencari pesanan</span>
+          </div>
+        </div>
+
+        <!-- Tugas Aktif -->
+        <div class="section-title"><h2>Detail Tugas Aktif</h2><span id="active-count">0 pesanan</span></div>
+        <div id="assigned-list" class="job-list"></div>
+
+        <!-- Radar Pesanan Masuk -->
+        <div class="section-title"><h2>Radar Pesanan Masuk</h2><span id="available-count">0 tersedia</span></div>
+        <div id="available-list" class="job-list"></div>
       </div>
-      <div class="section-title"><h2>Pesanan masuk</h2><span id="available-count">0 tersedia</span></div>
-      <div id="available-list" class="job-list"></div>
     </section>
 
+    <!-- Pendapatan -->
     <section class="screen" id="income-screen">
-      <div class="section-title"><h2>Pendapatan</h2><span>Hari ini</span></div>
-      <div class="card"><small>Total pendapatan tunai</small><h2 id="income-total">Rp0</h2><p style="color:var(--muted);font-size:11px">COD lunas tercatat otomatis setelah pengantaran dikonfirmasi.</p></div>
+      <div class="sub-header">
+        <h2>Pendapatan</h2>
+        <span>Hari Ini</span>
+      </div>
+      <div class="body-pad">
+        <div class="income-hero">
+          <small>Total Pendapatan Tunai (COD)</small>
+          <h2 id="income-total">Rp0</h2>
+          <p>Pembayaran COD lunas tercatat otomatis setelah foto bukti pengantaran dikonfirmasi.</p>
+        </div>
+      </div>
     </section>
+
+    <!-- Riwayat -->
     <section class="screen" id="history-screen">
-      <div class="section-title"><h2>Riwayat pengantaran</h2><span>Pesanan selesai</span></div>
-      <div id="history-list" class="job-list"></div>
+      <div class="sub-header">
+        <h2>Riwayat Pengantaran</h2>
+        <span>Selesai</span>
+      </div>
+      <div class="body-pad">
+        <div id="history-list" class="job-list"></div>
+      </div>
     </section>
+
+    <!-- Pesanan Masuk / Aktif -->
     <section class="screen" id="orders-screen">
-      <div class="section-title"><h2>Pesanan saya</h2><span id="orders-count"></span></div>
-      <div id="orders-list" class="job-list"></div>
+      <div class="sub-header">
+        <h2>Pesanan Masuk</h2>
+        <span id="orders-count">0 aktif</span>
+      </div>
+      <div class="body-pad">
+        <div id="orders-list" class="job-list"></div>
+      </div>
     </section>
   </main>
 
+  <!-- Navigasi Bawah -->
   <nav class="nav" id="bottom-nav" hidden>
-    <button class="active" data-screen="home-screen"><i>⌂</i>Beranda</button>
-    <button data-screen="income-screen"><i>＄</i>Pendapatan</button>
-    <button data-screen="history-screen"><i>◷</i>Riwayat</button>
-    <button data-screen="orders-screen"><i>▤</i>Pesanan</button>
+    <button class="active" data-screen="home-screen" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+      <span>Beranda</span>
+    </button>
+    <button data-screen="income-screen" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/></svg>
+      <span>Pendapatan</span>
+    </button>
+    <button data-screen="history-screen" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+      <span>Riwayat</span>
+    </button>
+    <button data-screen="orders-screen" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg>
+      <span>Pesanan</span>
+    </button>
   </nav>
 
+  <!-- Modal Tugas Selesai -->
   <div class="modal" id="complete-modal">
     <form class="modal-box" id="complete-form">
-      <h2>Konfirmasi pengantaran</h2>
-      <p>Ambil atau pilih foto bukti saat galon diterima pelanggan. Untuk COD, pesanan akan otomatis ditandai lunas.</p>
-      <input type="hidden" id="complete-order-id">
-      <label>Foto bukti pengantaran<input type="file" id="proof-photo" accept="image/jpeg,image/png,image/webp" capture="environment" required></label>
-      <button type="submit">Konfirmasi selesai</button>
-      <button type="button" id="cancel-complete" style="margin-top:8px;background:#edf1f7;color:#344">Batal</button>
+      <div class="modal-head-orange">
+        <h2>Tugas Selesai</h2>
+        <button type="button" id="close-complete-x" aria-label="Tutup">×</button>
+      </div>
+      <div class="modal-body">
+        <p>Ambil foto bukti saat galon diterima pelanggan. Untuk COD, pesanan otomatis ditandai lunas.</p>
+        <input type="hidden" id="complete-order-id">
+        <label class="photo-drop" for="proof-photo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          <span id="proof-photo-label">Ambil / Pilih Foto Bukti Antar</span>
+          <small>JPG, PNG, atau WEBP</small>
+          <input type="file" id="proof-photo" accept="image/jpeg,image/png,image/webp" capture="environment" required>
+        </label>
+        <img id="proof-preview" class="photo-preview" hidden alt="Preview bukti antar">
+        <div class="cod-box">
+          <div>
+            <small>Pembayaran COD</small>
+            <strong>Konfirmasi Tunai</strong>
+          </div>
+          <b id="complete-cod-amount">Rp0</b>
+        </div>
+        <button type="submit" class="btn-submit-complete">TUGAS SELESAI</button>
+        <button type="button" id="cancel-complete" class="btn-cancel-complete">Batal</button>
+      </div>
     </form>
   </div>
+
   <div class="notice" id="notice"></div>
   <script src="./app.js"></script>
   <script>if('serviceWorker' in navigator) navigator.serviceWorker.register('./service-worker.js');</script>

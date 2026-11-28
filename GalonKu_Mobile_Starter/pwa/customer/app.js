@@ -25,6 +25,17 @@ function showCustomerApp(result) {
   if (customerAvatar) customerAvatar.textContent = (currentCustomer.nama || 'Pelanggan').trim().charAt(0).toUpperCase();
   const customerNameHeading = document.querySelector('.welcome-text h1');
   if (customerNameHeading && currentCustomer.nama) customerNameHeading.textContent = currentCustomer.nama;
+  const greetingName = document.getElementById('greeting-name');
+  if (greetingName) {
+    const firstName = (currentCustomer.nama || '').trim().split(/\s+/)[0] || 'Pelanggan';
+    greetingName.textContent = `Halo, ${firstName}! Mau pesan galon?`;
+  }
+  const profileAvatar = document.getElementById('profile-avatar');
+  if (profileAvatar) profileAvatar.textContent = (currentCustomer.nama || 'P').trim().charAt(0).toUpperCase();
+  const profileName = document.getElementById('profile-name');
+  if (profileName) profileName.textContent = currentCustomer.nama || 'Pelanggan GalonKu';
+  const profileEmail = document.getElementById('profile-email');
+  if (profileEmail) profileEmail.textContent = currentCustomer.email || '';
   const trackingAddress = document.getElementById('tracking-address');
   if (trackingAddress && currentCustomer.alamat_lengkap) trackingAddress.textContent = currentCustomer.alamat_lengkap;
 }
@@ -139,13 +150,21 @@ async function setupGoogleSignIn() {
     });
   });
 
+  modalGoogleEmail?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') { e.preventDefault(); modalGoogleSubmit?.click(); }
+  });
+  modalGoogleName?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') { e.preventDefault(); modalGoogleSubmit?.click(); }
+  });
+
   if (googleBtn) {
     googleBtn.addEventListener('click', () => {
       if (window.GalonKuNativeAuth) {
         window.GalonKuNativeAuth.signIn();
         return;
       }
-      if (window.google?.accounts?.id) {
+      const isLocalhost = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+      if (!isLocalhost && window.google?.accounts?.id) {
         try {
           window.google.accounts.id.prompt((notification) => {
             if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
@@ -441,12 +460,23 @@ document.getElementById('nav-orders')?.addEventListener('click', async () => {
     if (result.data && result.data[0]) {
       const latest = result.data[0];
       const trackingStatus = document.getElementById('tracking-status');
-      if (trackingStatus) {
-        trackingStatus.textContent =
-          latest.status_antar === 'menuju_lokasi' ? 'Kurir sedang menuju lokasi' :
-          latest.status_antar === 'sampai_tujuan' ? 'Pesanan sudah selesai' :
-          latest.status_pesanan === 'proses' ? 'Pesanan sedang diproses' :
-          'Menunggu penugasan kurir';
+      const stepMencari = document.getElementById('step-mencari');
+      const stepJalan = document.getElementById('step-jalan');
+      const stepSampai = document.getElementById('step-sampai');
+      stepMencari?.classList.add('done');
+      stepJalan?.classList.remove('done', 'active');
+      stepSampai?.classList.remove('done', 'active');
+
+      if (latest.status_antar === 'menuju_lokasi') {
+        stepJalan?.classList.add('active');
+        if (trackingStatus) trackingStatus.textContent = 'Kurir sedang menuju lokasi Anda';
+      } else if (latest.status_antar === 'sampai_tujuan') {
+        stepJalan?.classList.add('done');
+        stepSampai?.classList.add('done');
+        if (trackingStatus) trackingStatus.textContent = 'Pesanan sudah sampai tujuan';
+      } else {
+        stepMencari?.classList.add('active');
+        if (trackingStatus) trackingStatus.textContent = latest.status_pesanan === 'proses' ? 'Pesanan sedang diproses' : 'Menunggu penugasan kurir';
       }
       const activeOrderSub = document.getElementById('active-order-sub');
       if (activeOrderSub) {
@@ -473,21 +503,43 @@ document.getElementById('nav-home')?.addEventListener('click', () => {
 });
 
 document.getElementById('nav-products')?.addEventListener('click', () => {
-  showScreen(null);
+  showScreen('catalog-screen');
   document.getElementById('nav-products')?.classList.add('active');
-  document.getElementById('galon-products')?.scrollIntoView({ behavior: 'smooth' });
+});
+
+document.getElementById('view-all-galon')?.addEventListener('click', () => {
+  document.getElementById('nav-products')?.click();
+});
+
+document.getElementById('catalog-back')?.addEventListener('click', () => {
+  document.getElementById('nav-home')?.click();
 });
 
 document.getElementById('nav-account')?.addEventListener('click', () => {
+  showScreen('profile-screen');
+  document.getElementById('nav-account')?.classList.add('active');
+});
+
+document.getElementById('profile-back')?.addEventListener('click', () => {
+  document.getElementById('nav-home')?.click();
+});
+
+document.getElementById('btn-logout-customer')?.addEventListener('click', () => {
   if (!currentCustomer) return;
-  if (confirm(`Masuk sebagai ${currentCustomer.email}. Keluar dari akun ini?`)) {
+  if (confirm(`Keluar dari akun ${currentCustomer.email}?`)) {
     localStorage.removeItem(customerTokenKey);
     localStorage.removeItem(customerUserKey);
     currentCustomer = null;
+    showScreen(null);
     document.getElementById('auth-screen').hidden = false;
     document.getElementById('customer-app').hidden = true;
     document.getElementById('customer-nav').hidden = true;
   }
+});
+
+document.getElementById('home-find-courier')?.addEventListener('click', () => {
+  openSheet(1);
+  findCouriers();
 });
 
 document.getElementById('order-back')?.addEventListener('click', () => {
