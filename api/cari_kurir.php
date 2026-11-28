@@ -6,12 +6,12 @@ $latUser = isset($_GET['lat']) ? (float) $_GET['lat'] : -6.9175;
 $lngUser = isset($_GET['lng']) ? (float) $_GET['lng'] : 107.6191;
 
 $sql = "
-    SELECT user_id, nama, no_hp,
-        (6371 * acos(
-            cos(radians(:lat_user)) * cos(radians(lat_kurir))
-            * cos(radians(long_kurir) - radians(:lng_user))
-            + sin(radians(:lat_user)) * sin(radians(lat_kurir))
-        )) AS jarak_km
+    SELECT user_id, nama, no_hp, lat_kurir, long_kurir,
+        (6371 * acos(LEAST(1, GREATEST(-1,
+            cos(radians(:lat1)) * cos(radians(lat_kurir))
+            * cos(radians(long_kurir) - radians(:lng1))
+            + sin(radians(:lat2)) * sin(radians(lat_kurir))
+        )))) AS jarak_km
     FROM users
     WHERE role = 'tukang_galon'
       AND status_aktif = 'online'
@@ -22,5 +22,5 @@ $sql = "
 ";
 
 $stmt = $pdo->prepare($sql);
-$stmt->execute([':lat_user' => $latUser, ':lng_user' => $lngUser]);
+$stmt->execute([':lat1' => $latUser, ':lng1' => $lngUser, ':lat2' => $latUser]);
 json_response(['status' => 'success', 'data' => $stmt->fetchAll()]);

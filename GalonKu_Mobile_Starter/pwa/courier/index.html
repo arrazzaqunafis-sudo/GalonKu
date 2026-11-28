@@ -6,32 +6,35 @@
   <meta name="theme-color" content="#f97316">
   <link rel="manifest" href="manifest.webmanifest">
   <title>GalonKu Mitra Kurir</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --orange: #f97316;
       --orange-dark: #ea580c;
       --orange-light: #fb923c;
       --orange-soft: #fff7ed;
-      --blue: #0077c0;
-      --blue-soft: #e0f2fe;
+      --blue: #0066cc;
+      --blue-soft: #eef5ff;
       --green: #10b981;
-      --green-soft: #d1fae5;
-      --red: #ef4444;
+      --green-soft: #ecfdf5;
+      --red: #dc2626;
       --red-soft: #fef2f2;
-      --ink: #0f172a;
-      --ink-2: #334155;
-      --muted: #64748b;
-      --line: #e2e8f0;
-      --bg: #f1f5f9;
+      --ink: #111827;
+      --ink-2: #374151;
+      --muted: #6b7280;
+      --line: #eaeef4;
+      --bg: #f6f8fb;
       --surface: #ffffff;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
       width: 100%;
       min-height: 100%;
-      background: #e6eff6;
+      background: #eef2f7;
       color: var(--ink);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Arial, sans-serif;
+      font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       -webkit-font-smoothing: antialiased;
     }
     button, input, select { font: inherit; }
@@ -202,20 +205,21 @@
       min-height: 100vh;
       margin: 0 auto;
       background: var(--bg);
-      padding-bottom: 88px;
+      padding-bottom: 100px;
       position: relative;
       box-shadow: 0 0 40px rgba(15, 23, 42, 0.08);
     }
     .screen { display: none; }
     .screen.active { display: block; }
 
-    /* Header Oranye Dashboard (sesuai mockup) */
+    /* Header Dark Slate Driver (nyaman di mata & profesional) */
     .top {
-      background: linear-gradient(155deg, #f97316 0%, #fb923c 100%);
+      background: linear-gradient(160deg, #0f172a 0%, #1e293b 100%);
       color: #fff;
       padding: 18px 16px 20px;
-      border-radius: 0 0 24px 24px;
-      box-shadow: 0 6px 20px rgba(249, 115, 22, 0.22);
+      border-radius: 0 0 22px 22px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.16);
+      position: relative;
     }
     .topbar {
       display: flex;
@@ -281,6 +285,12 @@
       background: #4ade80;
       box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.25);
       flex-shrink: 0;
+      animation: onlinePulse 2s infinite;
+    }
+    @keyframes onlinePulse {
+      0% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6); }
+      70% { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
     }
     .online-toggle {
       display: inline-flex;
@@ -396,18 +406,15 @@
       height: 155px;
       position: relative;
       margin: 0 12px 12px;
-      border-radius: 14px;
-      border: 1px solid #dbe6ef;
+      border-radius: 12px;
+      border: 1px solid var(--line);
       overflow: hidden;
-      background-color: #e8f0e9;
+      background-color: #eef2f6;
       background-image:
-        radial-gradient(circle at 30% 42%, rgba(239, 68, 68, 0.45) 0%, rgba(245, 158, 11, 0.35) 18%, rgba(16, 185, 129, 0.15) 36%, transparent 55%),
-        radial-gradient(circle at 68% 35%, rgba(239, 68, 68, 0.4) 0%, rgba(245, 158, 11, 0.3) 16%, rgba(16, 185, 129, 0.12) 32%, transparent 50%),
-        radial-gradient(circle at 55% 74%, rgba(245, 158, 11, 0.38) 0%, rgba(16, 185, 129, 0.15) 22%, transparent 45%),
-        linear-gradient(24deg, transparent 46%, #fff 47%, #fff 50%, transparent 51%),
-        linear-gradient(112deg, transparent 46%, #fde68a 47%, #fde68a 49%, transparent 50%),
-        linear-gradient(158deg, transparent 46%, #fff 47%, #fff 50%, transparent 51%);
-      background-size: 100% 100%, 100% 100%, 100% 100%, 95px 80px, 130px 100px, 80px 110px;
+        radial-gradient(circle at 30% 42%, rgba(249, 115, 22, 0.26) 0%, rgba(245, 158, 11, 0.14) 22%, transparent 45%),
+        radial-gradient(circle at 68% 35%, rgba(16, 185, 129, 0.22) 0%, transparent 38%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='160' viewBox='0 0 400 160'%3E%3Cpath d='M0 38 Q120 26 220 52 T400 40' fill='none' stroke='%23ffffff' stroke-width='9'/%3E%3Cpath d='M0 112 L400 96' fill='none' stroke='%23ffffff' stroke-width='11'/%3E%3Cpath d='M90 0 L114 160' fill='none' stroke='%23ffffff' stroke-width='8'/%3E%3Cpath d='M255 0 L238 160' fill='none' stroke='%23ffffff' stroke-width='10'/%3E%3Crect x='130' y='52' width='88' height='38' rx='6' fill='%23e2e8f0' fill-opacity='0.65'/%3E%3Crect x='268' y='16' width='58' height='44' rx='6' fill='%23dcfce7' fill-opacity='0.75'/%3E%3C/svg%3E");
+      background-size: 100% 100%, 100% 100%, cover;
     }
     .road-label {
       position: absolute;
@@ -603,9 +610,11 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       align-items: center;
-      border-top: 1px solid var(--line);
-      background: #fff;
-      box-shadow: 0 -4px 18px rgba(15, 23, 42, 0.06);
+      border-top: 1px solid rgba(226, 232, 240, 0.85);
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 -6px 24px rgba(15, 23, 42, 0.07);
       padding-bottom: env(safe-area-inset-bottom);
     }
     .nav button {
@@ -740,12 +749,13 @@
 
     @media (min-width: 431px) {
       .app {
-        margin: 14px auto;
-        min-height: calc(100vh - 28px);
-        border-radius: 26px;
+        margin: 16px auto;
+        min-height: calc(100vh - 32px);
+        border-radius: 28px;
         overflow-x: hidden;
+        box-shadow: 0 24px 60px rgba(15, 23, 42, 0.16), 0 0 0 1px rgba(255, 255, 255, 0.7);
       }
-      .nav { bottom: 14px; border-radius: 0 0 26px 26px; }
+      .nav { bottom: 16px; border-radius: 0 0 28px 28px; }
     }
   </style>
 </head>

@@ -38,6 +38,7 @@ function showCustomerApp(result) {
   if (profileEmail) profileEmail.textContent = currentCustomer.email || '';
   const trackingAddress = document.getElementById('tracking-address');
   if (trackingAddress && currentCustomer.alamat_lengkap) trackingAddress.textContent = currentCustomer.alamat_lengkap;
+  findCouriers();
 }
 
 let registrationLocation = null;
@@ -357,22 +358,58 @@ document.getElementById('plus').addEventListener('click', () => {
   input.value = String(Number(input.value) + 1);
 });
 
+async function fetchNearbyCouriers(lat, lng, gpsLabel) {
+  const gpsStatus = document.getElementById('gps-status');
+  const badge = document.getElementById('map-courier-badge');
+  const homeList = document.getElementById('home-couriers-list');
+  const sheetList = document.getElementById('couriers');
+  if (gpsStatus && gpsLabel) gpsStatus.textContent = gpsLabel;
+
+  try {
+    const response = await fetch(`${API_BASE}cari_kurir.php?lat=${encodeURIComponent(lat)}&lng=${encodeURIComponent(lng)}`);
+    const result = await response.json();
+    const list = result.data || [];
+
+    if (badge) {
+      badge.textContent = list.length ? `● ${list.length} Kurir Aktif` : '● Tidak ada kurir';
+      badge.style.color = list.length ? 'var(--green)' : 'var(--muted)';
+    }
+
+    const html = list.length ? list.map((courier) => `
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-top:1px solid var(--line)">
+        <div>
+          <strong style="display:block;font-size:12.5px;color:var(--ink)">${courier.nama}</strong>
+          <small style="color:var(--muted);font-size:11px">Online · ${Number(courier.jarak_km).toFixed(2)} km dari lokasi Anda</small>
+        </div>
+        <span style="background:var(--blue-soft);color:var(--blue);padding:4px 8px;border-radius:8px;font-size:11px;font-weight:800">${Number(courier.jarak_km).toFixed(1)} km</span>
+      </div>`).join('')
+      : '<div style="padding-top:8px;border-top:1px solid var(--line);color:var(--muted)">Belum ada tukang galon online dalam radius 5 km.</div>';
+
+    if (homeList) homeList.innerHTML = html;
+    if (sheetList) sheetList.innerHTML = html;
+  } catch (err) {
+    if (badge) badge.textContent = '● Gagal memuat';
+    if (homeList) homeList.textContent = 'Gagal memeriksa kurir terdekat.';
+  }
+}
+
 async function findCouriers() {
+  const gpsStatus = document.getElementById('gps-status');
+  const badge = document.getElementById('map-courier-badge');
+  if (badge) badge.textContent = '● Mencari GPS...';
+
   if (!navigator.geolocation) {
-    document.getElementById('couriers').textContent = 'GPS tidak didukung.';
+    await fetchNearbyCouriers(-6.9175, 107.6191, 'GPS tidak didukung (pakai area default)');
     return;
   }
-  document.getElementById('gps-status').textContent = 'Mencari lokasi...';
+  if (gpsStatus) gpsStatus.textContent = 'Mencari titik GPS Anda...';
   navigator.geolocation.getCurrentPosition(async ({ coords }) => {
-    document.getElementById('gps-status').textContent = 'Lokasi Anda aktif';
-    const response = await fetch(`${API_BASE}cari_kurir.php?lat=${coords.latitude}&lng=${coords.longitude}`);
-    const result = await response.json();
-    document.getElementById('couriers').innerHTML = (result.data || []).map((courier) =>
-      `<div style="display:flex;justify-content:space-between;padding-top:8px"><strong>${courier.nama}</strong><span>${Number(courier.jarak_km).toFixed(1)} km</span></div>`
-    ).join('') || '<div style="padding-top:8px">Tidak ada kurir dalam radius 5 km.</div>';
-  }, () => {
-    document.getElementById('gps-status').textContent = 'GPS belum diizinkan';
-  });
+    registrationLocation = { latitude: coords.latitude, longitude: coords.longitude };
+    const label = `GPS Aktif (${coords.latitude.toFixed(4)}, ${coords.longitude.toFixed(4)})`;
+    await fetchNearbyCouriers(coords.latitude, coords.longitude, label);
+  }, async () => {
+    await fetchNearbyCouriers(-6.9175, 107.6191, currentCustomer?.alamat_lengkap || 'Area Bandung (GPS belum diizinkan)');
+  }, { enableHighAccuracy: true, timeout: 10000, maximumAge: 5000 });
 }
 
 document.getElementById('locate')?.addEventListener('click', findCouriers);
@@ -403,7 +440,7 @@ async function loadCatalog() {
         card.querySelector('.product-info')?.appendChild(add);
       }
       add.dataset.product = String(product.produk_id);
-      add.textContent = '+';
+      add.textContent = '+ Tambah';
       add.addEventListener('click', () => openSheet(product.produk_id));
     });
   } catch (error) {
@@ -538,7 +575,6 @@ document.getElementById('btn-logout-customer')?.addEventListener('click', () => 
 });
 
 document.getElementById('home-find-courier')?.addEventListener('click', () => {
-  openSheet(1);
   findCouriers();
 });
 

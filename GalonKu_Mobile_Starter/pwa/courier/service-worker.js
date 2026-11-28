@@ -1,4 +1,4 @@
-const CACHE = 'galonku-courier-v8';
+const CACHE = 'galonku-courier-v12';
 const APP_SHELL = ['./', './index.html', './app.js', './manifest.webmanifest', './icons/icon.svg'];
 self.addEventListener('install', event => {
   self.skipWaiting();
