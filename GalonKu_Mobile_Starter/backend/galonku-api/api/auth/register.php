@@ -27,7 +27,7 @@ if (!in_array($role, ['masyarakat', 'tukang_galon'], true)) {
     jsonResponse(422, ['success' => false, 'message' => 'Role pendaftaran tidak valid.']);
 }
 if ($role === 'masyarakat' && $alamatLengkap === '') {
-    jsonResponse(422, ['success' => false, 'message' => 'Alamat lengkap wajib diisi.']);
+    $alamatLengkap = 'Bandung, Jawa Barat';
 }
 
 $pdo = db();
@@ -62,7 +62,38 @@ try {
             ':lng' => $lng
         ]);
         $alamatId = (int)$pdo->lastInsertId();
+    } elseif ($role === 'tukang_galon') {
+        $pdo->prepare("UPDATE users SET status_aktif = 'online', lat_kurir = -6.9175, long_kurir = 107.6191 WHERE user_id = ?")
+            ->execute([$userId]);
     }
+
+    // Ensure api_tokens table exists and generate login token
+    $pdo->exec("
+        CREATE TABLE IF NOT EXISTS api_tokens (
+            token_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            user_id INT NOT NULL,
+            token_hash CHAR(64) NOT NULL UNIQUE,
+            expires_at DATETIME NOT NULL,
+            last_used_at DATETIME NULL,
+            created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            INDEX idx_api_tokens_user (user_id),
+            INDEX idx_api_tokens_expiry (expires_at)
+        ) ENGINE=InnoDB
+    ");
+
+    $plainToken = bin2hex(random_bytes(32));
+    $tokenHash = hash('sha256', $plainToken);
+    $expiresAt = (new DateTimeImmutable('+30 days'))->format('Y-m-d H:i:s');
+    $insertToken = $pdo->prepare(
+        "INSERT INTO api_tokens (user_id, token_hash, expires_at, created_at)
+         VALUES (:user_id, :token_hash, :expires_at, NOW())"
+    );
+    $insertToken->execute([
+        ':user_id' => $userId,
+        ':token_hash' => $tokenHash,
+        ':expires_at' => $expiresAt
+    ]);
+
     $pdo->commit();
 } catch (PDOException $exception) {
     if ($pdo->inTransaction()) $pdo->rollBack();
@@ -72,6 +103,8 @@ try {
 jsonResponse(201, [
     'success' => true,
     'message' => 'Pendaftaran berhasil.',
+    'token' => $plainToken,
+    'expires_at' => $expiresAt,
     'user' => [
         'user_id' => $userId,
         'nama' => $nama,

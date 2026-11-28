@@ -53,6 +53,12 @@ $insert->execute([
     ':expires_at' => $expiresAt
 ]);
 
+if ($user['role'] === 'tukang_galon') {
+    $pdo->prepare("UPDATE users SET status_aktif = 'online', lat_kurir = COALESCE(lat_kurir, -6.9175), long_kurir = COALESCE(long_kurir, 107.6191) WHERE user_id = ?")
+        ->execute([$user['user_id']]);
+    $user['status_aktif'] = 'online';
+}
+
 unset($user['password'], $user['status_aktif']);
 
 $alamatId = null;

@@ -14,8 +14,8 @@ if ($online === null) jsonResponse(422, ['success' => false, 'message' => 'Nilai
 $stmt = $pdo->prepare(
     "UPDATE users
      SET status_aktif = :status,
-         lat_kurir = CASE WHEN :online = 0 THEN NULL ELSE lat_kurir END,
-         long_kurir = CASE WHEN :online2 = 0 THEN NULL ELSE long_kurir END
+         lat_kurir = CASE WHEN :online = 0 THEN NULL ELSE COALESCE(lat_kurir, -6.9175) END,
+         long_kurir = CASE WHEN :online2 = 0 THEN NULL ELSE COALESCE(long_kurir, 107.6191) END
      WHERE user_id = :id AND role = 'tukang_galon'"
 );
 $stmt->execute([
